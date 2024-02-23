@@ -1,0 +1,27 @@
+.product-image {
+  position: relative;
+  &__image {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+  }
+  &__actions {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    &--add-favorite {
+      margin-right: auto;
+    }
+
+    &--discount {
+      background-color: wheat;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 14px;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    }
+  }
+}

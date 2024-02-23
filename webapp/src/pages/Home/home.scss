@@ -1,0 +1,30 @@
+.home-container {
+  &__main {
+    padding: 22px 15px 0 15px;
+    &--heading {
+      margin: 0px;
+      text-align: center;
+      font-weight: 300;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    }
+    &--paragraph {
+      text-align: center;
+      margin-top: 10px;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+        sans-serif;
+    }
+    &--products {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 20px 0px;
+
+      & > .product-container {
+        padding: 20px 10px;
+      }
+    }
+  }
+}
+
+.product-container {
+  flex: 0 0 50%;
+}

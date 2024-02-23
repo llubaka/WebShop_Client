@@ -36,6 +36,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   margin: 0;
+  font-family: Lato;
 }
 
 /* A elements that don't have a class get default styles */
@@ -72,4 +73,13 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
