@@ -1,11 +1,12 @@
 import { Product } from "../../components/product/product";
 import { PromotionBanner } from "../../components/promotionBanner/PromotionBanner";
+import Settings from "../../settings/appSettings.json";
 import "./home.scss";
 
 export const Home = () => {
   return (
     <div className="home-container">
-      <PromotionBanner />
+      {Settings.options.showPromotionsBanner && <PromotionBanner />}
       <div className="home-container__main">
         <section>
           <h1 className="home-container__main--heading"> Нови Продукти </h1>

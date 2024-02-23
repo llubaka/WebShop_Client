@@ -1,5 +1,18 @@
 import { createContext, useContext } from "react";
 
-export const CartContext = createContext<Array<string> | null>(null);
+export type CartType = Array<{ productId: string; count: number }>;
 
-export const useCartContext = () => useContext(CartContext);
+export type AddProductInCartFuncType = (productId: string) => void;
+
+export type CartContextType = {
+  cart: CartType;
+  addProductInCart: AddProductInCartFuncType;
+};
+
+export const CartContext = createContext<CartContextType | null>(null);
+
+export const useCartContext = (): CartContextType => {
+  if (!CartContext) throw new Error("Cart Context not provided!");
+
+  return useContext(CartContext) as CartContextType;
+};
