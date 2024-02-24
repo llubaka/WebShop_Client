@@ -1,6 +1,8 @@
 import { Product } from "../../components/product/product";
 import { PromotionBanner } from "../../components/promotionBanner/PromotionBanner";
 import Settings from "../../settings/appSettings.json";
+import NewProducts from "../../products/newProducts.json";
+
 import "./home.scss";
 
 export const Home = () => {
@@ -13,13 +15,13 @@ export const Home = () => {
           <p className="home-container__main--paragraph"> Разгледайте нашите най-нови предложения </p>
         </section>
         <section className="home-container__main--products">
-          <Product id="0" />
-          <Product id="1" />
-          <Product id="2" />
-          <Product id="3" />
-          <Product id="4" />
-          <Product id="5" />
+          {NewProducts.slice(0, 6).map((id) => {
+            return <Product key={id} id={id} />;
+          })}
         </section>
+        <div className="home-container__main--view-all-button-container">
+          <button>Виж всички</button>
+        </div>
       </div>
     </div>
   );

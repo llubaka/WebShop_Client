@@ -2,8 +2,8 @@ import "./product.scss";
 import { getSingleProduct } from "../../helpers/getSingleProduct";
 import { useCartContext } from "../../context/cartContext";
 import { useFavoriteContext } from "../../context/favoriteContext";
-import styled from "styled-components";
 import { useCallback } from "react";
+import styled from "@emotion/styled";
 
 interface IProduct {
   id: string;
@@ -26,6 +26,9 @@ export const Product: React.FC<IProduct> = ({ id }) => {
   }, [favorites, id]);
 
   const product = getSingleProduct(id);
+
+  if (!product) return <></>;
+
   const hasDiscount = !!product.discount;
   const mainPrice = hasDiscount ? ((+product.price * (100 - product.discount)) / 100).toFixed(2) : product.price;
 
@@ -59,7 +62,8 @@ export const Product: React.FC<IProduct> = ({ id }) => {
   );
 };
 
-const SpanStyled = styled("div")<{ isFavorite: boolean }>(({ isFavorite }) => ({
-  display: "inline-block",
+const SpanStyled = styled("div", {
+  shouldForwardProp: (props) => props !== "isFavorite",
+})<{ isFavorite: boolean }>(({ isFavorite }) => ({
   color: isFavorite ? "#ddd" : "gold",
 }));

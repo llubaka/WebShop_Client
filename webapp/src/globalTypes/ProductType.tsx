@@ -1,9 +1,9 @@
 // Type of products.json
 export type ProductType = {
-  [id: string]: {
-    info: string;
-    price: string;
-    imageUrl: string;
-    discount: number;
-  };
+  id: string;
+  new: boolean;
+  info: string;
+  price: string;
+  imageUrl: string;
+  discount: number;
 };
