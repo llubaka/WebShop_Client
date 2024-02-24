@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
         <button>
           <Image className="header__container__image--burger" src={Settings.images.burgerMenu} />
         </button>
-        <button className="header__container__cart-button">
+        <Link to={Routes.CART} className="header__container__cart-button">
           <div
             key={getCartCount()}
             className={`header__container__cart-button--count ${getCartCount() > 0 && "animation"}`}
@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
             {getCartCount()}
           </div>
           <Image className="header__container__image--cart" src={Settings.images.cart} />
-        </button>
+        </Link>
       </div>
     </header>
   );

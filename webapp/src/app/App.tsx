@@ -6,6 +6,7 @@ import { AddProductInCartFuncType, CartContext, CartType } from "../context/cart
 import { LocalStorageKeys, getLocalStorageItem, setLocalStorageItem } from "../helpers/localStorageFunctions";
 import { AddFavoriteFuncType, FavoriteContext, FavoriteType } from "../context/favoriteContext";
 import { NewProducts } from "../pages/NewProducts/NewProducts";
+import { Cart } from "../pages/Cart/Cart";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -61,9 +62,10 @@ function App() {
 
   useEffect(() => {
     const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
-    if (!lsCart) return;
+    if (lsCart) setCart(() => lsCart);
 
-    setCart(() => lsCart);
+    const lsFavorites = getLocalStorageItem(LocalStorageKeys.FAVORITES);
+    if (lsFavorites) setFavorites(() => lsFavorites);
   }, []);
 
   return (
@@ -74,6 +76,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<NewProducts />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/:id" element={<div>param</div>} />
             <Route index path="/hello" element={<div> Path </div>} />
             <Route path="*" element={<div> Nothing found </div>} />

@@ -65,5 +65,5 @@ export const Product: React.FC<IProduct> = ({ id }) => {
 const SpanStyled = styled("div", {
   shouldForwardProp: (props) => props !== "isFavorite",
 })<{ isFavorite: boolean }>(({ isFavorite }) => ({
-  color: isFavorite ? "#ddd" : "gold",
+  color: isFavorite ? "gold" : "#ddd",
 }));
