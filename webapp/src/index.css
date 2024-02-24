@@ -36,7 +36,6 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   margin: 0;
-  font-family: Lato;
 }
 
 /* A elements that don't have a class get default styles */

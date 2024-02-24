@@ -33,5 +33,19 @@
         }
       }
     }
+
+    &__cart-button {
+      position: relative;
+      &--count {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        height: 18px;
+        width: 18px;
+      }
+    }
   }
 }
