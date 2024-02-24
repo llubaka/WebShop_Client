@@ -4,6 +4,8 @@ import { useCartContext } from "../../context/cartContext";
 import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCallback } from "react";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import { Routes } from "../../globals/Routes";
 
 interface IProduct {
   id: string;
@@ -12,13 +14,20 @@ interface IProduct {
 export const Product: React.FC<IProduct> = ({ id }) => {
   const { addProductInCart } = useCartContext();
   const { favorites, addFavorite } = useFavoriteContext();
+  const navigate = useNavigate();
 
-  const handleAddInCartClick = () => {
+  const handleAddInCartClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
     addProductInCart(id);
   };
 
-  const handleAddFavoriteClick = () => {
+  const handleAddFavoriteClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
     addFavorite(id);
+  };
+
+  const handleNavigate = () => {
+    navigate(`${Routes.SINGLE_PRODUCT}${id}`);
   };
 
   const isFavorite = useCallback(() => {
@@ -37,7 +46,7 @@ export const Product: React.FC<IProduct> = ({ id }) => {
   const discountText = `-${product.discount}%`;
 
   return (
-    <div className="product-container">
+    <div onClick={handleNavigate} className="product-container">
       <div className="product-container__image">
         <div className="product-image">
           <div className="product-image__actions">

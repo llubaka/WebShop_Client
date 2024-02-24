@@ -7,6 +7,7 @@ import { LocalStorageKeys, getLocalStorageItem, setLocalStorageItem } from "../h
 import { AddFavoriteFuncType, FavoriteContext, FavoriteType } from "../context/favoriteContext";
 import { NewProducts } from "../pages/NewProducts/NewProducts";
 import { Cart } from "../pages/Cart/Cart";
+import { SingleProduct } from "../pages/SingleProduct/SingleProduct";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -77,8 +78,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<NewProducts />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/:id" element={<div>param</div>} />
-            <Route index path="/hello" element={<div> Path </div>} />
+            <Route path="/item/:id" element={<SingleProduct />} />
             <Route path="*" element={<div> Nothing found </div>} />
           </Routes>
         </FavoriteContext.Provider>
