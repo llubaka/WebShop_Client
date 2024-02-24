@@ -1,11 +1,11 @@
 import "./product.scss";
-import { getSingleProduct } from "../../helpers/getSingleProduct";
 import { useCartContext } from "../../context/cartContext";
 import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCallback } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../globals/Routes";
+import { getSingleProduct } from "../../data/getData/getSingleProduct";
 
 interface IProduct {
   id: string;
