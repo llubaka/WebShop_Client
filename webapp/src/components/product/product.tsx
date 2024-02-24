@@ -46,27 +46,29 @@ export const Product: React.FC<IProduct> = ({ id }) => {
   const discountText = `-${product.discount}%`;
 
   return (
-    <div onClick={handleNavigate} className="product-container">
-      <div className="product-container__image">
-        <div className="product-image">
-          <div className="product-image__actions">
-            <button onClick={handleAddFavoriteClick} className="product-image__actions--add-favorite">
-              <SpanStyled className="product-image__actions--add-favorite--heart-icon" isFavorite={isFavorite()}>
-                &#10084;
-              </SpanStyled>
-            </button>
-            {!!product.discount && <div className="product-image__actions--discount">{discountText}</div>}
+    <div className="product-container">
+      <div onClick={handleNavigate} className="product-container__shadow">
+        <div className="product-container__image">
+          <div className="product-image">
+            <div className="product-image__actions">
+              <button onClick={handleAddFavoriteClick} className="product-image__actions--add-favorite">
+                <SpanStyled className="product-image__actions--add-favorite--heart-icon" isFavorite={isFavorite()}>
+                  &#10084;
+                </SpanStyled>
+              </button>
+              {!!product.discount && <div className="product-image__actions--discount">{discountText}</div>}
+            </div>
+            <img className="product-image__image" src={source} alt={altAtr} />
           </div>
-          <img className="product-image__image" src={source} alt={altAtr} />
         </div>
+        <p className="product-container__info">{product.info}</p>
+        <div className="product-container__price">
+          {mainPrice}лв.{hasDiscount && <span className="product-container__price--discount">{product.price}лв.</span>}
+        </div>
+        <button onClick={handleAddInCartClick} className="product-container__add-to-cart-button">
+          Добави в количката
+        </button>
       </div>
-      <p className="product-container__info">{product.info}</p>
-      <div className="product-container__price">
-        {mainPrice}лв.{hasDiscount && <span className="product-container__price--discount">{product.price}лв.</span>}
-      </div>
-      <button onClick={handleAddInCartClick} className="product-container__add-to-cart-button">
-        Добави в количката
-      </button>
     </div>
   );
 };

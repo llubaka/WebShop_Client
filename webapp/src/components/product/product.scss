@@ -2,14 +2,29 @@
   display: flex;
   flex-direction: column;
 
+  &__shadow {
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: rgb(245 222 179 / 65%) 0px 10px 20px 0px, rgb(245 222 179 / 100%) 0px 3px 9px 0px;
+    }
+  }
+
   &__info {
     flex: 1;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    padding: 0 5px;
   }
 
   &__price {
     margin: 10px 0 15px 0;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    padding: 0 5px;
+
     &--discount {
       margin-left: 8px;
       color: silver;
@@ -49,6 +64,7 @@
 
     &--add-favorite {
       margin-right: auto;
+      margin-left: 5px;
 
       &--heart-icon {
         transform: scale(1.25);

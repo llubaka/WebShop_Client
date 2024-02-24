@@ -8,6 +8,9 @@ import { AddFavoriteFuncType, FavoriteContext, FavoriteType } from "../context/f
 import { NewProducts } from "../pages/NewProducts/NewProducts";
 import { Cart } from "../pages/Cart/Cart";
 import { SingleProduct } from "../pages/SingleProduct/SingleProduct";
+import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
+import { ByCategoryProducts } from "../pages/ByCategoryProducts/ByCategoryProducts";
+import { FavoriteProducts } from "../pages/FavoriteProducts/FavoriteProducts";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -78,8 +81,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<NewProducts />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/favorites" element={<FavoriteProducts />} />
             <Route path="/item/:id" element={<SingleProduct />} />
-            <Route path="*" element={<div> Nothing found </div>} />
+            <Route path="/category/:category" element={<ByCategoryProducts />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </FavoriteContext.Provider>
       </CartContext.Provider>
