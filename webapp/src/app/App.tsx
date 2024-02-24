@@ -5,6 +5,7 @@ import { Home } from "../pages/Home/Home";
 import { AddProductInCartFuncType, CartContext, CartType } from "../context/cartContext";
 import { LocalStorageKeys, getLocalStorageItem, setLocalStorageItem } from "../helpers/localStorageFunctions";
 import { AddFavoriteFuncType, FavoriteContext, FavoriteType } from "../context/favoriteContext";
+import { NewProducts } from "../pages/NewProducts/NewProducts";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -72,9 +73,10 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/new" element={<NewProducts />} />
             <Route path="/:id" element={<div>param</div>} />
             <Route index path="/hello" element={<div> Path </div>} />
-            <Route path="*" element={<div> Else </div>} />
+            <Route path="*" element={<div> Nothing found </div>} />
           </Routes>
         </FavoriteContext.Provider>
       </CartContext.Provider>

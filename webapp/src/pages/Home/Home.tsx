@@ -4,6 +4,8 @@ import Settings from "../../settings/appSettings.json";
 import NewProducts from "../../products/newProducts.json";
 
 import "./home.scss";
+import { Link } from "react-router-dom";
+import { Routes } from "../../globals/Routes";
 
 export const Home = () => {
   return (
@@ -20,7 +22,7 @@ export const Home = () => {
           })}
         </section>
         <div className="home-container__main--view-all-button-container">
-          <button>Виж всички</button>
+          <Link to={Routes.NEW_PRODUCTS}>Виж всички</Link>
         </div>
       </div>
     </div>
