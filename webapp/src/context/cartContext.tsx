@@ -12,7 +12,7 @@ export type CartContextType = {
 export const CartContext = createContext<CartContextType | null>(null);
 
 export const useCartContext = (): CartContextType => {
-  if (!CartContext) throw new Error("Cart Context not provided!");
+  if (!CartContext) throw new Error("Cart Context was not provided!");
 
   return useContext(CartContext) as CartContextType;
 };

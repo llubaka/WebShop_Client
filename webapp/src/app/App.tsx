@@ -4,9 +4,11 @@ import { Header } from "../components/header/Header";
 import { Home } from "../pages/Home/Home";
 import { AddProductInCartFuncType, CartContext, CartType } from "../context/cartContext";
 import { LocalStorageKeys, getLocalStorageItem, setLocalStorageItem } from "../helpers/localStorageFunctions";
+import { AddFavoriteFuncType, FavoriteContext, FavoriteType } from "../context/favoriteContext";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
+  const [favorites, setFavorites] = useState<FavoriteType>([]);
 
   const addProductInCart: AddProductInCartFuncType = (productId: string) => {
     setCart((curr) => {
@@ -33,6 +35,29 @@ function App() {
     });
   };
 
+  const addFavorite: AddFavoriteFuncType = (productId: string) => {
+    setFavorites((curr) => {
+      let newFavorites: FavoriteType = [];
+
+      // Favorites empty
+      if (curr.length === 0) {
+        newFavorites.push(productId);
+      }
+      // Already favorite
+      else if (curr.includes(productId)) {
+        newFavorites = curr.filter((fav) => fav !== productId);
+      }
+      // Add favorite
+      else {
+        newFavorites = [...curr, productId];
+      }
+
+      setLocalStorageItem(LocalStorageKeys.FAVORITES, newFavorites);
+
+      return newFavorites;
+    });
+  };
+
   useEffect(() => {
     const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
     if (!lsCart) return;
@@ -43,13 +68,15 @@ function App() {
   return (
     <BrowserRouter>
       <CartContext.Provider value={{ cart, addProductInCart }}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<div>param</div>} />
-          <Route index path="/hello" element={<div> Path </div>} />
-          <Route path="*" element={<div> Else </div>} />
-        </Routes>
+        <FavoriteContext.Provider value={{ favorites, addFavorite }}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:id" element={<div>param</div>} />
+            <Route index path="/hello" element={<div> Path </div>} />
+            <Route path="*" element={<div> Else </div>} />
+          </Routes>
+        </FavoriteContext.Provider>
       </CartContext.Provider>
     </BrowserRouter>
   );
