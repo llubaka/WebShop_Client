@@ -1,50 +1,56 @@
 [
   {
     "id": "0",
-    "new": true,
     "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
     "price": "200",
     "imageUrl": "ring.jpg",
-    "discount": 44
+    "discount": 44,
+    "tags": ["нов"],
+    "additionalImagesUrls": []
   },
   {
     "id": "1",
-    "new": true,
     "info": "Сребърен Комплект Amina ",
     "price": "150.90",
     "imageUrl": "ring22.png",
-    "discount": 0
+    "discount": 0,
+    "tags": ["нов"],
+    "additionalImagesUrls": []
   },
   {
     "id": "2",
-    "new": true,
     "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
     "price": "50.90",
     "imageUrl": "ring.png",
-    "discount": 39
+    "discount": 39,
+    "tags": ["нов"],
+    "additionalImagesUrls": []
   },
   {
     "id": "3",
-    "new": true,
     "info": "Сребърен Комплект Amina ",
     "price": "150.90",
     "imageUrl": "ring2.png",
-    "discount": 12
+    "discount": 12,
+    "tags": ["нов"],
+    "additionalImagesUrls": []
   },
   {
     "id": "4",
-    "new": true,
     "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
     "price": "50.90",
     "imageUrl": "ring3.png",
-    "discount": 39
+    "discount": 39,
+    "tags": ["нов"],
+    "additionalImagesUrls": []
   },
   {
     "id": "5",
-    "new": true,
     "info": "Сребърен Комплект Amina ",
     "price": "150.90",
     "imageUrl": "ring4.png",
-    "discount": 12
+    "discount": 12,
+    "tags": ["нов", "пръстен"],
+    "additionalImagesUrls": []
   }
 ]

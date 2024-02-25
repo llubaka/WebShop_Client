@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../globals/Routes";
 import { getSingleProduct } from "../../data/getData/getSingleProduct";
+import { getImageUrl } from "../../data/getData/getImageUrl";
 
 interface IProduct {
   id: string;
@@ -41,7 +42,7 @@ export const Product: React.FC<IProduct> = ({ id }) => {
   const hasDiscount = !!product.discount;
   const mainPrice = hasDiscount ? ((+product.price * (100 - product.discount)) / 100).toFixed(2) : product.price;
 
-  const source = `/products/${product.imageUrl}`;
+  const source = getImageUrl(product.imageUrl);
   const altAtr = product.imageUrl.split(".")[0];
   const discountText = `-${product.discount}%`;
 
