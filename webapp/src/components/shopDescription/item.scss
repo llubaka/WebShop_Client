@@ -1,0 +1,18 @@
+.footer-item {
+  padding: 10px;
+
+  &__title {
+    color: #e7bb69;
+    font-size: 17px;
+    text-align: center;
+    line-height: 1.2;
+    font-family: cursive;
+  }
+
+  &__info {
+    padding-top: 10px;
+    text-align: center;
+    font-family: sans-serif;
+    line-height: 1.2;
+  }
+}

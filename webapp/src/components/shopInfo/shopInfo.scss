@@ -1,4 +1,20 @@
 .shopInfo {
   overflow: hidden;
   transition: height 1.7s;
+  margin-top: 25px;
+
+  & > div > p {
+    font-family: sans-serif;
+  }
+
+  & > div > h2 {
+    font-family: math;
+    line-height: 1.1;
+  }
+
+  &__title {
+    font-family: math;
+    text-align: center;
+    line-height: 1.1;
+  }
 }
