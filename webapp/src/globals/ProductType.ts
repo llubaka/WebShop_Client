@@ -6,5 +6,6 @@ export type ProductType = {
   imageUrl: string;
   discount: number;
   tags: string[];
+  category: string;
   additionalImagesUrls: string[];
 };

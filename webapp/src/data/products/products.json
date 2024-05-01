@@ -6,6 +6,7 @@
     "imageUrl": "ring.jpg",
     "discount": 44,
     "tags": ["нов"],
+    "category": "",
     "additionalImagesUrls": []
   },
   {
@@ -15,6 +16,7 @@
     "imageUrl": "ring22.png",
     "discount": 0,
     "tags": ["нов"],
+    "category": "",
     "additionalImagesUrls": []
   },
   {
@@ -24,6 +26,7 @@
     "imageUrl": "ring.png",
     "discount": 39,
     "tags": ["нов"],
+    "category": "",
     "additionalImagesUrls": []
   },
   {
@@ -33,6 +36,7 @@
     "imageUrl": "ring2.png",
     "discount": 12,
     "tags": ["нов"],
+    "category": "",
     "additionalImagesUrls": []
   },
   {
@@ -42,6 +46,7 @@
     "imageUrl": "ring3.png",
     "discount": 39,
     "tags": ["нов"],
+    "category": "",
     "additionalImagesUrls": []
   },
   {
@@ -51,6 +56,7 @@
     "imageUrl": "ring4.png",
     "discount": 12,
     "tags": ["нов", "пръстен"],
+    "category": "",
     "additionalImagesUrls": []
   }
 ]

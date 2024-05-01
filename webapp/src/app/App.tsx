@@ -11,6 +11,7 @@ import { SingleProduct } from "../pages/SingleProduct/SingleProduct";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
 import { ByCategoryProducts } from "../pages/ByCategoryProducts/ByCategoryProducts";
 import { FavoriteProducts } from "../pages/FavoriteProducts/FavoriteProducts";
+import { Footer } from "../components/footer/Footer";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -86,6 +87,7 @@ function App() {
             <Route path="/category/:category" element={<ByCategoryProducts />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
+          <Footer />
         </FavoriteContext.Provider>
       </CartContext.Provider>
     </BrowserRouter>
