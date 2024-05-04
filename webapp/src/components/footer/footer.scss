@@ -2,4 +2,16 @@
   height: 250px;
   margin-top: 50px;
   padding: 0 22px;
+
+  &__info {
+    position: absolute;
+    left: 0;
+    background-color: wheat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    width: 100%;
+    margin-top: 25px;
+  }
 }

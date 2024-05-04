@@ -1,6 +1,10 @@
 .footer-item {
   padding: 10px;
 
+  & > img {
+    margin: auto;
+  }
+
   &__title {
     color: #e7bb69;
     font-size: 17px;

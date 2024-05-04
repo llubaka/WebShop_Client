@@ -23,12 +23,12 @@
   &__price {
     margin: 10px 0 15px 0;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    padding: 0 5px;
+    padding-left: 5px;
 
     &--discount {
       margin-left: 8px;
       color: silver;
-      font-size: 16px;
+      font-size: 14px;
       text-decoration: line-through;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }

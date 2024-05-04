@@ -1,11 +1,11 @@
 [
   {
-    "icon": "",
+    "iconUrl": "",
     "title": "",
     "tag": "",
     "subMenu": [
-      { "icon": "", "title": "", "tag": "" },
-      { "icon": "", "title": "", "tag": "" }
+      { "iconUrl": "", "title": "", "tag": "" },
+      { "iconUrl": "", "title": "", "tag": "" }
     ]
   }
 ]

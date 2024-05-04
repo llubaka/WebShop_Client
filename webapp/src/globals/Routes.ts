@@ -5,4 +5,5 @@ export enum Routes {
   FAVORITES = "./favorites",
   SINGLE_PRODUCT = "/item/",
   BY_CATEGORY_PRODUCTS = "/category/",
+  FROM_BANNER_PRODUCTS = "/frombanner",
 }

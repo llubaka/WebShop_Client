@@ -1,8 +1,16 @@
 [
   {
-    "imageUrl": "",
+    "id": "219219",
+    "imageUrl": "banner1.png",
     "category": "",
+    "tags": ["нов", "пръстен"],
+    "productsIds": []
+  },
+  {
+    "id": "129120",
+    "imageUrl": "banner2.png",
+    "category": "сребърен",
     "tags": [],
-    "ids": []
+    "productsIds": []
   }
 ]

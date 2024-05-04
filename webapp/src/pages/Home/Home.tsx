@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Routes } from "../../globals/Routes";
 import { getNewProductsIds } from "../../data/getData/getNewProductsIds";
 import { ShopInfo } from "../../components/shopInfo/ShopInfo";
+import { HomeSections } from "../../components/homeSections/HomeSections";
 
 export const Home = () => {
   const newProductsIds = getNewProductsIds();
@@ -25,6 +26,7 @@ export const Home = () => {
         <div className="home-container__main--view-all-button-container">
           <Link to={Routes.NEW_PRODUCTS}>Виж всички</Link>
         </div>
+        <HomeSections />
         <ShopInfo />
       </div>
     </div>
