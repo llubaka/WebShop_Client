@@ -19,7 +19,7 @@ export const Home = () => {
           <p className="home-container__main--paragraph"> Разгледайте нашите най-нови предложения </p>
         </section>
         <section className="home-container__main--products">
-          {newProductsIds.slice(0, 6).map((id) => {
+          {newProductsIds.map((id) => {
             return <Product key={id} id={id} />;
           })}
         </section>

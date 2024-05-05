@@ -13,7 +13,7 @@ export const HomeSections = () => {
     <div className="home-sections">
       {sections.map((sect) => {
         return (
-          <Link to={`${Routes.FROM_BANNER_PRODUCTS}/${sect.id}`}>
+          <Link key={sect.id} to={`${Routes.FROM_BANNER_PRODUCTS}/${sect.id}`}>
             <Image className="home-sections__image" src={sect.imageUrl} />
           </Link>
         );

@@ -5,7 +5,7 @@
     "price": "200",
     "imageUrl": "ring.jpg",
     "discount": 44,
-    "tags": ["нов"],
+    "tags": ["нов", "test1"],
     "category": "",
     "additionalImagesUrls": []
   },
@@ -15,7 +15,7 @@
     "price": "150.90",
     "imageUrl": "ring22.png",
     "discount": 0,
-    "tags": ["нов"],
+    "tags": ["нов", "test2"],
     "category": "",
     "additionalImagesUrls": []
   },

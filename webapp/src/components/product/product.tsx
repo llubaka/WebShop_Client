@@ -5,8 +5,8 @@ import { useCallback } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../globals/Routes";
-import { getSingleProduct } from "../../data/getData/getSingleProduct";
 import { getImageUrl } from "../../data/getData/getImageUrl";
+import { getById } from "../../data/getData/getFilteredProducts";
 
 interface IProduct {
   id: string;
@@ -35,7 +35,7 @@ export const Product: React.FC<IProduct> = ({ id }) => {
     return favorites.includes(id);
   }, [favorites, id]);
 
-  const product = getSingleProduct(id);
+  const product = getById(id);
 
   if (!product) return <></>;
 
