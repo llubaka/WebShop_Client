@@ -11,8 +11,8 @@ export const FromBannerProducts = () => {
 
   const filteredProducts = useMemo(() => {
     if (section.category) return getByCategory(section.category);
-    if (section.tags) return getByTags(section.tags);
-    if (section.productsIds) return getByIds(section.productsIds);
+    if (section.tags && section.tags.length > 0) return getByTags(section.tags);
+    if (section.productsIds && section.productsIds.length > 0) return getByIds(section.productsIds);
 
     return [];
   }, [section.category, section.productsIds, section.tags]);

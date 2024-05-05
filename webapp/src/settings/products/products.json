@@ -45,7 +45,7 @@
     "price": "50.90",
     "imageUrl": "ring3.png",
     "discount": 39,
-    "tags": ["нов"],
+    "tags": [],
     "category": "",
     "additionalImagesUrls": []
   },
@@ -55,7 +55,7 @@
     "price": "150.90",
     "imageUrl": "ring4.png",
     "discount": 12,
-    "tags": ["нов", "пръстен"],
+    "tags": ["пръстен"],
     "category": "сребърен",
     "additionalImagesUrls": []
   }
