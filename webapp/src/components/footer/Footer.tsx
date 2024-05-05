@@ -1,4 +1,4 @@
-import { ShopDescription } from "../shopDescription/ShopDescription";
+import { ShopDescription } from "../shopFeatures/ShopFeatures";
 import "./footer.scss";
 
 export const Footer = () => {
