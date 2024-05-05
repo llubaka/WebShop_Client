@@ -1,4 +1,4 @@
-import NewProducts from "../products/newProductsIds.json";
+import NewProducts from "../../settings/products/newProductsIds.json";
 
 export const getNewProductsIds = (): Array<string> => {
   return NewProducts;
