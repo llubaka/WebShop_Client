@@ -17,11 +17,11 @@ export const FromBannerProducts = () => {
 
   const filteredProducts = useMemo(() => {
     if (section.category) {
-      bannerContentType.current = { type: ContentType.CATEGORY, content: section.category };
+      bannerContentType.current = { type: ContentType.INFO, content: section.category };
       return getByCategory(section.category);
     }
     if (section.tags && section.tags.length > 0) {
-      bannerContentType.current = { type: ContentType.TAG, content: section.tags };
+      bannerContentType.current = { type: ContentType.TAGS, content: section.tags };
       return getByTags(section.tags);
     }
     if (section.productsIds && section.productsIds.length > 0) return getByIds(section.productsIds);

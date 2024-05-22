@@ -1,11 +1,10 @@
 import "./navBanner.scss";
 import Settings from "../../settings/appSettings.json";
 import { Link } from "react-router-dom";
-import { getByCategoryProductsLink, getByTagProductsLink, getHomeRouteLink } from "../../globals/Routes";
+import { getByTagProductsLink, getHomeRouteLink } from "../../globals/Routes";
 
 export enum ContentType {
-  TAG,
-  CATEGORY,
+  TAGS,
   INFO,
 }
 
@@ -19,14 +18,25 @@ export const NavBanner: React.FC<INavBanner> = ({ content, contentType }) => {
     switch (contentType) {
       case ContentType.INFO:
         return <div className="navbar-container__info">{content}</div>;
-      case ContentType.CATEGORY:
-        return <Link to={getByCategoryProductsLink(content as string)}>{content}</Link>;
-      case ContentType.TAG:
+      case ContentType.TAGS:
         return (
           <>
             {(content as Array<string>).map((tag, index) => {
-              if (index === content.length - 1) return <Link to={getByTagProductsLink(tag)}>{tag}</Link>;
-              return <Link to={getByTagProductsLink(tag)}>{`${tag}, `}</Link>;
+              const linkContent =
+                index === content.length - 1 ? (
+                  tag
+                ) : (
+                  <>
+                    <span>{tag}</span>
+                    <span className="navbar-container__link-slash">/</span>
+                  </>
+                );
+
+              return (
+                <Link className="navbar-container__link" key={tag} to={getByTagProductsLink(tag)}>
+                  {linkContent}
+                </Link>
+              );
             })}
           </>
         );

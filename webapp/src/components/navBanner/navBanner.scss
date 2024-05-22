@@ -2,6 +2,8 @@
   font-size: 13px;
   margin: 10px;
   font-family: cursive;
+  color: #5a5a5a;
+
   & > a {
     font-family: cursive;
     display: inline;
@@ -12,5 +14,11 @@
   }
   &__info {
     display: inline;
+  }
+  &__link {
+    color: #d2b100;
+  }
+  &__link-slash {
+    margin: 0 5px;
   }
 }
