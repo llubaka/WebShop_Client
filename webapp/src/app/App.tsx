@@ -15,6 +15,7 @@ import { Footer } from "../components/footer/Footer";
 import { FromBannerProducts } from "../pages/FromBanner/FromBannerProducts";
 import { Routes as CustomRoutes } from "../globals/Routes";
 import { ByTagProcuts } from "../pages/ByTagProducts/ByTagProducts";
+import { AutoScrollPage } from "../components/common/AutoScrollPage";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -80,19 +81,21 @@ function App() {
     <BrowserRouter>
       <CartContext.Provider value={{ cart, addProductInCart }}>
         <FavoriteContext.Provider value={{ favorites, addFavorite }}>
-          <Header />
-          <Routes>
-            <Route path={CustomRoutes.HOME} element={<Home />} />
-            <Route path={CustomRoutes.NEW_PRODUCTS} element={<NewProducts />} />
-            <Route path={CustomRoutes.CART} element={<Cart />} />
-            <Route path={CustomRoutes.FAVORITES} element={<FavoriteProducts />} />
-            <Route path={CustomRoutes.SINGLE_PRODUCT} element={<SingleProduct />} />
-            <Route path={CustomRoutes.BY_CATEGORY_PRODUCTS} element={<ByCategoryProducts />} />
-            <Route path={CustomRoutes.BY_TAG_PRODUCTS} element={<ByTagProcuts />} />
-            <Route path={CustomRoutes.FROM_BANNER_PRODUCTS} element={<FromBannerProducts />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-          <Footer />
+          <AutoScrollPage>
+            <Header />
+            <Routes>
+              <Route path={CustomRoutes.HOME} element={<Home />} />
+              <Route path={CustomRoutes.NEW_PRODUCTS} element={<NewProducts />} />
+              <Route path={CustomRoutes.CART} element={<Cart />} />
+              <Route path={CustomRoutes.FAVORITES} element={<FavoriteProducts />} />
+              <Route path={CustomRoutes.SINGLE_PRODUCT} element={<SingleProduct />} />
+              <Route path={CustomRoutes.BY_CATEGORY_PRODUCTS} element={<ByCategoryProducts />} />
+              <Route path={CustomRoutes.BY_TAG_PRODUCTS} element={<ByTagProcuts />} />
+              <Route path={CustomRoutes.FROM_BANNER_PRODUCTS} element={<FromBannerProducts />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+            <Footer />
+          </AutoScrollPage>
         </FavoriteContext.Provider>
       </CartContext.Provider>
     </BrowserRouter>
