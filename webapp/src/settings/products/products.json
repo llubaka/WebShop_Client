@@ -55,7 +55,7 @@
     "price": "150.90",
     "imageUrl": "ring4.png",
     "discount": 12,
-    "tags": ["пръстен"],
+    "tags": ["пръстен", "друго", "друго2", "друго3"],
     "category": "сребърен",
     "additionalImagesUrls": []
   }

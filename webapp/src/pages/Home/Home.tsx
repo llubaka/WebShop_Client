@@ -3,7 +3,7 @@ import { PromotionBanner } from "../../components/promotionBanner/PromotionBanne
 import Settings from "../../settings/appSettings.json";
 import "./home.scss";
 import { Link } from "react-router-dom";
-import { Routes } from "../../globals/Routes";
+import { getNewProductsRouteLink } from "../../globals/Routes";
 import { getNewProductsIds } from "../../data/getData/getNewProductsIds";
 import { ShopInfo } from "../../components/shopInfo/ShopInfo";
 import { HomeSections } from "../../components/homeSections/HomeSections";
@@ -24,7 +24,7 @@ export const Home = () => {
           })}
         </section>
         <div className="home-container__main--view-all-button-container">
-          <Link to={Routes.NEW_PRODUCTS}>Виж всички</Link>
+          <Link to={getNewProductsRouteLink()}>Виж всички</Link>
         </div>
         <HomeSections />
         <ShopInfo />

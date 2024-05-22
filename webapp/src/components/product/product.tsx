@@ -4,7 +4,7 @@ import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCallback } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import { Routes } from "../../globals/Routes";
+import { getSingleProductRouteLink } from "../../globals/Routes";
 import { getImageUrl } from "../../data/getData/getImageUrl";
 import { getById } from "../../data/getData/getFilteredProducts";
 
@@ -28,7 +28,7 @@ export const Product: React.FC<IProduct> = ({ id }) => {
   };
 
   const handleNavigate = () => {
-    navigate(`${Routes.SINGLE_PRODUCT}${id}`);
+    navigate(getSingleProductRouteLink(id));
   };
 
   const isFavorite = useCallback(() => {

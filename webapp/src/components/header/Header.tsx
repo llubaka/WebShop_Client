@@ -4,7 +4,7 @@ import "./header.scss";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
 import { useCallback } from "react";
-import { Routes } from "../../globals/Routes";
+import { getCartRouteLink, getHomeRouteLink } from "../../globals/Routes";
 
 export const Header: React.FC = () => {
   const { cart } = useCartContext();
@@ -18,13 +18,13 @@ export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header__container">
-        <Link to={Routes.HOME} className="header__container__logo-button">
+        <Link to={getHomeRouteLink()} className="header__container__logo-button">
           <Image className="header__container__image--logo" src={Settings.images.logo} />
         </Link>
         <button>
           <Image className="header__container__image--burger" src={Settings.images.burgerMenu} />
         </button>
-        <Link to={Routes.CART} className="header__container__cart-button">
+        <Link to={getCartRouteLink()} className="header__container__cart-button">
           <div
             key={getCartCount()}
             className={`header__container__cart-button--count ${getCartCount() > 0 && "animation"}`}

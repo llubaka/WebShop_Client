@@ -1,11 +1,33 @@
 [
   {
-    "iconUrl": "",
-    "title": "",
-    "tag": "",
+    "iconUrl": "ring123.png",
+    "title": "ГРИВНИ С ЧЕРВЕН КОНЕЦ",
+    "category": "",
+    "tags": [],
+    "subMenu": []
+  },
+  {
+    "iconUrl": "ring124.png",
+    "title": "ПОРЪЧКОВИ МОДЕЛИ",
+    "category": "",
+    "tags": [],
+    "subMenu": []
+  },
+  {
+    "iconUrl": "ring125.png",
+    "title": "ПРЪСТЕНИ",
+    "category": "",
+    "tags": [],
+    "subMenu": []
+  },
+  {
+    "iconUrl": "ring126.png",
+    "title": "НОВО",
+    "category": "",
+    "tags": [],
     "subMenu": [
-      { "iconUrl": "", "title": "", "tag": "" },
-      { "iconUrl": "", "title": "", "tag": "" }
+      { "iconUrl": "", "title": "СУПЕР НОВИ", "category": "new", "tags": [] },
+      { "iconUrl": "", "title": "ЕКСТРА НОВИ", "category": "new", "tags": [] }
     ]
   }
 ]

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { getSections } from "../../data/getData/getSections";
 import { Image } from "../common/Image";
 import "./homeSections.scss";
-import { Routes } from "../../globals/Routes";
+import { getFromBannerProductsLink } from "../../globals/Routes";
 
 export const HomeSections = () => {
   const sections = getSections();
@@ -13,7 +13,7 @@ export const HomeSections = () => {
     <div className="home-sections">
       {sections.map((sect) => {
         return (
-          <Link key={sect.id} to={`${Routes.FROM_BANNER_PRODUCTS}/${sect.id}`}>
+          <Link key={sect.id} to={getFromBannerProductsLink(sect.id)}>
             <Image className="home-sections__image" src={sect.imageUrl} />
           </Link>
         );

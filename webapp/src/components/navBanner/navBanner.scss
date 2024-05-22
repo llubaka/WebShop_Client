@@ -1,0 +1,16 @@
+.navbar-container {
+  font-size: 13px;
+  margin: 10px;
+  font-family: cursive;
+  & > a {
+    font-family: cursive;
+    display: inline;
+  }
+  &__separator {
+    display: inline;
+    margin: 0 5px;
+  }
+  &__info {
+    display: inline;
+  }
+}

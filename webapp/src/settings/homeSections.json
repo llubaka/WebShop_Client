@@ -3,8 +3,8 @@
     "id": "219219",
     "imageUrl": "banner1.png",
     "category": "",
-    "tags": [],
-    "productsIds": ["1", "2", "5"]
+    "tags": ["пръстен", "друго", "друго2", "друго3"],
+    "productsIds": []
   },
   {
     "id": "129120",
