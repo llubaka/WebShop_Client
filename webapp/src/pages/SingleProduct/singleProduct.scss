@@ -6,6 +6,21 @@
 
   &__content {
     margin: 10px;
+    &--button {
+      background-color: wheat !important;
+      width: 100%;
+      text-transform: uppercase;
+      font-size: 15px;
+      padding: 8px 0 !important;
+      border-radius: 3px;
+      transition: 0.2s background-color;
+      &:hover {
+        background-color: #ffd586 !important;
+      }
+      &--last {
+        margin-top: 3px;
+      }
+    }
     &__info {
       font-size: 18px;
       // from cursive

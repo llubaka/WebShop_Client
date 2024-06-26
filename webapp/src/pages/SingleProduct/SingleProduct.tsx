@@ -51,13 +51,13 @@ export const SingleProduct = () => {
             </div>
             <button
               onClick={handleAddInCartClick}
-              className="product-container__add-to-cart-button"
+              className="sp-container__content--button"
             >
               Добави в количката
             </button>
             <button
               onClick={handleAddInCartClick}
-              className="product-container__add-to-cart-button"
+              className="sp-container__content--button sp-container__content--button--last"
             >
               Направи поръчка
             </button>

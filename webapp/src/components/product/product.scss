@@ -69,7 +69,8 @@
       margin-left: 5px;
 
       &--heart-icon {
-        transform: translateY(3px);
+        position: absolute;
+        top: 3px;
 
         &:hover {
           animation: heartbeat 1s linear;
@@ -90,21 +91,21 @@
 
 @keyframes heartbeat {
   0% {
-    transform: scale(1.3);
+    transform: scale(1.12);
   }
   20% {
-    transform: scale(1.2);
+    transform: scale(1.24);
   }
   40% {
-    transform: scale(1.4);
+    transform: scale(1.14);
   }
   60% {
-    transform: scale(1.25);
+    transform: scale(1.17);
   }
   80% {
-    transform: scale(1.4);
+    transform: scale(1.12);
   }
   100% {
-    transform: scale(1.25);
+    transform: scale(1.05);
   }
 }
