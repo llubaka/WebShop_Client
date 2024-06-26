@@ -1,0 +1,31 @@
+.sp-container {
+  & > img {
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  &__content {
+    margin: 10px;
+    &__info {
+      font-size: 18px;
+      font-family: cursive;
+    }
+    &__product-price {
+      margin: 10px 0 15px 0;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      font-size: 21px;
+      font-size: 21px;
+      color: #edb650;
+      font-weight: bold;
+
+      &--discount {
+        margin-left: 8px;
+        color: silver;
+        font-weight: normal;
+        font-size: 17px;
+        text-decoration: line-through;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    }
+  }
+}
