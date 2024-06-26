@@ -16,6 +16,7 @@ import { FromBannerProducts } from "../pages/FromBanner/FromBannerProducts";
 import { Routes as CustomRoutes } from "../globals/Routes";
 import { ByTagProcuts } from "../pages/ByTagProducts/ByTagProducts";
 import { AutoScrollPage } from "../components/common/AutoScrollPage";
+import { FromMenu } from "../pages/FromMenu/FromMenu";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -92,6 +93,7 @@ function App() {
               <Route path={CustomRoutes.BY_CATEGORY_PRODUCTS} element={<ByCategoryProducts />} />
               <Route path={CustomRoutes.BY_TAG_PRODUCTS} element={<ByTagProcuts />} />
               <Route path={CustomRoutes.FROM_BANNER_PRODUCTS} element={<FromBannerProducts />} />
+              <Route path={CustomRoutes.FROM_MENU} element={<FromMenu />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
             <Footer />
