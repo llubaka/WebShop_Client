@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import AppSettings from "../../settings/appSettings.json";
 import { Envelope } from "../../svg/Envleope";
 import { Telephone } from "../../svg/Telephone";
+import { Carousel } from "../../components/common/Carousel";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
@@ -24,7 +25,6 @@ export const SingleProduct = () => {
 
   const source = getImageUrl(product.imageUrl);
   const altAtr = product.imageUrl.split(".")[0];
-  const discountText = `-${product.discount}%`;
 
   const handleAddInCartClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -37,7 +37,13 @@ export const SingleProduct = () => {
     <>
       <NavBanner contentType={ContentType.INFO} content={product.info} />
       {hasAdditionalImages ? (
-        <> </>
+        <div className="carousel-container">
+          <Carousel
+            imageSources={product.additionalImagesUrls.map((url) =>
+              getImageUrl(url)
+            )}
+          />
+        </div>
       ) : (
         <div className="sp-container">
           <img src={source} alt={altAtr} />
