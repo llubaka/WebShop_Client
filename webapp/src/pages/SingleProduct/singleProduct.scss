@@ -8,7 +8,8 @@
     margin: 10px;
     &__info {
       font-size: 18px;
-      font-family: cursive;
+      // from cursive
+      font-family: auto;
     }
     &__product-price {
       margin: 10px 0 15px 0;
@@ -27,5 +28,20 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
     }
+  }
+}
+
+.sp-additional-info {
+  margin: 10px;
+  font-size: 14px;
+  &--icon {
+    width: 20px;
+    display: inline;
+    transform: translateY(4px);
+    margin-right: 5px;
+  }
+
+  &--href {
+    display: inline;
   }
 }

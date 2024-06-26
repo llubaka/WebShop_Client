@@ -1,11 +1,13 @@
 .navbar-container {
   font-size: 13px;
   margin: 10px;
-  font-family: cursive;
+  // from cursive
+  font-family: auto;
   color: #5a5a5a;
 
   & > a {
-    font-family: cursive;
+    // from cursive
+    font-family: auto;
     display: inline;
   }
   &__separator {

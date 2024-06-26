@@ -4,9 +4,11 @@ import { getById } from "../../data/getData/getFilteredProducts";
 import { getImageUrl } from "../../data/getData/getImageUrl";
 import "./singleProduct.scss";
 import { useParams } from "react-router";
+import AppSettings from "../../settings/appSettings.json";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
+  const { contact } = AppSettings;
 
   const { addProductInCart } = useCartContext();
 
@@ -62,6 +64,39 @@ export const SingleProduct = () => {
           </div>
         </div>
       )}
+
+      <div className="sp-additional-info">
+        {contact.telephone && (
+          <div>
+            <a
+              className="sp-additional-info--href"
+              href={`tel:${contact.telephone}`}
+            >
+              <img
+                className="sp-additional-info--icon"
+                src="/icons/phoneIcon.png"
+                alt="Telephone icon."
+              />
+              Имате въпроси или желаете да поръчате? {contact.telephone}
+            </a>
+          </div>
+        )}
+        {contact.email && (
+          <div>
+            <a
+              className="sp-additional-info--href"
+              href={`mailto:${contact.email}`}
+            >
+              <img
+                className="sp-additional-info--icon"
+                src="/icons/emailIcon.png"
+                alt="Email icon."
+              />
+              Може да се свържите с нас и по имейл: {contact.email}
+            </a>
+          </div>
+        )}
+      </div>
     </>
   );
 };
