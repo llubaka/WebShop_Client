@@ -1,11 +1,11 @@
 {
   "title": "Довери ни се",
   "features": [
-    { "title": "ПРАВО НА ВРЪЩАНЕ", "info": "до 60 дни след покупката", "imageUrl": "buss.png" },
+    { "title": "ПРАВО НА ВРЪЩАНЕ", "info": "до 60 дни след покупката", "imageUrl": "returnBox.png" },
     { "title": "БЕЗПЛАТНА ДОСТАВКА", "info": "над 100лв. с преглед и тест", "imageUrl": "buss.png" },
-    { "title": "СЕРТИФИКАТ ЗА КАЧЕСТВО", "info": "с 1 година гаранция", "imageUrl": "buss.png" },
-    { "title": "БЕЗ АЛЕРГЕНИ", "info": "само благородни метали", "imageUrl": "buss.png" },
-    { "title": "ЛЮБЕЗНО ОБСЛУЖВАНЕ", "info": "ние работим за Вас", "imageUrl": "buss.png" },
-    { "title": "30 ГОДИНИ ОПИТ", "info": "може да ни се доверите", "imageUrl": "buss.png" }
+    { "title": "СЕРТИФИКАТ ЗА КАЧЕСТВО", "info": "с 1 година гаранция", "imageUrl": "medal.png" },
+    { "title": "БЕЗ АЛЕРГЕНИ", "info": "само благородни метали", "imageUrl": "goldbars.png" },
+    { "title": "ЛЮБЕЗНО ОБСЛУЖВАНЕ", "info": "ние работим за Вас", "imageUrl": "phoneCall.png" },
+    { "title": "30 ГОДИНИ ОПИТ", "info": "може да ни се доверите", "imageUrl": "award.png" }
   ]
 }

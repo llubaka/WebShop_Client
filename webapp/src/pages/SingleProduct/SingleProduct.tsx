@@ -5,6 +5,8 @@ import { getImageUrl } from "../../data/getData/getImageUrl";
 import "./singleProduct.scss";
 import { useParams } from "react-router";
 import AppSettings from "../../settings/appSettings.json";
+import { Envelope } from "../../svg/Envleope";
+import { Telephone } from "../../svg/Telephone";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
@@ -71,12 +73,15 @@ export const SingleProduct = () => {
               className="sp-additional-info--href"
               href={`tel:${contact.telephone}`}
             >
-              <img
-                className="sp-additional-info--icon"
-                src="/icons/phoneIcon.png"
-                alt="Telephone icon."
-              />
-              Имате въпроси или желаете да поръчате? {contact.telephone}
+              <div className="sp-additional-info--href__container">
+                <span className="sp-additional-info--icon">
+                  <Telephone />
+                </span>
+                Имате въпроси или желаете да поръчате?
+              </div>
+              <div className="sp-additional-info--href--contact">
+                {contact.telephone}
+              </div>
             </a>
           </div>
         )}
@@ -86,12 +91,15 @@ export const SingleProduct = () => {
               className="sp-additional-info--href"
               href={`mailto:${contact.email}`}
             >
-              <img
-                className="sp-additional-info--icon"
-                src="/icons/emailIcon.png"
-                alt="Email icon."
-              />
-              Може да се свържите с нас и по имейл: {contact.email}
+              <div className="sp-additional-info--href__container">
+                <span className="sp-additional-info--icon">
+                  <Envelope />
+                </span>
+                Може да се свържите с нас и по имейл:
+              </div>
+              <div className="sp-additional-info--href--contact">
+                {contact.email}
+              </div>
             </a>
           </div>
         )}

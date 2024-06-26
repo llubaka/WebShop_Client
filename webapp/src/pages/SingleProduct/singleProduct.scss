@@ -47,16 +47,22 @@
 }
 
 .sp-additional-info {
-  margin: 10px;
+  margin: 25px 10px 10px 10px;
   font-size: 14px;
   &--icon {
     width: 20px;
     display: inline;
     transform: translateY(4px);
     margin-right: 5px;
+    margin-bottom: 3px;
   }
 
   &--href {
     display: inline;
+    font-size: 15px;
+    &__container {
+      display: flex;
+      align-items: center;
+    }
   }
 }
