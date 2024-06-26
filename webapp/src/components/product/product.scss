@@ -10,13 +10,15 @@
     cursor: pointer;
 
     &:hover {
-      box-shadow: rgb(245 222 179 / 65%) 0px 10px 20px 0px, rgb(245 222 179 / 100%) 0px 3px 9px 0px;
+      box-shadow: rgb(245 222 179 / 65%) 0px 10px 20px 0px,
+        rgb(245 222 179 / 100%) 0px 3px 9px 0px;
     }
   }
 
   &__info {
     flex: 1;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
     padding: 0 5px;
   }
 
@@ -67,7 +69,8 @@
       margin-left: 5px;
 
       &--heart-icon {
-        transform: scale(1.25);
+        transform: translateY(3px);
+
         &:hover {
           animation: heartbeat 1s linear;
         }
@@ -79,7 +82,8 @@
       padding: 2px 8px;
       border-radius: 3px;
       font-size: 14px;
-      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
     }
   }
 }

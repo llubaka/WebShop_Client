@@ -64,7 +64,6 @@ export const SingleProduct = () => {
           </div>
         </div>
       )}
-
       <div className="sp-additional-info">
         {contact.telephone && (
           <div>
