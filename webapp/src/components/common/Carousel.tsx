@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { useCallback } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel as RSCarousel } from "react-responsive-carousel";
 
@@ -8,10 +7,15 @@ interface CarouselProps {
 }
 
 export const Carousel: React.FC<CarouselProps> = ({ imageSources }) => {
-  const getImages = () => {
+  const getImages = useCallback(() => {
     return imageSources.map((src) => {
-      return <img src={src} />;
+      return <img src={src} alt={src} />;
     });
-  };
-  return <RSCarousel showArrows>{getImages()}</RSCarousel>;
+  }, [imageSources]);
+
+  return (
+    <RSCarousel showArrows autoPlay infiniteLoop interval={2500}>
+      {getImages()}
+    </RSCarousel>
+  );
 };

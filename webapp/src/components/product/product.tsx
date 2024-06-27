@@ -2,7 +2,6 @@ import "./product.scss";
 import { useCartContext } from "../../context/cartContext";
 import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCallback } from "react";
-import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { getSingleProductRouteLink } from "../../globals/Routes";
 import { getImageUrl } from "../../data/getData/getImageUrl";

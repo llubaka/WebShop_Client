@@ -25,23 +25,51 @@ export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header__container">
-        <Menu isMenuOpened={isMenuOpened} toggleIsMenuOpened={toggleIsMenuOpened} />
+        <Menu
+          isMenuOpened={isMenuOpened}
+          toggleIsMenuOpened={toggleIsMenuOpened}
+        />
         <button onClick={toggleIsMenuOpened}>
-          <Image className="header__container__image--burger" src={Settings.images.burgerMenu} />
+          <Image
+            className="header__container__image--burger"
+            src={Settings.images.burgerMenu}
+          />
         </button>
 
-        <Link to={getHomeRouteLink()} className="header__container__logo-button">
-          <Image className="header__container__image--logo" src={Settings.images.logo} />
+        <Link
+          to={getHomeRouteLink()}
+          className="header__container__logo-button"
+        >
+          <Image
+            className="header__container__image--logo"
+            src={Settings.images.logo}
+          />
         </Link>
 
-        <Link to={getCartRouteLink()} className="header__container__cart-button">
-          <div
-            key={getCartCount()}
-            className={`header__container__cart-button--count ${getCartCount() > 0 && "animation"}`}
-          >
-            {getCartCount()}
+        <Link
+          to={getCartRouteLink()}
+          className="header__container__cart-button"
+        >
+          <div>
+            <Image
+              className="header__container__image--cart"
+              src={Settings.images.cart}
+            />
+            <div className="coin-container">
+              <Image
+                className="header__container__image--coin"
+                src={"coin.png"}
+              />
+              <div
+                key={getCartCount()}
+                className={`header__container__cart-button--count ${
+                  getCartCount() > 0 && "animation"
+                }`}
+              >
+                {getCartCount()}
+              </div>
+            </div>
           </div>
-          <Image className="header__container__image--cart" src={Settings.images.cart} />
         </Link>
       </div>
     </header>
