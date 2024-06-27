@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
 import MenuSettings from "../../settings/menuSettings.json";
 import "./menu.scss";
-import { getByCategoryProductsLink, getFromMenuProductsLink } from "../../globals/Routes";
+import {
+  getByCategoryProductsLink,
+  getFromMenuProductsLink,
+} from "../../globals/Routes";
 import React, { useCallback } from "react";
+import { Image } from "../common/Image";
+import Settings from "../../settings/appSettings.json";
+import { MenuRow } from "./MenuRow";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -10,8 +15,12 @@ interface IMenu {
 }
 
 export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
-  const navClass = isMenuOpened ? "menu-container__menu menu-container__menu--opened" : "menu-container__menu";
-  const menuClass = isMenuOpened ? "menu-container menu-container--opened" : "menu-container";
+  const navClass = isMenuOpened
+    ? "menu-container__menu menu-container__menu--opened"
+    : "menu-container__menu";
+  const menuClass = isMenuOpened
+    ? "menu-container menu-container--opened"
+    : "menu-container";
 
   const handleMenuClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -21,15 +30,21 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
     return MenuSettings.map((el) => {
       if (el.category)
         return (
-          <Link key={el.title} to={getByCategoryProductsLink(el.category)} onClick={toggleIsMenuOpened}>
-            {el.title}
-          </Link>
+          <MenuRow
+            linkTo={getByCategoryProductsLink(el.category)}
+            title={el.title}
+            iconUrl={el.iconUrl}
+            onClick={toggleIsMenuOpened}
+          />
         );
       if (el.tags.length > 0)
         return (
-          <Link key={el.title} to={getFromMenuProductsLink(el.id.toString(), "false")} onClick={toggleIsMenuOpened}>
-            {el.title}
-          </Link>
+          <MenuRow
+            linkTo={getFromMenuProductsLink(el.id.toString(), "false")}
+            title={el.title}
+            iconUrl={el.iconUrl}
+            onClick={toggleIsMenuOpened}
+          />
         );
 
       if (el.subMenu.length > 0) {
@@ -40,23 +55,28 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {el.subMenu.map((subMenuElement) => {
                 if (subMenuElement.category)
                   return (
-                    <Link
+                    <MenuRow
                       key={subMenuElement.title}
-                      to={getByCategoryProductsLink(subMenuElement.category)}
+                      linkTo={getByCategoryProductsLink(
+                        subMenuElement.category
+                      )}
+                      title={subMenuElement.title}
+                      iconUrl={subMenuElement.iconUrl}
                       onClick={toggleIsMenuOpened}
-                    >
-                      {subMenuElement.title}
-                    </Link>
+                    />
                   );
                 if (subMenuElement.tags.length > 0)
                   return (
-                    <Link
+                    <MenuRow
                       key={subMenuElement.title}
-                      to={getFromMenuProductsLink(subMenuElement.id.toString(), "true")}
+                      linkTo={getFromMenuProductsLink(
+                        subMenuElement.id.toString(),
+                        "true"
+                      )}
+                      title={subMenuElement.title}
+                      iconUrl={subMenuElement.iconUrl}
                       onClick={toggleIsMenuOpened}
-                    >
-                      {subMenuElement.title}
-                    </Link>
+                    />
                   );
 
                 return <></>;
@@ -73,7 +93,18 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
   return (
     <div className={menuClass} onClick={toggleIsMenuOpened}>
       <nav className={navClass} onClick={handleMenuClick}>
-        <div className="menu-content">{getMenuContent()}</div>
+        <div className="menu-content">
+          <div className="menu-content--header" onClick={toggleIsMenuOpened}>
+            <Image
+              className="header__container__image--logo"
+              src={Settings.images.logo}
+            />
+            <div className="menu-content--header--appname">
+              {Settings.appName}
+            </div>
+          </div>
+          {getMenuContent()}
+        </div>
       </nav>
     </div>
   );

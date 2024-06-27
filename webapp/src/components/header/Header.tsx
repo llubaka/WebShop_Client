@@ -58,7 +58,7 @@ export const Header: React.FC = () => {
             <div className="coin-container">
               <Image
                 className="header__container__image--coin"
-                src={"coin.png"}
+                src={Settings.images.coin}
               />
               <div
                 key={getCartCount()}

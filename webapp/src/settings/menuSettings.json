@@ -1,13 +1,13 @@
 [
   {
     "id": 1,
-    "iconUrl": "ring123.png",
+    "iconUrl": "ring125.png",
     "title": "ГРИВНИ С ЧЕРВЕН КОНЕЦ",
     "category": "сребърен",
     "tags": [],
     "subMenu": []
   },
-  { "id": 2, "iconUrl": "ring124.png", "title": "ПОРЪЧКОВИ МОДЕЛИ", "category": "", "tags": [], "subMenu": [] },
+  { "id": 2, "iconUrl": "ring124.png", "title": "ПОРЪЧКОВИ МОДЕЛИ", "category": "сребърен", "tags": [], "subMenu": [] },
   {
     "id": 3,
     "iconUrl": "ring125.png",
@@ -23,8 +23,8 @@
     "category": "",
     "tags": [],
     "subMenu": [
-      { "id": 5, "iconUrl": "", "title": "СУПЕР НОВИ", "category": "new", "tags": [] },
-      { "id": 6, "iconUrl": "", "title": "ЕКСТРА НОВИ", "category": "new", "tags": [] }
+      { "id": 5, "iconUrl": "ring125.png", "title": "СУПЕР НОВИ", "category": "new", "tags": [] },
+      { "id": 6, "iconUrl": "ring125.png", "title": "ЕКСТРА НОВИ", "category": "new", "tags": [] }
     ]
   }
 ]
