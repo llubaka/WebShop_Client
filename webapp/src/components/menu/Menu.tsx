@@ -31,6 +31,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
       if (el.category)
         return (
           <MenuRow
+            key={el.title}
             linkTo={getByCategoryProductsLink(el.category)}
             title={el.title}
             iconUrl={el.iconUrl}
@@ -40,6 +41,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
       if (el.tags.length > 0)
         return (
           <MenuRow
+            key={el.title}
             linkTo={getFromMenuProductsLink(el.id.toString(), "false")}
             title={el.title}
             iconUrl={el.iconUrl}

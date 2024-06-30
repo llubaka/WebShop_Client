@@ -8,6 +8,7 @@ import AppSettings from "../../settings/appSettings.json";
 import { Envelope } from "../../svg/Envleope";
 import { Telephone } from "../../svg/Telephone";
 import { Carousel } from "../../components/common/Carousel";
+import { Accordion } from "../../components/common/Accordion/Accordion";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
@@ -109,6 +110,7 @@ export const SingleProduct = () => {
             </a>
           </div>
         )}
+        <Accordion items={product.description} />
       </div>
     </>
   );
