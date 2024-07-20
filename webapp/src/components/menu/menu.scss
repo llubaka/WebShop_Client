@@ -10,12 +10,7 @@
   background-color: rgba(255, 255, 255, 0.4);
   transition: transform 1.2s;
   transform: translateX(-100%);
-  overflow-y: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;
-  }
+
   &--opened {
     transform: translateX(0%);
   }
@@ -33,9 +28,21 @@
 }
 
 .menu-row {
-  padding: 10px 20px;
+  padding: 7px 20px;
   display: flex;
   align-items: center;
+  &-img-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__image {
+      max-width: 40px;
+      max-height: 40px;
+    }
+  }
+
   &-expandable {
     background-color: white;
   }
@@ -49,12 +56,19 @@
   font-size: 15px;
   // from cursive
   font-family: auto;
-  margin-top: 85px;
+  &__rows {
+    height: calc(100vh - 90px);
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
   &--header {
     height: 85px;
     display: flex;
     align-items: center;
-    position: fixed;
     top: 0;
     left: 0;
     &--appname {
@@ -66,8 +80,19 @@
 
   &__inner {
     &__content {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.3s linear;
       background-color: #f8f8f9;
       padding-left: 20px;
     }
   }
+}
+
+.svg-container {
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
 }

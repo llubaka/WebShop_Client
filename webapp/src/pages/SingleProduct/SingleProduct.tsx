@@ -7,7 +7,7 @@ import { useParams } from "react-router";
 import AppSettings from "../../settings/appSettings.json";
 import { Envelope } from "../../svg/Envleope";
 import { Telephone } from "../../svg/Telephone";
-import { Carousel } from "../../components/common/Carousel";
+import { Carousel } from "../../components/common/Carousel/Carousel";
 import { Accordion } from "../../components/common/Accordion/Accordion";
 
 export const SingleProduct = () => {

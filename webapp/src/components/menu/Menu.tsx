@@ -11,6 +11,7 @@ import { Image } from "../common/Image";
 import Settings from "../../settings/appSettings.json";
 import { LinkMenuRow } from "./LinkMenuRow";
 import { MenuRow } from "./MenuRow";
+import styled from "@emotion/styled";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -67,40 +68,44 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               iconUrl={el.iconUrl}
               title={el.title}
               onClick={() => toggleIsMenuRowOpened(el.title)}
+              isExpanded={isMenuRowOpened[el.title]}
             />
-            {isMenuRowOpened[el.title] && (
-              <div className="menu-content__inner__content">
-                {el.subMenu.map((subMenuElement) => {
-                  if (subMenuElement.category)
-                    return (
-                      <LinkMenuRow
-                        key={subMenuElement.title}
-                        linkTo={getByCategoryProductsLink(
-                          subMenuElement.category
-                        )}
-                        title={subMenuElement.title}
-                        iconUrl={subMenuElement.iconUrl}
-                        onClick={toggleIsMenuOpened}
-                      />
-                    );
-                  if (subMenuElement.tags.length > 0)
-                    return (
-                      <LinkMenuRow
-                        key={subMenuElement.title}
-                        linkTo={getFromMenuProductsLink(
-                          subMenuElement.id.toString(),
-                          "true"
-                        )}
-                        title={subMenuElement.title}
-                        iconUrl={subMenuElement.iconUrl}
-                        onClick={toggleIsMenuOpened}
-                      />
-                    );
 
-                  return <></>;
-                })}
-              </div>
-            )}
+            <InnerContainerStyled
+              innerRows={el.subMenu.length}
+              isExpanded={isMenuRowOpened[el.title]}
+              className="menu-content__inner__content"
+            >
+              {el.subMenu.map((subMenuElement) => {
+                if (subMenuElement.category)
+                  return (
+                    <LinkMenuRow
+                      key={subMenuElement.title}
+                      linkTo={getByCategoryProductsLink(
+                        subMenuElement.category
+                      )}
+                      title={subMenuElement.title}
+                      iconUrl={subMenuElement.iconUrl}
+                      onClick={toggleIsMenuOpened}
+                    />
+                  );
+                if (subMenuElement.tags.length > 0)
+                  return (
+                    <LinkMenuRow
+                      key={subMenuElement.title}
+                      linkTo={getFromMenuProductsLink(
+                        subMenuElement.id.toString(),
+                        "true"
+                      )}
+                      title={subMenuElement.title}
+                      iconUrl={subMenuElement.iconUrl}
+                      onClick={toggleIsMenuOpened}
+                    />
+                  );
+
+                return <></>;
+              })}
+            </InnerContainerStyled>
           </div>
         );
       }
@@ -122,25 +127,37 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
-          {Settings.images.menuCart && (
-            <LinkMenuRow
-              linkTo={getCartRouteLink()}
-              title="КОЛИЧКА"
-              iconUrl={Settings.images.menuCart}
-              onClick={toggleIsMenuOpened}
-            />
-          )}
-          {Settings.images.menuFavorite && (
-            <LinkMenuRow
-              linkTo={getFavoritesRouteLink()}
-              title="ЛЮБИМИ"
-              iconUrl={Settings.images.menuFavorite}
-              onClick={toggleIsMenuOpened}
-            />
-          )}
-          {getMenuContent()}
+          <div className="menu-content__rows">
+            {Settings.images.menuCart && (
+              <LinkMenuRow
+                linkTo={getCartRouteLink()}
+                title="КОЛИЧКА"
+                iconUrl={Settings.images.menuCart}
+                onClick={toggleIsMenuOpened}
+              />
+            )}
+            {Settings.images.menuFavorite && (
+              <LinkMenuRow
+                linkTo={getFavoritesRouteLink()}
+                title="ЛЮБИМИ"
+                iconUrl={Settings.images.menuFavorite}
+                onClick={toggleIsMenuOpened}
+              />
+            )}
+            {getMenuContent()}
+          </div>
         </div>
       </nav>
     </div>
   );
 };
+
+const InnerContainerStyled = styled("div")<{
+  isExpanded: boolean;
+  innerRows: number;
+}>(({ isExpanded, innerRows }) => () => {
+  if (isExpanded)
+    return {
+      maxHeight: innerRows * 54 + "px",
+    };
+});

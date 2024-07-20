@@ -18,7 +18,15 @@ export const LinkMenuRow: React.FC<LinkMenuRowProps> = ({
   };
   return (
     <Link key={title} to={linkTo} onClick={onClick} className="menu-row">
-      {iconUrl && <img src={getMenuIconUrl(iconUrl)} alt={iconUrl} />}
+      {iconUrl && (
+        <div className="menu-row-img-container">
+          <img
+            className="menu-row-img-container__image"
+            src={getMenuIconUrl(iconUrl)}
+            alt={iconUrl}
+          />
+        </div>
+      )}
       <div>{title}</div>
     </Link>
   );

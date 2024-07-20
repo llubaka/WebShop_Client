@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel as RSCarousel } from "react-responsive-carousel";
+import "./carousel.scss";
 
 interface CarouselProps {
   imageSources: string[];

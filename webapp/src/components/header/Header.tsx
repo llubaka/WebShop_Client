@@ -13,7 +13,14 @@ export const Header: React.FC = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const toggleIsMenuOpened = () => {
-    setIsMenuOpened((curr) => !curr);
+    setIsMenuOpened((curr) => {
+      const nextState = !curr;
+
+      if (nextState) document.body.classList.add("overflow-hidden");
+      else document.body.classList.remove("overflow-hidden");
+
+      return nextState;
+    });
   };
 
   const getCartCount = useCallback(() => {
