@@ -14,8 +14,6 @@ export const MenuRow: React.FC<MenuRowProps> = ({
   iconUrl,
   onClick,
 }) => {
-  console.log(isExpanded);
-
   const getMenuIconUrl = (iconUrl: string) => {
     return `/menu/${iconUrl}`;
   };
