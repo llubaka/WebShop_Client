@@ -8,5 +8,5 @@ export type ProductType = {
   tags: string[];
   category: string;
   additionalImagesUrls: string[];
-  description:Record<any, any>
+  description: Record<any, any>;
 };

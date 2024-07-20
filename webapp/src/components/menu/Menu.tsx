@@ -2,11 +2,14 @@ import MenuSettings from "../../settings/menuSettings.json";
 import "./menu.scss";
 import {
   getByCategoryProductsLink,
+  getCartRouteLink,
+  getFavoritesRouteLink,
   getFromMenuProductsLink,
 } from "../../globals/Routes";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Image } from "../common/Image";
 import Settings from "../../settings/appSettings.json";
+import { LinkMenuRow } from "./LinkMenuRow";
 import { MenuRow } from "./MenuRow";
 
 interface IMenu {
@@ -26,11 +29,19 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
     e.stopPropagation();
   };
 
+  const [isMenuRowOpened, setIsMenuRowOpened] = useState<any>({});
+
+  const toggleIsMenuRowOpened = (rowTitle: string) => {
+    setIsMenuRowOpened((prev: any) => {
+      return { ...prev, [rowTitle]: !prev[rowTitle] };
+    });
+  };
+
   const getMenuContent = useCallback(() => {
     return MenuSettings.map((el) => {
       if (el.category)
         return (
-          <MenuRow
+          <LinkMenuRow
             key={el.title}
             linkTo={getByCategoryProductsLink(el.category)}
             title={el.title}
@@ -40,7 +51,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
         );
       if (el.tags.length > 0)
         return (
-          <MenuRow
+          <LinkMenuRow
             key={el.title}
             linkTo={getFromMenuProductsLink(el.id.toString(), "false")}
             title={el.title}
@@ -52,45 +63,51 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
       if (el.subMenu.length > 0) {
         return (
           <div key={el.title} className="menu-content__inner">
-            <div className="menu-content__inner__title">{el.title}</div>
-            <div className="menu-content__inner__content">
-              {el.subMenu.map((subMenuElement) => {
-                if (subMenuElement.category)
-                  return (
-                    <MenuRow
-                      key={subMenuElement.title}
-                      linkTo={getByCategoryProductsLink(
-                        subMenuElement.category
-                      )}
-                      title={subMenuElement.title}
-                      iconUrl={subMenuElement.iconUrl}
-                      onClick={toggleIsMenuOpened}
-                    />
-                  );
-                if (subMenuElement.tags.length > 0)
-                  return (
-                    <MenuRow
-                      key={subMenuElement.title}
-                      linkTo={getFromMenuProductsLink(
-                        subMenuElement.id.toString(),
-                        "true"
-                      )}
-                      title={subMenuElement.title}
-                      iconUrl={subMenuElement.iconUrl}
-                      onClick={toggleIsMenuOpened}
-                    />
-                  );
+            <MenuRow
+              iconUrl={el.iconUrl}
+              title={el.title}
+              onClick={() => toggleIsMenuRowOpened(el.title)}
+            />
+            {isMenuRowOpened[el.title] && (
+              <div className="menu-content__inner__content">
+                {el.subMenu.map((subMenuElement) => {
+                  if (subMenuElement.category)
+                    return (
+                      <LinkMenuRow
+                        key={subMenuElement.title}
+                        linkTo={getByCategoryProductsLink(
+                          subMenuElement.category
+                        )}
+                        title={subMenuElement.title}
+                        iconUrl={subMenuElement.iconUrl}
+                        onClick={toggleIsMenuOpened}
+                      />
+                    );
+                  if (subMenuElement.tags.length > 0)
+                    return (
+                      <LinkMenuRow
+                        key={subMenuElement.title}
+                        linkTo={getFromMenuProductsLink(
+                          subMenuElement.id.toString(),
+                          "true"
+                        )}
+                        title={subMenuElement.title}
+                        iconUrl={subMenuElement.iconUrl}
+                        onClick={toggleIsMenuOpened}
+                      />
+                    );
 
-                return <></>;
-              })}
-            </div>
+                  return <></>;
+                })}
+              </div>
+            )}
           </div>
         );
       }
 
       return <React.Fragment key={el.title}></React.Fragment>;
     });
-  }, [toggleIsMenuOpened]);
+  }, [isMenuRowOpened, toggleIsMenuOpened]);
 
   return (
     <div className={menuClass} onClick={toggleIsMenuOpened}>
@@ -105,6 +122,22 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
+          {Settings.images.menuCart && (
+            <LinkMenuRow
+              linkTo={getCartRouteLink()}
+              title="КОЛИЧКА"
+              iconUrl={Settings.images.menuCart}
+              onClick={toggleIsMenuOpened}
+            />
+          )}
+          {Settings.images.menuFavorite && (
+            <LinkMenuRow
+              linkTo={getFavoritesRouteLink()}
+              title="ЛЮБИМИ"
+              iconUrl={Settings.images.menuFavorite}
+              onClick={toggleIsMenuOpened}
+            />
+          )}
           {getMenuContent()}
         </div>
       </nav>

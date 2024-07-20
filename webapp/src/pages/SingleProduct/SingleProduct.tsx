@@ -48,31 +48,31 @@ export const SingleProduct = () => {
       ) : (
         <div className="sp-container">
           <img src={source} alt={altAtr} />
-          <div className="sp-container__content">
-            <div className="sp-container__content__info">{product.info}</div>
-            <div className="sp-container__content__product-price">
-              {mainPrice}лв.
-              {hasDiscount && (
-                <span className="sp-container__content__product-price--discount">
-                  {product.price}лв.
-                </span>
-              )}
-            </div>
-            <button
-              onClick={handleAddInCartClick}
-              className="sp-container__content--button"
-            >
-              Добави в количката
-            </button>
-            <button
-              onClick={handleAddInCartClick}
-              className="sp-container__content--button sp-container__content--button--last"
-            >
-              Направи поръчка
-            </button>
-          </div>
         </div>
       )}
+      <div className="sp-container__content">
+        <div className="sp-container__content__info">{product.info}</div>
+        <div className="sp-container__content__product-price">
+          {mainPrice}лв.
+          {hasDiscount && (
+            <span className="sp-container__content__product-price--discount">
+              {product.price}лв.
+            </span>
+          )}
+        </div>
+        <button
+          onClick={handleAddInCartClick}
+          className="sp-container__content--button"
+        >
+          Добави в количката
+        </button>
+        <button
+          onClick={handleAddInCartClick}
+          className="sp-container__content--button sp-container__content--button--last"
+        >
+          Направи поръчка
+        </button>
+      </div>
       <div className="sp-additional-info">
         {contact.telephone && (
           <div>

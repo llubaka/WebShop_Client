@@ -18,7 +18,11 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
   if (keys.length === 0) return <></>;
 
   return (
-    <RAAccordion className="custom-accordion">
+    <RAAccordion
+      className="custom-accordion"
+      allowMultipleExpanded
+      allowZeroExpanded
+    >
       {keys.map((k) => {
         return (
           <AccordionItem key={k}>

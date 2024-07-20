@@ -1,11 +1,15 @@
-interface MenuRowProps {
+import { Link } from "react-router-dom";
+
+interface LinkMenuRowProps {
   title: string;
+  linkTo: string;
   iconUrl?: string;
   onClick?: () => void;
 }
 
-export const MenuRow: React.FC<MenuRowProps> = ({
+export const LinkMenuRow: React.FC<LinkMenuRowProps> = ({
   title,
+  linkTo,
   iconUrl,
   onClick,
 }) => {
@@ -13,9 +17,9 @@ export const MenuRow: React.FC<MenuRowProps> = ({
     return `/menu/${iconUrl}`;
   };
   return (
-    <div key={title} className="menu-row menu-row-expandable" onClick={onClick}>
+    <Link key={title} to={linkTo} onClick={onClick} className="menu-row">
       {iconUrl && <img src={getMenuIconUrl(iconUrl)} alt={iconUrl} />}
       <div>{title}</div>
-    </div>
+    </Link>
   );
 };

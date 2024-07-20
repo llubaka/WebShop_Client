@@ -55,11 +55,18 @@
     transform: translateY(4px);
     margin-right: 5px;
     margin-bottom: 3px;
+    color: #e39606;
   }
 
   &--href {
     display: inline;
     font-size: 15px;
+    &--contact {
+      color: #e39606;
+      text-decoration: underline;
+      text-decoration-color: #e39606;
+      font-size: 16px;
+    }
     &__container {
       display: flex;
       align-items: center;
