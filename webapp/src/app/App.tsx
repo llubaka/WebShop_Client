@@ -147,7 +147,6 @@ function App() {
     <CartContext.Provider value={{ cart, addProductInCart }}>
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
         <AutoScrollPage>
-          <h1>{countdownTimer}</h1>
           <Snackbar
             isVisible={isFavoriteSnackbarShown}
             text="Добавено в Любими"
