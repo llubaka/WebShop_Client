@@ -1,0 +1,31 @@
+.snackbar-container {
+  position: fixed;
+  bottom: 15px;
+  left: 0;
+  height: 65px;
+  z-index: 10;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 1s;
+
+  &__snackbar {
+    border-radius: 8px;
+    height: 100%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5deb3;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-box-shadow: 0px 0px 15px 0px rgb(226, 171, 68);
+    -moz-box-shadow: 0px 0px 15px 0px rgb(226, 171, 68);
+    box-shadow: 0px 0px 15px 0px rgb(226, 171, 68);
+    &:hover {
+      background-color: rgb(248, 213, 149);
+    }
+  }
+}
