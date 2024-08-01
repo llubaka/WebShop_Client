@@ -57,7 +57,6 @@ function App() {
   const showFavoriteSnackbar = () => {
     setIsFavoriteSnackbarShown(() => true);
     setIsCartSnackbarShown(() => false);
-    resetCountdown();
     restartCountdown();
   };
 
@@ -72,7 +71,7 @@ function App() {
     setIsFavoriteSnackbarShown(() => false);
   }, []);
 
-  const { resetCountdown, restartCountdown } = useCounter(5, closeSnackbars);
+  const { restartCountdown } = useCounter(5, closeSnackbars);
 
   const isProductInCart = (productId: string) => {
     const lsCart = getLocalStorageItem(LocalStorageKeys.CART) as [] | null;
