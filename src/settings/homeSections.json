@@ -1,14 +1,14 @@
 [
   {
     "id": "219219",
-    "imageUrl": "banner1.png",
+    "imageUrl": "bannerOne.png",
     "category": "",
     "tags": ["пръстен", "друго", "друго2", "друго3"],
     "productsIds": []
   },
   {
     "id": "129120",
-    "imageUrl": "banner2.png",
+    "imageUrl": "bannerTwo.png",
     "category": "сребърен",
     "tags": [],
     "productsIds": []
