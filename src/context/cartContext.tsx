@@ -4,9 +4,12 @@ export type CartType = Array<{ productId: string; count: number }>;
 
 export type AddProductInCartFuncType = (productId: string) => void;
 
+export type IsProductInCartFuncType = (productId: string) => boolean;
+
 export type CartContextType = {
   cart: CartType;
   addProductInCart: AddProductInCartFuncType;
+  isProductInCart: IsProductInCartFuncType;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);

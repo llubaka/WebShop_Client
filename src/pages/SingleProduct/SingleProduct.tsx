@@ -9,12 +9,15 @@ import { Envelope } from "../../svg/Envleope";
 import { Telephone } from "../../svg/Telephone";
 import { Carousel } from "../../components/common/Carousel/Carousel";
 import { Accordion } from "../../components/common/Accordion/Accordion";
+import { useNavigate } from "react-router-dom";
+import { getCartRouteLink } from "../../globals/Routes";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
   const { contact } = AppSettings;
+  const navigate = useNavigate();
 
-  const { addProductInCart } = useCartContext();
+  const { addProductInCart, isProductInCart } = useCartContext();
 
   const product = getById(id as string);
   const hasAdditionalImages = product.additionalImagesUrls.length > 0;
@@ -31,7 +34,12 @@ export const SingleProduct = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
-    addProductInCart(id as string);
+
+    if (isProductInCart(id as string)) {
+      navigate(getCartRouteLink());
+    } else {
+      addProductInCart(id as string);
+    }
   };
 
   return (

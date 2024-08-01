@@ -72,10 +72,13 @@ function App() {
     setIsFavoriteSnackbarShown(() => false);
   }, []);
 
-  const { resetCountdown, restartCountdown, countdownTimer } = useCounter(
-    5,
-    closeSnackbars
-  );
+  const { resetCountdown, restartCountdown } = useCounter(5, closeSnackbars);
+
+  const isProductInCart = (productId: string) => {
+    const lsCart = getLocalStorageItem(LocalStorageKeys.CART) as [] | null;
+    if (!lsCart) return false;
+    return lsCart.some((el: any) => el.productId === productId);
+  };
 
   const addProductInCart: AddProductInCartFuncType = (productId: string) => {
     setCart((curr) => {
@@ -144,7 +147,7 @@ function App() {
   }, []);
 
   return (
-    <CartContext.Provider value={{ cart, addProductInCart }}>
+    <CartContext.Provider value={{ cart, addProductInCart, isProductInCart }}>
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
         <AutoScrollPage>
           <Snackbar
