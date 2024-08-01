@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "iconUrl": "ring125.png",
+    "iconUrl": "ringC.png",
     "title": "ГРИВНИ С ЧЕРВЕН КОНЕЦ",
     "category": "сребърен",
     "tags": [],
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "iconUrl": "ring124.png",
+    "iconUrl": "ringC.png",
     "title": "ПОРЪЧКОВИ МОДЕЛИ",
     "category": "сребърен",
     "tags": [],
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "iconUrl": "ring125.png",
+    "iconUrl": "ringC.png",
     "title": "ПРЪСТЕНИ",
     "category": "",
     "tags": ["нов", "друг", "други2"],
@@ -25,21 +25,21 @@
   },
   {
     "id": 4,
-    "iconUrl": "ring126.png",
+    "iconUrl": "ringD.png",
     "title": "НОВО",
     "category": "",
     "tags": [],
     "subMenu": [
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringD.png",
         "title": "СУПЕР НОВИ",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringD.png",
         "title": "ЕКСТРА НОВИ",
         "category": "new",
         "tags": []
@@ -48,49 +48,49 @@
   },
   {
     "id": 5,
-    "iconUrl": "ring126.png",
+    "iconUrl": "ringC.png",
     "title": "НОВО2",
     "category": "",
     "tags": [],
     "subMenu": [
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "СУПЕР НОВИ",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "ЕКСТРА НОВИ4554",
         "category": "new",
         "tags": []
       },
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "СУПЕР НОВИ7676",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "ЕКСТРА НОВИ5554",
         "category": "new",
         "tags": []
       },
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "СУПЕР НОВИ444",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "ЕКСТРА НОВИ124",
         "category": "new",
         "tags": []
@@ -99,21 +99,21 @@
   },
   {
     "id": 6,
-    "iconUrl": "ring126.png",
+    "iconUrl": "ringC.png",
     "title": "НОВО3",
     "category": "",
     "tags": [],
     "subMenu": [
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "СУПЕР НОВИ",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "ЕКСТРА НОВИ",
         "category": "new",
         "tags": []
@@ -122,49 +122,49 @@
   },
   {
     "id": 7,
-    "iconUrl": "ring126.png",
+    "iconUrl": "ringC.png",
     "title": "НОВО4",
     "category": "",
     "tags": [],
     "subMenu": [
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "СУПЕР НОВИ",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "ЕКСТРА НОВИ4554",
         "category": "new",
         "tags": []
       },
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "СУПЕР НОВИ7676",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "ЕКСТРА НОВИ5554",
         "category": "new",
         "tags": []
       },
       {
         "id": 5,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "СУПЕР НОВИ444",
         "category": "new",
         "tags": []
       },
       {
         "id": 6,
-        "iconUrl": "ring125.png",
+        "iconUrl": "ringC.png",
         "title": "ЕКСТРА НОВИ124",
         "category": "new",
         "tags": []
