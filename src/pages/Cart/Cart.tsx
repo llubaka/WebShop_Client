@@ -72,6 +72,7 @@ export const Cart = () => {
                       +
                     </button>
                   </div>
+                  <div className="cart-price-count--price"> x </div>
                 </div>
               </div>
             );

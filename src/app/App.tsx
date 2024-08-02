@@ -121,7 +121,11 @@ function App() {
 
   const removeProductInCart: RemoveProductInCartFuncType = (
     productId: string
-  ) => {};
+  ) => {
+    setCart((curr) => {
+      return curr.filter((pr) => pr.productId !== productId);
+    });
+  };
 
   const addProductInCart: AddProductInCartFuncType = (productId: string) => {
     setCart((curr) => {
