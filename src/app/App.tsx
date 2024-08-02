@@ -6,6 +6,8 @@ import {
   AddProductInCartFuncType,
   CartContext,
   CartType,
+  DecreaseProductInCartFuncType,
+  RemoveProductInCartFuncType,
 } from "../context/cartContext";
 import {
   LocalStorageKeys,
@@ -88,10 +90,38 @@ function App() {
   const { restartCountdown } = useCounter(5, closeSnackbars);
 
   const isProductInCart = (productId: string) => {
-    const lsCart = getLocalStorageItem(LocalStorageKeys.CART) as [] | null;
-    if (!lsCart) return false;
-    return lsCart.some((el: any) => el.productId === productId);
+    return cart.some((el) => el.productId === productId);
   };
+
+  const decreaseProductInCart: DecreaseProductInCartFuncType = (
+    productId: string
+  ) => {
+    if (isProductInCart(productId)) {
+      setCart((curr) => {
+        const currCount = curr.filter((el) => el.productId === productId)[0]
+          .count;
+
+        // Remove
+        if (currCount === 1) {
+          return curr.filter((pr) => pr.productId !== productId);
+        }
+        // Decrease
+        else {
+          const index = curr.findIndex((pr) => pr.productId === productId);
+          const newCart = [...curr];
+          newCart[index] = {
+            productId: newCart[index].productId,
+            count: newCart[index].count - 1,
+          };
+          return newCart;
+        }
+      });
+    }
+  };
+
+  const removeProductInCart: RemoveProductInCartFuncType = (
+    productId: string
+  ) => {};
 
   const addProductInCart: AddProductInCartFuncType = (productId: string) => {
     setCart((curr) => {
@@ -160,7 +190,15 @@ function App() {
   }, []);
 
   return (
-    <CartContext.Provider value={{ cart, addProductInCart, isProductInCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addProductInCart,
+        isProductInCart,
+        decreaseProductInCart,
+        removeProductInCart,
+      }}
+    >
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
         <AutoScrollPage>
           <Snackbar

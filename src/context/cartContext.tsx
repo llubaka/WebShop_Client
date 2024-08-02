@@ -6,9 +6,15 @@ export type AddProductInCartFuncType = (productId: string) => void;
 
 export type IsProductInCartFuncType = (productId: string) => boolean;
 
+export type DecreaseProductInCartFuncType = (productId: string) => void;
+
+export type RemoveProductInCartFuncType = (productId: string) => void;
+
 export type CartContextType = {
   cart: CartType;
   addProductInCart: AddProductInCartFuncType;
+  decreaseProductInCart: DecreaseProductInCartFuncType;
+  removeProductInCart: RemoveProductInCartFuncType;
   isProductInCart: IsProductInCartFuncType;
 };
 
