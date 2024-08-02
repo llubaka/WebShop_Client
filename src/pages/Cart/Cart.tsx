@@ -51,7 +51,7 @@ export const Cart = () => {
   };
 
   const increaseItem = (id: string) => {
-    addProductInCart(id);
+    addProductInCart(id, false);
   };
   return (
     <div>
@@ -119,20 +119,26 @@ export const Cart = () => {
           })}
       </div>
       <div className="cart-order">
-        <div className="cart-order--full-price">
-          <div>Пълна цена</div>
-          <div className="cart-order--full-price__price">
-            {fullPrice && fullPrice.toFixed(2)}лв.
-          </div>
-        </div>
-        <div className="cart-order--discount">
-          <div>Отстъпка</div>
-          {fullPrice && fullPriceWithDiscount && (
-            <div className="cart-order--full-price__price">
-              -{(fullPrice - fullPriceWithDiscount).toFixed(2)}лв.
-            </div>
+        {fullPrice &&
+          fullPriceWithDiscount &&
+          fullPrice !== fullPriceWithDiscount && (
+            <>
+              <div className="cart-order--full-price">
+                <div>Пълна цена</div>
+                <div className="cart-order--full-price__price">
+                  {fullPrice && fullPrice.toFixed(2)}лв.
+                </div>
+              </div>
+              <div className="cart-order--discount">
+                <div>Отстъпка</div>
+                {fullPrice && fullPriceWithDiscount && (
+                  <div className="cart-order--full-price__price">
+                    -{(fullPrice - fullPriceWithDiscount).toFixed(2)}лв.
+                  </div>
+                )}
+              </div>
+            </>
           )}
-        </div>
         <div className="cart-order--price">
           <div>Общо</div>
           <div className="cart-order--price__price">

@@ -2,7 +2,10 @@ import { createContext, useContext } from "react";
 
 export type CartType = Array<{ productId: string; count: number }>;
 
-export type AddProductInCartFuncType = (productId: string) => void;
+export type AddProductInCartFuncType = (
+  productId: string,
+  showSnackbar: boolean
+) => void;
 
 export type IsProductInCartFuncType = (productId: string) => boolean;
 

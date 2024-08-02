@@ -127,7 +127,10 @@ function App() {
     });
   };
 
-  const addProductInCart: AddProductInCartFuncType = (productId: string) => {
+  const addProductInCart: AddProductInCartFuncType = (
+    productId: string,
+    showSnackbar: boolean
+  ) => {
     setCart((curr) => {
       let newCart: CartType;
 
@@ -135,7 +138,6 @@ function App() {
       if (curr.length === 0) {
         newCart = [{ productId: productId, count: 1 }];
         setCart(() => newCart);
-        showCartSnackbar();
       }
       // Product already in cart - ADD
       else if (curr.some((pr) => pr.productId === productId)) {
@@ -145,14 +147,13 @@ function App() {
           productId: newCart[index].productId,
           count: newCart[index].count + 1,
         };
-        showCartSnackbar();
       }
       // Add product - ADD
       else {
         newCart = [...curr, { productId: productId, count: 1 }];
-        showCartSnackbar();
       }
 
+      showSnackbar && showCartSnackbar();
       setLocalStorageItem(LocalStorageKeys.CART, newCart);
 
       return newCart;

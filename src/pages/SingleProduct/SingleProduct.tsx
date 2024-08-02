@@ -34,7 +34,7 @@ export const SingleProduct = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
-    addProductInCart(id as string);
+    addProductInCart(id as string, true);
   };
 
   const handleMakeOrder = (
@@ -45,7 +45,7 @@ export const SingleProduct = () => {
     if (isProductInCart(id as string)) {
       navigate(getCartRouteLink());
     } else {
-      addProductInCart(id as string);
+      addProductInCart(id as string, false);
     }
   };
 

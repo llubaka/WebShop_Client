@@ -21,7 +21,7 @@ export const Product: React.FC<IProduct> = ({ id }) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
-    addProductInCart(id);
+    addProductInCart(id, true);
   };
 
   const handleAddFavoriteClick = (
