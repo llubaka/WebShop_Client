@@ -31,6 +31,7 @@
 }
 
 .cart-price-count {
+  display: flex;
   &--count {
     display: flex;
     justify-content: space-between;
@@ -40,5 +41,35 @@
     &__button {
       padding: 0 10px 0 10px;
     }
+  }
+
+  &--price {
+    margin-left: auto;
+    margin-right: 10px;
+    position: relative;
+    &__content {
+      position: absolute;
+      right: 0px;
+      bottom: 0;
+      &--full-price {
+        font-size: 17px;
+        text-align: right;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+      &--discount {
+        text-align: right;
+        color: silver;
+        font-size: 14px;
+        text-decoration: line-through;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    }
+  }
+}
+
+.cart-order {
+  &--price {
+    padding: 10px;
+    display: flex;
   }
 }

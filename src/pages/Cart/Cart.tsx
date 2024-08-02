@@ -24,6 +24,18 @@ export const Cart = () => {
     );
   }, [cart]);
 
+  const fullPrice =
+    products &&
+    products.reduce((prev, { product, count }) => {
+      const hasDiscount = !!product.discount;
+      const price = (+product.price * count).toFixed(2);
+      const mainPrice = hasDiscount
+        ? ((+price * (100 - product.discount)) / 100).toFixed(2)
+        : price;
+
+      return +mainPrice + prev;
+    }, 0);
+
   const decreaseItem = (id: string) => {
     decreaseProductInCart(id);
   };
@@ -40,10 +52,15 @@ export const Cart = () => {
             const source = getImageUrl(product.imageUrl);
             const altAtr = product.imageUrl.split(".")[0];
             const discountText = `-${product.discount}%`;
+            const hasDiscount = !!product.discount;
+            const price = (+product.price * count).toFixed(2);
+            const mainPrice = hasDiscount
+              ? ((+price * (100 - product.discount)) / 100).toFixed(2)
+              : price;
             return (
               <div>
                 <div className="cart-content__item">
-                  {!!product.discount && (
+                  {hasDiscount && (
                     <div className="cart-content__item--image__container--discount">
                       {discountText}
                     </div>
@@ -72,11 +89,28 @@ export const Cart = () => {
                       +
                     </button>
                   </div>
-                  <div className="cart-price-count--price"> x </div>
+                  <div className="cart-price-count--price">
+                    <div className="cart-price-count--price__content">
+                      {hasDiscount && (
+                        <div className="cart-price-count--price__content--discount">
+                          {price}лв.
+                        </div>
+                      )}
+                      <div className="cart-price-count--price__content--full-price">
+                        {mainPrice}лв.
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
           })}
+      </div>
+      <div className="cart-order">
+        <div className="cart-order--price">
+          <div>Сума с ДДС</div>
+          <div>{fullPrice && fullPrice.toFixed(2)}</div>
+        </div>
       </div>
     </div>
   );
