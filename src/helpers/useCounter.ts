@@ -37,11 +37,11 @@ export const useCounter = (countDownTime = 5, onEnd?: () => void) => {
         break;
       case COUNTDOWNSTATUS.reset:
         clearInterval(intervalId.current);
-        setCountdownTimer(countDownTime);
+        setCountdownTimer(() => countDownTime);
         break;
       case COUNTDOWNSTATUS.restart:
         clearInterval(intervalId.current);
-        setCountdownTimer(countDownTime);
+        setCountdownTimer(() => countDownTime);
         setCountdownStatus(() => COUNTDOWNSTATUS.start);
         break;
       default:

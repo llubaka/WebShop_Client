@@ -42,6 +42,9 @@ function App() {
   const [isFavoriteSnackbarShown, setIsFavoriteSnackbarShown] = useState(false);
   const [isCartSnackbarShown, setIsCartSnackbarShown] = useState(false);
 
+  const [isEmptyCartSnackbarVisible, setIsEmptyCartSnackBarVisible] =
+    useState(false);
+
   const navigate = useNavigate();
 
   const navigateToFavorites = () => {
@@ -54,21 +57,32 @@ function App() {
     setIsCartSnackbarShown(() => false);
   };
 
+  const showEmptyCartSnackbar = () => {
+    closeSnackbars();
+    setIsEmptyCartSnackBarVisible(() => true);
+    restartCountdown();
+  };
+
   const showFavoriteSnackbar = () => {
+    closeSnackbars();
     setIsFavoriteSnackbarShown(() => true);
-    setIsCartSnackbarShown(() => false);
     restartCountdown();
   };
 
   const showCartSnackbar = () => {
+    closeSnackbars();
     setIsCartSnackbarShown(() => true);
-    setIsFavoriteSnackbarShown(() => false);
     restartCountdown();
+  };
+
+  const closeEmptyCartSnackbar = () => {
+    setIsEmptyCartSnackBarVisible(() => false);
   };
 
   const closeSnackbars = useCallback(() => {
     setIsCartSnackbarShown(() => false);
     setIsFavoriteSnackbarShown(() => false);
+    setIsEmptyCartSnackBarVisible(() => false);
   }, []);
 
   const { restartCountdown } = useCounter(5, closeSnackbars);
@@ -159,7 +173,12 @@ function App() {
             text="Добавено в Количката"
             onClick={navigateToCart}
           />
-          <Header />
+          <Snackbar
+            isVisible={isEmptyCartSnackbarVisible}
+            text="Количката е празна"
+            onClick={closeEmptyCartSnackbar}
+          />
+          <Header showSnackbar={showEmptyCartSnackbar} />
           <Routes>
             <Route path={CustomRoutes.HOME} element={<Home />} />
             <Route path={CustomRoutes.NEW_PRODUCTS} element={<NewProducts />} />

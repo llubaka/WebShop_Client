@@ -23,7 +23,8 @@ export const Cart = () => {
     });
   }, []);
 
-  const [products, setProducts] = useState<CartProductType>(getCartProducts());
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [products, _] = useState<CartProductType>(getCartProducts());
   return (
     <div>
       <NavBanner contentType={ContentType.INFO} content="Количка" />

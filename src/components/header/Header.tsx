@@ -6,18 +6,13 @@ import { useCartContext } from "../../context/cartContext";
 import { useCallback, useState } from "react";
 import { getCartRouteLink, getHomeRouteLink } from "../../globals/Routes";
 import { Menu } from "../menu/Menu";
-import { Snackbar } from "../common/Snackbar/Snackbar";
-import { useCounter } from "../../helpers/useCounter";
 
-export const Header: React.FC = () => {
+type HeaderProps = {
+  showSnackbar: () => void;
+};
+
+export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
   const { cart } = useCartContext();
-  const [isSnackbarVisible, setIsSnackBarVisible] = useState(false);
-
-  const closeSnackBar = () => {
-    setIsSnackBarVisible(() => false);
-  };
-
-  const { restartCountdown } = useCounter(5, closeSnackBar);
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
@@ -32,6 +27,13 @@ export const Header: React.FC = () => {
     });
   };
 
+  const handleCartClick = (e: any) => {
+    if (getCartCount() === 0) {
+      e.preventDefault();
+      showSnackbar();
+    }
+  };
+
   const getCartCount = useCallback(() => {
     if (!cart.length) return 0;
 
@@ -41,11 +43,6 @@ export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header__container">
-        <Snackbar
-          isVisible={isSnackbarVisible}
-          text="Количката е празна"
-          onClick={closeSnackBar}
-        />
         <Menu
           isMenuOpened={isMenuOpened}
           toggleIsMenuOpened={toggleIsMenuOpened}
@@ -70,13 +67,7 @@ export const Header: React.FC = () => {
         <Link
           to={getCartRouteLink()}
           className="header__container__cart-button"
-          onClick={(e) => {
-            if (getCartCount() === 0) {
-              e.preventDefault();
-              setIsSnackBarVisible(() => true);
-              restartCountdown();
-            }
-          }}
+          onClick={handleCartClick}
         >
           <div>
             <Image
