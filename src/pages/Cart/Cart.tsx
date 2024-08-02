@@ -5,6 +5,8 @@ import "./cart.scss";
 import { ProductType } from "../../globals/ProductType";
 import { getImageUrl } from "../../data/getData/getImageUrl";
 import { useCartContext } from "../../context/cartContext";
+import Settings from "../../settings/appSettings.json";
+
 type CartProductType = { count: number; product: ProductType }[];
 
 export const Cart = () => {
@@ -25,6 +27,14 @@ export const Cart = () => {
   }, [cart]);
 
   const fullPrice =
+    products &&
+    products.reduce((prev, { product, count }) => {
+      const price = (+product.price * count).toFixed(2);
+
+      return +price + prev;
+    }, 0);
+
+  const fullPriceWithDiscount =
     products &&
     products.reduce((prev, { product, count }) => {
       const hasDiscount = !!product.discount;
@@ -57,6 +67,7 @@ export const Cart = () => {
             const mainPrice = hasDiscount
               ? ((+price * (100 - product.discount)) / 100).toFixed(2)
               : price;
+
             return (
               <div>
                 <div className="cart-content__item">
@@ -102,14 +113,54 @@ export const Cart = () => {
                     </div>
                   </div>
                 </div>
+                <hr className="hr-separator" />
               </div>
             );
           })}
       </div>
       <div className="cart-order">
+        <div className="cart-order--full-price">
+          <div>Пълна цена</div>
+          <div className="cart-order--full-price__price">
+            {fullPrice && fullPrice.toFixed(2)}лв.
+          </div>
+        </div>
+        <div className="cart-order--discount">
+          <div>Отстъпка</div>
+          {fullPrice && fullPriceWithDiscount && (
+            <div className="cart-order--full-price__price">
+              -{(fullPrice - fullPriceWithDiscount).toFixed(2)}лв.
+            </div>
+          )}
+        </div>
         <div className="cart-order--price">
-          <div>Сума с ДДС</div>
-          <div>{fullPrice && fullPrice.toFixed(2)}</div>
+          <div>Общо</div>
+          <div className="cart-order--price__price">
+            {fullPriceWithDiscount && fullPriceWithDiscount.toFixed(2)}лв.
+          </div>
+        </div>
+        {(Settings.freeDeliveryFrom || Settings.freeDeliveryFrom === 0) &&
+          fullPriceWithDiscount && (
+            <div className="cart-order--delivery">
+              <div>Доставка</div>
+              <div className="cart-order--delivery__price">
+                {fullPriceWithDiscount > Settings.freeDeliveryFrom
+                  ? "0.00лв."
+                  : `${Settings.deliveryFee.toFixed(2)}лв.`}
+              </div>
+            </div>
+          )}
+        <div className="cart-order--pay-price">
+          <div>Сума</div>
+          <div className="cart-order--pay-price__dds">с ДДС</div>
+          <div className="cart-order--pay-price__price">
+            {fullPriceWithDiscount &&
+            fullPriceWithDiscount > Settings.freeDeliveryFrom
+              ? `${fullPriceWithDiscount.toFixed(2)}лв.`
+              : `${(
+                  (fullPriceWithDiscount as number) + Settings.deliveryFee
+                ).toFixed(2)}лв.`}
+          </div>
         </div>
       </div>
     </div>

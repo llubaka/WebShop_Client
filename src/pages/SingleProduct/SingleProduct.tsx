@@ -34,6 +34,13 @@ export const SingleProduct = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
+    addProductInCart(id as string);
+  };
+
+  const handleMakeOrder = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
 
     if (isProductInCart(id as string)) {
       navigate(getCartRouteLink());
@@ -75,7 +82,7 @@ export const SingleProduct = () => {
           Добави в количката
         </button>
         <button
-          onClick={handleAddInCartClick}
+          onClick={handleMakeOrder}
           className="sp-container__content--button sp-container__content--button--last"
         >
           Направи поръчка

@@ -68,8 +68,59 @@
 }
 
 .cart-order {
-  &--price {
-    padding: 10px;
+  margin: 30px 20px 10px 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  &--full-price {
     display: flex;
+    color: silver;
+    font-size: 17px;
+    text-decoration: line-through;
+    &__price {
+      margin-left: auto;
+    }
   }
+  &--discount {
+    display: flex;
+    color: rgb(255, 23, 23);
+    font-size: 17px;
+    &__price {
+      margin-left: auto;
+    }
+  }
+  &--price {
+    display: flex;
+    font-size: 17px;
+    color: #666666;
+    &__price {
+      margin-left: auto;
+    }
+  }
+  &--delivery {
+    display: flex;
+    font-size: 17px;
+    color: #666666;
+    &__price {
+      margin-left: auto;
+    }
+  }
+  &--pay-price {
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    &__dds {
+      margin-left: 5px;
+      font-size: 13px;
+      color: silver;
+      transform: translateY(7px);
+      font-weight: 500;
+    }
+    &__price {
+      margin-left: auto;
+    }
+  }
+}
+
+.hr-separator {
+  border: 1px solid #e3e3e3;
+  margin-top: 15px;
 }
