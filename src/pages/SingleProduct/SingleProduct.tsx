@@ -45,7 +45,8 @@ export const SingleProduct = () => {
     if (isProductInCart(id as string)) {
       navigate(getCartRouteLink());
     } else {
-      addProductInCart(id as string, false);
+      addProductInCart(id as string, true);
+      navigate(getCartRouteLink());
     }
   };
 

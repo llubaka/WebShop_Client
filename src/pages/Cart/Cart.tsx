@@ -7,7 +7,10 @@ import { getImageUrl } from "../../data/getData/getImageUrl";
 import { useCartContext } from "../../context/cartContext";
 import Settings from "../../settings/appSettings.json";
 import { useNavigate } from "react-router-dom";
-import { getHomeRouteLink } from "../../globals/Routes";
+import {
+  getHomeRouteLink,
+  getSingleProductRouteLink,
+} from "../../globals/Routes";
 import {
   getLocalStorageItem,
   LocalStorageKeys,
@@ -71,6 +74,11 @@ export const Cart = () => {
   const increaseItem = (id: string) => {
     addProductInCart(id, false);
   };
+
+  const handleProductClick = (id: string) => {
+    navigate(getSingleProductRouteLink(id));
+  };
+
   return (
     <div>
       <NavBanner contentType={ContentType.INFO} content="Количка" />
@@ -88,7 +96,11 @@ export const Cart = () => {
 
             return (
               <div key={product.id}>
-                <div className="cart-content__item">
+                <div
+                  onClick={() => handleProductClick(product.id)}
+                  role="link"
+                  className="cart-content__item"
+                >
                   {hasDiscount && (
                     <div className="cart-content__item--image__container--discount">
                       {discountText}
