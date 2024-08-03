@@ -12,6 +12,8 @@ import Settings from "../../settings/appSettings.json";
 import { LinkMenuRow } from "./LinkMenuRow";
 import { MenuRow } from "./MenuRow";
 import styled from "@emotion/styled";
+import { useFavoriteContext } from "../../context/favoriteContext";
+import { useCartContext } from "../../context/cartContext";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -32,10 +34,39 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
 
   const [isMenuRowOpened, setIsMenuRowOpened] = useState<any>({});
 
+  const { favorites } = useFavoriteContext();
+  const { cart } = useCartContext();
+
+  const getCartCount = useCallback(() => {
+    if (!cart.length) return 0;
+
+    return cart.reduce((acc, curr) => acc + curr.count, 0);
+  }, [cart]);
+
   const toggleIsMenuRowOpened = (rowTitle: string) => {
     setIsMenuRowOpened((prev: any) => {
       return { ...prev, [rowTitle]: !prev[rowTitle] };
     });
+  };
+
+  const handleCartClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (getCartCount() === 0) {
+      e.preventDefault();
+    } else {
+      toggleIsMenuOpened();
+    }
+  };
+
+  const handleFavoriteClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (favorites.length === 0) {
+      e.preventDefault();
+    } else {
+      toggleIsMenuOpened();
+    }
   };
 
   const getMenuContent = useCallback(() => {
@@ -131,17 +162,17 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
             {Settings.images.menuCart && (
               <LinkMenuRow
                 linkTo={getCartRouteLink()}
-                title="КОЛИЧКА"
+                title={`КОЛИЧКА (${getCartCount()})`}
                 iconUrl={Settings.images.menuCart}
-                onClick={toggleIsMenuOpened}
+                onClick={handleCartClick}
               />
             )}
             {Settings.images.menuFavorite && (
               <LinkMenuRow
                 linkTo={getFavoritesRouteLink()}
-                title="ЛЮБИМИ"
+                title={`ЛЮБИМИ (${favorites.length})`}
                 iconUrl={Settings.images.menuFavorite}
-                onClick={toggleIsMenuOpened}
+                onClick={handleFavoriteClick}
               />
             )}
             {getMenuContent()}

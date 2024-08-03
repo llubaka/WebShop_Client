@@ -4,7 +4,7 @@ interface LinkMenuRowProps {
   title: string;
   linkTo: string;
   iconUrl?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
 export const LinkMenuRow: React.FC<LinkMenuRowProps> = ({

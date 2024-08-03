@@ -6,6 +6,8 @@ import { ProductType } from "../../globals/ProductType";
 import { getImageUrl } from "../../data/getData/getImageUrl";
 import { useCartContext } from "../../context/cartContext";
 import Settings from "../../settings/appSettings.json";
+import { useNavigate } from "react-router-dom";
+import { getHomeRouteLink } from "../../globals/Routes";
 
 type CartProductType = { count: number; product: ProductType }[];
 
@@ -14,6 +16,7 @@ export const Cart = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [products, setProducts] = useState<CartProductType>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProducts(() =>
@@ -25,6 +28,13 @@ export const Cart = () => {
       })
     );
   }, [cart]);
+
+  // Go back to home if there is no products in the Cart
+  useEffect(() => {
+    if (products?.length === 0) {
+      navigate(getHomeRouteLink());
+    }
+  }, [navigate, products]);
 
   const fullPrice =
     products &&
@@ -69,7 +79,7 @@ export const Cart = () => {
               : price;
 
             return (
-              <div>
+              <div key={product.id}>
                 <div className="cart-content__item">
                   {hasDiscount && (
                     <div className="cart-content__item--image__container--discount">
