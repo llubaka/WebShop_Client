@@ -43,10 +43,10 @@ function App() {
   const [favorites, setFavorites] = useState<FavoriteType>([]);
   const [isFavoriteSnackbarShown, setIsFavoriteSnackbarShown] = useState(false);
   const [isCartSnackbarShown, setIsCartSnackbarShown] = useState(false);
-
   const [isEmptyCartSnackbarVisible, setIsEmptyCartSnackBarVisible] =
     useState(false);
-
+  const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] =
+    useState(false);
   const navigate = useNavigate();
 
   const navigateToFavorites = () => {
@@ -81,10 +81,15 @@ function App() {
     setIsEmptyCartSnackBarVisible(() => false);
   };
 
+  const closeEmptyFavoriteSnackbar = () => {
+    setIsEmptyFavoriteSnackbarVisible(() => false);
+  };
+
   const closeSnackbars = useCallback(() => {
     setIsCartSnackbarShown(() => false);
     setIsFavoriteSnackbarShown(() => false);
     setIsEmptyCartSnackBarVisible(() => false);
+    setIsEmptyFavoriteSnackbarVisible(() => false);
   }, []);
 
   const { restartCountdown } = useCounter(5, closeSnackbars);
@@ -185,6 +190,8 @@ function App() {
       }
 
       setLocalStorageItem(LocalStorageKeys.FAVORITES, newFavorites);
+      if (newFavorites.length === 0)
+        setIsEmptyFavoriteSnackbarVisible(() => true);
 
       return newFavorites;
     });
@@ -224,6 +231,11 @@ function App() {
             isVisible={isEmptyCartSnackbarVisible}
             text="Количката е празна"
             onClick={closeEmptyCartSnackbar}
+          />
+          <Snackbar
+            isVisible={isEmptyFavoriteSnackbarVisible}
+            text="Няма любими"
+            onClick={closeEmptyFavoriteSnackbar}
           />
           <Header showSnackbar={showEmptyCartSnackbar} />
           <Routes>
