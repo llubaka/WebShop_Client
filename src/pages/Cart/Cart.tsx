@@ -8,6 +8,10 @@ import { useCartContext } from "../../context/cartContext";
 import Settings from "../../settings/appSettings.json";
 import { useNavigate } from "react-router-dom";
 import { getHomeRouteLink } from "../../globals/Routes";
+import {
+  getLocalStorageItem,
+  LocalStorageKeys,
+} from "../../helpers/localStorageFunctions";
 
 type CartProductType = { count: number; product: ProductType }[];
 
@@ -31,10 +35,17 @@ export const Cart = () => {
 
   // Go back to home if there is no products in the Cart
   useEffect(() => {
-    if (products?.length === 0) {
+    try {
+      console.log("hello");
+
+      const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
+      console.log(lsCart);
+
+      if (!lsCart || lsCart.length === 0) navigate(getHomeRouteLink());
+    } catch (error) {
       navigate(getHomeRouteLink());
     }
-  }, [navigate, products]);
+  }, [navigate, cart]);
 
   const fullPrice =
     products &&
