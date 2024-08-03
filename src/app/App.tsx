@@ -117,6 +117,8 @@ function App() {
         }
 
         setLocalStorageItem(LocalStorageKeys.CART, newCart);
+        if (newCart.length === 0) showEmptyCartSnackbar();
+
         return newCart;
       });
     }

@@ -36,10 +36,7 @@ export const Cart = () => {
   // Go back to home if there is no products in the Cart
   useEffect(() => {
     try {
-      console.log("hello");
-
       const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
-      console.log(lsCart);
 
       if (!lsCart || lsCart.length === 0) navigate(getHomeRouteLink());
     } catch (error) {
