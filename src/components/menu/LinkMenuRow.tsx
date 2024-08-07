@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
 
 interface LinkMenuRowProps {
   title: string;
@@ -20,10 +21,10 @@ export const LinkMenuRow: React.FC<LinkMenuRowProps> = ({
     <Link key={title} to={linkTo} onClick={onClick} className="menu-row">
       {iconUrl && (
         <div className="menu-row-img-container">
-          <img
-            className="menu-row-img-container__image"
+          <ImageWrapper
             src={getMenuIconUrl(iconUrl)}
-            alt={iconUrl}
+            width="40px"
+            height="40px"
           />
         </div>
       )}

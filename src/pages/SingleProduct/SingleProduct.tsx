@@ -11,6 +11,7 @@ import { Carousel } from "../../components/common/Carousel/Carousel";
 import { Accordion } from "../../components/common/Accordion/Accordion";
 import { useNavigate } from "react-router-dom";
 import { getCartRouteLink } from "../../globals/Routes";
+import { ImageWrapper } from "../../components/common/ImageWrapper/ImageWrapper";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
@@ -28,7 +29,7 @@ export const SingleProduct = () => {
     : product.price;
 
   const source = getImageUrl(product.imageUrl);
-  const altAtr = product.imageUrl.split(".")[0];
+  //const altAtr = product.imageUrl.split(".")[0];
 
   const handleAddInCartClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -63,7 +64,7 @@ export const SingleProduct = () => {
         </div>
       ) : (
         <div className="sp-container">
-          <img src={source} alt={altAtr} />
+          <ImageWrapper src={source} width="100%" height="40vh" />
         </div>
       )}
       <div className="sp-container__content">
