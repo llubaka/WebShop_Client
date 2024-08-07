@@ -17,20 +17,11 @@
 
     &__image {
       &--logo {
-        & > img {
-          height: 70px;
-        }
       }
       &--burger {
-        & > img {
-          height: 55px;
-        }
         margin-right: 8px;
       }
       &--cart {
-        & > img {
-          height: 50px;
-        }
       }
       &--coin {
       }

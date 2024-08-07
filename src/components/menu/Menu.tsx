@@ -7,7 +7,6 @@ import {
   getFromMenuProductsLink,
 } from "../../globals/Routes";
 import React, { useCallback, useState } from "react";
-import { Image } from "../common/Image";
 import Settings from "../../settings/appSettings.json";
 import { LinkMenuRow } from "./LinkMenuRow";
 import { MenuRow } from "./MenuRow";
@@ -151,9 +150,10 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
       <nav className={navClass} onClick={handleMenuClick}>
         <div className="menu-content">
           <div className="menu-content--header" onClick={toggleIsMenuOpened}>
-            <Image
+            <img
               className="header__container__image--logo"
               src={Settings.images.logo}
+              alt={Settings.images.logo}
             />
             <div className="menu-content--header--appname">
               {Settings.appName}
