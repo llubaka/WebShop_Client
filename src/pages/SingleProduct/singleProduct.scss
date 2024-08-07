@@ -42,8 +42,11 @@
 }
 
 .sp-additional-info {
-  margin: 25px 10px 10px 10px;
+  margin: 10px;
   font-size: 14px;
+  &--first {
+    margin-bottom: 10px;
+  }
   &--icon {
     width: 20px;
     display: inline;
@@ -57,10 +60,19 @@
     display: inline;
     font-size: 15px;
     &--contact {
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #e39606;
-      text-decoration: underline;
-      text-decoration-color: #e39606;
       font-size: 16px;
+      padding: 6px 0 !important;
+      border: 1px solid #e39606;
+      border-radius: 3px;
+      transition: 0.2s background-color;
+      &:hover {
+        text-decoration: underline;
+      }
     }
     &__container {
       display: flex;
@@ -71,4 +83,9 @@
 
 .carousel-container {
   margin: 10px;
+}
+
+.sp-hr-separator {
+  margin: 25px 10px;
+  border: 1px solid #e3e3e3;
 }

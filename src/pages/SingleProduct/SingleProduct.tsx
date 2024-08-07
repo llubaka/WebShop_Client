@@ -90,20 +90,21 @@ export const SingleProduct = () => {
           Направи поръчка
         </button>
       </div>
+      <hr className="sp-hr-separator" />
       <div className="sp-additional-info">
         {contact.telephone && (
-          <div>
+          <div className="sp-additional-info--first">
             <a
               className="sp-additional-info--href"
               href={`tel:${contact.telephone}`}
             >
               <div className="sp-additional-info--href__container">
-                <span className="sp-additional-info--icon">
-                  <Telephone />
-                </span>
                 Имате въпроси или желаете да поръчате?
               </div>
               <div className="sp-additional-info--href--contact">
+                <span className="sp-additional-info--icon">
+                  <Telephone color="#e39606" />
+                </span>
                 {contact.telephone}
               </div>
             </a>
@@ -116,12 +117,12 @@ export const SingleProduct = () => {
               href={`mailto:${contact.email}`}
             >
               <div className="sp-additional-info--href__container">
-                <span className="sp-additional-info--icon">
-                  <Envelope />
-                </span>
                 Може да се свържите с нас и по имейл:
               </div>
               <div className="sp-additional-info--href--contact">
+                <span className="sp-additional-info--icon">
+                  <Envelope color="#e39606" />
+                </span>
                 {contact.email}
               </div>
             </a>
