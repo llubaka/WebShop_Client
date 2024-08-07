@@ -1,3 +1,4 @@
+import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
 import "./item.scss";
 
 interface ItemInterface {
@@ -7,10 +8,14 @@ interface ItemInterface {
 }
 
 export const Item: React.FC<ItemInterface> = ({ title, info, imageUrl }) => {
-  const source = `/images/${imageUrl}`;
   return (
     <div className="footer-item">
-      <img src={source} alt={imageUrl} />
+      <ImageWrapper
+        src={imageUrl}
+        width="110px"
+        height="110px"
+        className="footer-item__image"
+      />
       <div className="footer-item__title">{title}</div>
       <div className="footer-item__info">{info}</div>
     </div>

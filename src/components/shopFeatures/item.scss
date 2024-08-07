@@ -1,11 +1,11 @@
 .footer-item {
+  flex: 50%;
   padding: 10px;
   display: flex;
   flex-direction: column;
 
-  & > img {
+  &__image {
     margin: auto;
-    width: 110px;
     margin-bottom: 15px;
   }
 
