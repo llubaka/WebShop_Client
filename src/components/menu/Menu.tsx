@@ -14,6 +14,7 @@ import { MenuRow } from "./MenuRow";
 import styled from "@emotion/styled";
 import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCartContext } from "../../context/cartContext";
+import { React100vhDiv } from "../common/React100vhDiv";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -158,7 +159,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
-          <div className="menu-content__rows">
+          <React100vhDiv className="menu-content__rows">
             {Settings.images.menuCart && (
               <LinkMenuRow
                 linkTo={getCartRouteLink()}
@@ -176,7 +177,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               />
             )}
             {getMenuContent()}
-          </div>
+          </React100vhDiv>
         </div>
       </nav>
     </div>
