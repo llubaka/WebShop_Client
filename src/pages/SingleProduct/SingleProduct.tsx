@@ -119,7 +119,7 @@ export const SingleProduct = () => {
                   href={`mailto:${contact.email}`}
                 >
                   <div className="sp-additional-info--href__container">
-                    Може да се свържите с нас и по имейл:
+                    Може да се свържете с нас и по имейл:
                   </div>
                   <div className="sp-additional-info--href--contact">
                     <span className="sp-additional-info--icon">
