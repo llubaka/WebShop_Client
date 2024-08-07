@@ -52,6 +52,9 @@
   font-family: auto;
   &__rows {
     height: calc(100vh - 90px);
+    @supports (height: 100svh) {
+      height: calc(100svh - 90px);
+    }
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -82,6 +85,12 @@
     }
   }
 }
+
+// @supports (height: 100svh) {
+//   .menu-content__rows {
+//     height: calc(100svh - 90px);
+//   }
+// }
 
 .svg-container {
   margin-left: auto;

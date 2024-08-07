@@ -16,10 +16,10 @@ export const Carousel: React.FC<CarouselProps> = ({ imageSources }) => {
   return (
     <RSCarousel
       showArrows
-      //  autoPlay
-      // infiniteLoop
+      autoPlay
+      infiniteLoop
       showStatus={false}
-      //interval={2500}
+      interval={2500}
     >
       {getImages()}
     </RSCarousel>
