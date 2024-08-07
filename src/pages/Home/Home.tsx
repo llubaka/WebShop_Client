@@ -12,11 +12,14 @@ export const Home = () => {
   const newProductsIds = getNewProductsIds();
   return (
     <div className="home-container">
-      {Settings.options.showPromotionsBanner && <PromotionBanner />}
+      {Settings.images.promotionsBanner && <PromotionBanner />}
       <div className="home-container__main">
         <section>
           <h1 className="home-container__main--heading"> Нови Продукти </h1>
-          <p className="home-container__main--paragraph"> Разгледайте нашите най-нови предложения </p>
+          <p className="home-container__main--paragraph">
+            {" "}
+            Разгледайте нашите най-нови предложения{" "}
+          </p>
         </section>
         <section className="home-container__main--products">
           {newProductsIds.map((id) => {

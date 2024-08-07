@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { getSections } from "../../data/getData/getSections";
-import { Image } from "../common/Image";
 import "./homeSections.scss";
 import { getFromBannerProductsLink } from "../../globals/Routes";
 
@@ -13,9 +12,15 @@ export const HomeSections = () => {
     <div className="home-sections">
       {sections.map((sect) => {
         return (
-          <Link key={sect.id} to={getFromBannerProductsLink(sect.id)}>
-            <Image className="home-sections__image" src={sect.imageUrl} />
-          </Link>
+          <div className="home-sections__banner">
+            <Link key={sect.id} to={getFromBannerProductsLink(sect.id)}>
+              <img
+                className="home-sections__banner--image"
+                src={sect.imageUrl}
+                alt={sect.imageUrl}
+              />
+            </Link>
+          </div>
         );
       })}
     </div>

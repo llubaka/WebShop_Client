@@ -1,6 +1,10 @@
 // Directly targeting the public/images folder to remove redundant code and add alt text as the image text.
 
-interface IImage extends React.ButtonHTMLAttributes<HTMLImageElement> {
+interface IImage
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {
   src: string;
 }
 

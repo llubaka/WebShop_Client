@@ -1,8 +1,8 @@
 .banner-container {
-  & > div {
+  height: 20vh;
+  &__image {
+    height: 20vh;
     width: 100%;
-    & > img {
-      width: 100%;
-    }
+    object-fit: cover;
   }
 }

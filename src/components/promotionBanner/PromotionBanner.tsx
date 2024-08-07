@@ -1,11 +1,14 @@
-import { Image } from "../common/Image";
 import Settings from "../../settings/appSettings.json";
 import "./promotionBanner.scss";
 
 export const PromotionBanner: React.FC = () => {
   return (
     <div className="banner-container">
-      <Image src={Settings.images.promotionsBanner} />
+      <img
+        className="banner-container__image"
+        src={Settings.images.promotionsBanner}
+        alt={Settings.images.promotionsBanner}
+      />
     </div>
   );
 };

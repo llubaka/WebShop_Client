@@ -87,7 +87,6 @@ export const Cart = () => {
         {products &&
           products.map(({ product, count }) => {
             const source = getImageUrl(product.imageUrl);
-            const altAtr = product.imageUrl.split(".")[0];
             const discountText = `-${product.discount}%`;
             const hasDiscount = !!product.discount;
             const price = (+product.price * count).toFixed(2);
