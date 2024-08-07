@@ -105,6 +105,8 @@
   overflow: hidden;
   border: 3px solid #fff;
   padding: 2px;
+  height: 80px;
+  position: relative;
 }
 .carousel .thumb:focus {
   border: 3px solid #ccc;
@@ -116,6 +118,10 @@
 }
 .carousel .thumb img {
   vertical-align: top;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .carousel.carousel-slider {
   position: relative;
@@ -131,7 +137,8 @@
   padding: 5px;
 }
 .carousel.carousel-slider .control-arrow:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: wheat;
+  z-index: 0;
 }
 .carousel .slider-wrapper {
   overflow: hidden;
