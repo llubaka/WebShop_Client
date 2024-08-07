@@ -44,6 +44,8 @@
 .sp-additional-info {
   margin: 10px;
   font-size: 14px;
+  &__container {
+  }
   &--first {
     margin-bottom: 10px;
   }
@@ -88,4 +90,9 @@
 .sp-hr-separator {
   margin: 25px 10px;
   border: 1px solid #e3e3e3;
+}
+
+.sp-additional-separator {
+  border: 1px solid #e3e3e3;
+  margin: 39.5px 0 20px 0;
 }

@@ -92,42 +92,47 @@ export const SingleProduct = () => {
       </div>
       <hr className="sp-hr-separator" />
       <div className="sp-additional-info">
-        {contact.telephone && (
-          <div className="sp-additional-info--first">
-            <a
-              className="sp-additional-info--href"
-              href={`tel:${contact.telephone}`}
-            >
-              <div className="sp-additional-info--href__container">
-                Имате въпроси или желаете да поръчате?
+        {(contact.telephone || contact.email) && (
+          <div className="sp-additional-info__container">
+            {contact.telephone && (
+              <div className="sp-additional-info--first">
+                <a
+                  className="sp-additional-info--href"
+                  href={`tel:${contact.telephone}`}
+                >
+                  <div className="sp-additional-info--href__container">
+                    Имате въпроси или желаете да поръчате?
+                  </div>
+                  <div className="sp-additional-info--href--contact">
+                    <span className="sp-additional-info--icon">
+                      <Telephone color="#e39606" />
+                    </span>
+                    {contact.telephone}
+                  </div>
+                </a>
               </div>
-              <div className="sp-additional-info--href--contact">
-                <span className="sp-additional-info--icon">
-                  <Telephone color="#e39606" />
-                </span>
-                {contact.telephone}
+            )}
+            {contact.email && (
+              <div>
+                <a
+                  className="sp-additional-info--href"
+                  href={`mailto:${contact.email}`}
+                >
+                  <div className="sp-additional-info--href__container">
+                    Може да се свържите с нас и по имейл:
+                  </div>
+                  <div className="sp-additional-info--href--contact">
+                    <span className="sp-additional-info--icon">
+                      <Envelope color="#e39606" />
+                    </span>
+                    {contact.email}
+                  </div>
+                </a>
               </div>
-            </a>
+            )}
           </div>
         )}
-        {contact.email && (
-          <div>
-            <a
-              className="sp-additional-info--href"
-              href={`mailto:${contact.email}`}
-            >
-              <div className="sp-additional-info--href__container">
-                Може да се свържите с нас и по имейл:
-              </div>
-              <div className="sp-additional-info--href--contact">
-                <span className="sp-additional-info--icon">
-                  <Envelope color="#e39606" />
-                </span>
-                {contact.email}
-              </div>
-            </a>
-          </div>
-        )}
+        <hr className="sp-additional-separator" />
         <Accordion items={product.description} />
       </div>
     </>
