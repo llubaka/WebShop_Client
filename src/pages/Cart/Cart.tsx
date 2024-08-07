@@ -15,6 +15,7 @@ import {
   getLocalStorageItem,
   LocalStorageKeys,
 } from "../../helpers/localStorageFunctions";
+import { ImageWrapper } from "../../components/common/ImageWrapper/ImageWrapper";
 
 type CartProductType = { count: number; product: ProductType }[];
 
@@ -101,17 +102,14 @@ export const Cart = () => {
                   role="link"
                   className="cart-content__item"
                 >
-                  {hasDiscount && (
-                    <div className="cart-content__item--image__container--discount">
-                      {discountText}
-                    </div>
-                  )}
-                  <img
-                    className="cart-content__item--image__container--image"
-                    src={source}
-                    alt={altAtr}
-                  />
-
+                  <div className="cart-content__item--image__container--image">
+                    {hasDiscount && (
+                      <div className="cart-content__item--image__container--discount">
+                        {discountText}
+                      </div>
+                    )}
+                    <ImageWrapper src={source} height="100px" width="100px" />
+                  </div>
                   <div className="cart-content__item--info">{product.info}</div>
                 </div>
                 <div className="cart-price-count">
