@@ -7,7 +7,6 @@ import { getSingleProductRouteLink } from "../../globals/Routes";
 import { getImageUrl } from "../../data/getData/getImageUrl";
 import { getById } from "../../data/getData/getFilteredProducts";
 import { HeartSvg } from "../../svg/Heart";
-import { ImageWithLoader } from "../common/ImageWithLoader";
 import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
 
 interface IProduct {
@@ -51,7 +50,6 @@ export const Product: React.FC<IProduct> = ({ id }) => {
     : product.price;
 
   const source = getImageUrl(product.imageUrl);
-  const altAtr = product.imageUrl.split(".")[0];
   const discountText = `-${product.discount}%`;
 
   return (
