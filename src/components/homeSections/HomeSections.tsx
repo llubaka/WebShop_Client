@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { getSections } from "../../data/getData/getSections";
 import "./homeSections.scss";
 import { getFromBannerProductsLink } from "../../globals/Routes";
+import { ImageWithLoader } from "../common/ImageWithLoader";
 
 export const HomeSections = () => {
   const sections = getSections();
@@ -14,10 +15,9 @@ export const HomeSections = () => {
         return (
           <div className="home-sections__banner">
             <Link key={sect.id} to={getFromBannerProductsLink(sect.id)}>
-              <img
+              <ImageWithLoader
                 className="home-sections__banner--image"
                 src={sect.imageUrl}
-                alt={sect.imageUrl}
               />
             </Link>
           </div>

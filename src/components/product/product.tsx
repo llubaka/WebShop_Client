@@ -7,6 +7,8 @@ import { getSingleProductRouteLink } from "../../globals/Routes";
 import { getImageUrl } from "../../data/getData/getImageUrl";
 import { getById } from "../../data/getData/getFilteredProducts";
 import { HeartSvg } from "../../svg/Heart";
+import { ImageWithLoader } from "../common/ImageWithLoader";
+import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
 
 interface IProduct {
   id: string;
@@ -72,7 +74,7 @@ export const Product: React.FC<IProduct> = ({ id }) => {
                 </div>
               )}
             </div>
-            <img className="product-image__image" src={source} alt={altAtr} />
+            <ImageWrapper src={source} width="100%" height="250px" />
           </div>
         </div>
         <p className="product-container__info">{product.info}</p>
