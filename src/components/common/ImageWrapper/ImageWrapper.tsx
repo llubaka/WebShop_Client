@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./imageWrapper.scss";
 
 interface ImageWrapperProps
@@ -15,13 +16,19 @@ export const ImageWrapper: React.FC<ImageWrapperProps> = ({
   height,
   ...props
 }) => {
+  const [isloaded, setIsLoaded] = useState(false);
+  const handleOnLoad = () => {
+    setIsLoaded(() => true);
+  };
+
   return (
     <div
       {...props}
       style={{ width, height }}
       className={`image-wrapper ${props.className || ""}`}
     >
-      <img className="image-wrapper__image" src={src} alt={src} />
+      {!isloaded && <div> Loading...</div>}
+      <img onLoad={handleOnLoad} src={src} alt={src} />
     </div>
   );
 };
