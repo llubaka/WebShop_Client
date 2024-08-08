@@ -133,7 +133,12 @@ function App() {
     productId: string
   ) => {
     setCart((curr) => {
-      return curr.filter((pr) => pr.productId !== productId);
+      const newCart = curr.filter((pr) => pr.productId !== productId);
+
+      setLocalStorageItem(LocalStorageKeys.CART, newCart);
+      if (newCart.length === 0) showEmptyCartSnackbar();
+
+      return newCart;
     });
   };
 

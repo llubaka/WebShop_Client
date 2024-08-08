@@ -5,8 +5,22 @@
     position: relative;
     margin-top: 25px;
 
+    &--trashcan {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      display: flex;
+      width: 30px;
+      justify-content: end;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     &--info {
-      margin-right: 10px;
+      margin-right: 40px;
     }
 
     &--image__container {

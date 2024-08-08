@@ -16,13 +16,14 @@ import {
   LocalStorageKeys,
 } from "../../helpers/localStorageFunctions";
 import { ImageWrapper } from "../../components/common/ImageWrapper/ImageWrapper";
+import { TrashCan } from "../../svg/TrashCan";
 
 type CartProductType = { count: number; product: ProductType }[];
 
 export const Cart = () => {
-  const { cart, addProductInCart, decreaseProductInCart } = useCartContext();
+  const { cart, addProductInCart, decreaseProductInCart, removeProductInCart } =
+    useCartContext();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [products, setProducts] = useState<CartProductType>();
   const navigate = useNavigate();
 
@@ -80,6 +81,14 @@ export const Cart = () => {
     navigate(getSingleProductRouteLink(id));
   };
 
+  const handleDeleteClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    id: string
+  ) => {
+    e.stopPropagation();
+    removeProductInCart(id);
+  };
+
   return (
     <div>
       <NavBanner contentType={ContentType.INFO} content="Количка" />
@@ -101,6 +110,13 @@ export const Cart = () => {
                   role="link"
                   className="cart-content__item"
                 >
+                  <div
+                    onClick={(e) => handleDeleteClick(e, product.id)}
+                    className="cart-content__item--trashcan"
+                  >
+                    <TrashCan />
+                  </div>
+
                   <div className="cart-content__item--image__container--image">
                     {hasDiscount && (
                       <div className="cart-content__item--image__container--discount">
