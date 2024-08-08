@@ -17,11 +17,6 @@
       "imageUrl": "images/medal.png"
     },
     {
-      "title": "БЕЗ АЛЕРГЕНИ",
-      "info": "само благородни метали",
-      "imageUrl": "images/goldbars.png"
-    },
-    {
       "title": "ЛЮБЕЗНО ОБСЛУЖВАНЕ",
       "info": "ние работим за Вас",
       "imageUrl": "images/phoneCall.png"
@@ -30,6 +25,11 @@
       "title": "30 ГОДИНИ ОПИТ",
       "info": "може да ни се доверите",
       "imageUrl": "images/award.png"
+    },
+    {
+      "title": "БЕЗ АЛЕРГЕНИ",
+      "info": "само благородни метали",
+      "imageUrl": "images/goldbars.png"
     }
   ]
 }

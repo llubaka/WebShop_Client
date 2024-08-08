@@ -5,7 +5,7 @@ import { useCartContext } from "../../context/cartContext";
 import { useCallback, useState } from "react";
 import { getCartRouteLink, getHomeRouteLink } from "../../globals/Routes";
 import { Menu } from "../menu/Menu";
-import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
+import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
 
 type HeaderProps = {
   showSnackbar: () => void;
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           toggleIsMenuOpened={toggleIsMenuOpened}
         />
         <button onClick={toggleIsMenuOpened}>
-          <ImageWrapper
+          <ImageWrapperNoLazy
             className="header__container__image--burger"
             src={Settings.images.burgerMenu}
             width="55px"
@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           to={getHomeRouteLink()}
           className="header__container__logo-button"
         >
-          <ImageWrapper
+          <ImageWrapperNoLazy
             className="header__container__image--logo"
             src={Settings.images.logo}
             width="70px"
@@ -74,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           onClick={handleCartClick}
         >
           <div>
-            <ImageWrapper
+            <ImageWrapperNoLazy
               className="header__container__image--cart"
               src={Settings.images.cart}
               width="50px"

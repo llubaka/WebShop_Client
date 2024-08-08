@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./imageWrapper.scss";
 import ClipLoader from "../Loader/ClipLoader";
+import { useSeen } from "../../../helpers/useSeen";
 
-interface ImageWrapperProps
+export interface ImageWrapperProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
@@ -23,6 +24,9 @@ export const ImageWrapper: React.FC<ImageWrapperProps> = ({
     setIsLoaded(() => true);
   };
 
+  const ref = useRef<HTMLDivElement>(null);
+  const isSeen = useSeen(ref);
+
   const style = {
     display: "flex",
     justifyContent: "center",
@@ -32,16 +36,21 @@ export const ImageWrapper: React.FC<ImageWrapperProps> = ({
   return (
     <div
       {...props}
+      ref={ref}
       style={!isloaded ? { ...style, width, height } : { width, height }}
       className={`image-wrapper ${props.className || ""}`}
     >
-      {!isloaded && <ClipLoader />}
-      <img
-        style={{ display: isloaded ? "initial" : "none" }}
-        onLoad={handleOnLoad}
-        src={src}
-        alt={src}
-      />
+      {isSeen && (
+        <>
+          {!isloaded && <ClipLoader />}
+          <img
+            style={{ display: isloaded ? "initial" : "none" }}
+            onLoad={handleOnLoad}
+            src={src}
+            alt={src}
+          />
+        </>
+      )}
     </div>
   );
 };

@@ -12,8 +12,8 @@ export const Item: React.FC<ItemInterface> = ({ title, info, imageUrl }) => {
     <div className="footer-item">
       <ImageWrapper
         src={imageUrl}
-        width="110px"
-        height="110px"
+        width="80px"
+        height="80px"
         className="footer-item__image"
       />
       <div className="footer-item__title">{title}</div>

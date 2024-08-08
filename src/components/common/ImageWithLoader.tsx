@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ClipLoader from "./Loader/ClipLoader";
+import { useSeen } from "../../helpers/useSeen";
 
 interface ImageWithLoaderProps
   extends React.DetailedHTMLProps<
@@ -18,6 +19,9 @@ export const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
     setIsLoaded(() => true);
   };
 
+  const ref = useRef<HTMLDivElement>(null);
+  const isSeen = useSeen(ref);
+
   const style = {
     height: "100%",
     display: "flex",
@@ -26,15 +30,19 @@ export const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
   };
 
   return (
-    <div style={!isloaded ? { ...style } : {}}>
-      {!isloaded && <ClipLoader />}
-      <img
-        {...props}
-        style={{ display: isloaded ? "initial" : "none" }}
-        onLoad={handleOnLoad}
-        src={src}
-        alt={src}
-      />
+    <div ref={ref} style={!isloaded ? { ...style } : {}}>
+      {isSeen && (
+        <>
+          {!isloaded && <ClipLoader />}
+          <img
+            {...props}
+            style={{ display: isloaded ? "initial" : "none" }}
+            onLoad={handleOnLoad}
+            src={src}
+            alt={src}
+          />
+        </>
+      )}
     </div>
   );
 };
