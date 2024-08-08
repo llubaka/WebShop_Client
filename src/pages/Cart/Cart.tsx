@@ -114,7 +114,7 @@ export const Cart = () => {
                     onClick={(e) => handleDeleteClick(e, product.id)}
                     className="cart-content__item--trashcan"
                   >
-                    <TrashCan />
+                    <TrashCan color="#a7a7a7" />
                   </div>
 
                   <div className="cart-content__item--image__container--image">
