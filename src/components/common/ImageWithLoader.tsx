@@ -1,21 +1,16 @@
 import { useState } from "react";
-import "./imageWrapper.scss";
-import ClipLoader from "../Loader/ClipLoader";
+import ClipLoader from "./Loader/ClipLoader";
 
-interface ImageWrapperProps
+interface ImageWithLoaderProps
   extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
+    React.HTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
   > {
   src: string;
-  width: string;
-  height: string;
 }
 
-export const ImageWrapper: React.FC<ImageWrapperProps> = ({
+export const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
   src,
-  width,
-  height,
   ...props
 }) => {
   const [isloaded, setIsLoaded] = useState(false);
@@ -24,19 +19,17 @@ export const ImageWrapper: React.FC<ImageWrapperProps> = ({
   };
 
   const style = {
+    height: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   };
 
   return (
-    <div
-      {...props}
-      style={!isloaded ? { ...style, width, height } : { width, height }}
-      className={`image-wrapper ${props.className || ""}`}
-    >
+    <div style={!isloaded ? { ...style } : {}}>
       {!isloaded && <ClipLoader />}
       <img
+        {...props}
         style={{ display: isloaded ? "initial" : "none" }}
         onLoad={handleOnLoad}
         src={src}
