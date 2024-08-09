@@ -170,6 +170,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
+          {/* <hr className="menu-content__hr" /> */}
           <React100vhDiv className="menu-content__rows">
             {Settings.images.menuCart && (
               <LinkMenuRow

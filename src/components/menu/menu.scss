@@ -58,6 +58,14 @@
   font-size: 15px;
   // from cursive
   font-family: auto;
+  &__hr {
+    position: absolute;
+    width: calc(100% - 40px);
+    border: solid;
+    border: solid 1px rgb(0 0 0 / 8%);
+    top: 70px;
+    left: 20px;
+  }
   &__rows {
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */

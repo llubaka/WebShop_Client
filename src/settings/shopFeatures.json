@@ -4,32 +4,32 @@
     {
       "title": "ПРАВО НА ВРЪЩАНЕ",
       "info": "до 60 дни след покупката",
-      "imageUrl": "images/returnBox.png"
+      "imageUrl": "/images/returnBox.png"
     },
     {
       "title": "БЕЗПЛАТНА ДОСТАВКА",
       "info": "над 100лв. с преглед и тест",
-      "imageUrl": "images/buss.png"
+      "imageUrl": "/images/buss.png"
     },
     {
       "title": "СЕРТИФИКАТ ЗА КАЧЕСТВО",
       "info": "с 1 година гаранция",
-      "imageUrl": "images/medal.png"
+      "imageUrl": "/images/medal.png"
     },
     {
       "title": "ЛЮБЕЗНО ОБСЛУЖВАНЕ",
       "info": "ние работим за Вас",
-      "imageUrl": "images/phoneCall.png"
+      "imageUrl": "/images/phoneCall.png"
     },
     {
       "title": "30 ГОДИНИ ОПИТ",
       "info": "може да ни се доверите",
-      "imageUrl": "images/award.png"
+      "imageUrl": "/images/award.png"
     },
     {
       "title": "БЕЗ АЛЕРГЕНИ",
       "info": "само благородни метали",
-      "imageUrl": "images/goldbars.png"
+      "imageUrl": "/images/goldbars.png"
     }
   ]
 }
