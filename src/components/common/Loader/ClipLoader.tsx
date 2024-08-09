@@ -1,6 +1,4 @@
 import * as React from "react";
-
-import { cssValue } from "./unitConverter";
 import { CSSProperties } from "styled-components";
 
 const createAnimation = (
@@ -46,7 +44,7 @@ interface LoaderSizeProps
   loading?: boolean;
   cssOverride?: CSSProperties;
   speedMultiplier?: number;
-  size?: number | string;
+  size?: string;
 }
 
 function ClipLoader({
@@ -54,13 +52,13 @@ function ClipLoader({
   color = "gold",
   speedMultiplier = 1,
   cssOverride = {},
-  size = 35,
+  size = "30px",
   ...additionalprops
 }: LoaderSizeProps): JSX.Element | null {
   const style: React.CSSProperties = {
     background: "transparent !important",
-    width: cssValue(size),
-    height: cssValue(size),
+    width: size,
+    height: size,
     borderRadius: "100%",
     border: "2px solid",
     borderTopColor: color,
