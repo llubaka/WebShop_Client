@@ -11,8 +11,8 @@ export const Arrow: React.FC = () => {
     >
       <defs>
         <linearGradient id="svg-color-gradient">
-          <stop offset="0%" stop-color="#fcdc04" />
-          <stop offset="100%" stop-color="#f26023" />
+          <stop offset="0%" stopColor="#fcdc04" />
+          <stop offset="100%" stopColor="#f26023" />
         </linearGradient>
       </defs>
       <g>

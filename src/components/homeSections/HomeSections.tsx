@@ -13,8 +13,8 @@ export const HomeSections = () => {
     <div className="home-sections">
       {sections.map((sect) => {
         return (
-          <div className="home-sections__banner">
-            <Link key={sect.id} to={getFromBannerProductsLink(sect.id)}>
+          <div key={sect.id} className="home-sections__banner">
+            <Link to={getFromBannerProductsLink(sect.id)}>
               <ImageWithLoader
                 className="home-sections__banner--image"
                 src={sect.imageUrl}
