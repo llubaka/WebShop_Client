@@ -31,6 +31,14 @@
   padding: 7px 20px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  &__title {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+  &__icon {
+    margin-right: 10px;
+  }
   &-img-container {
     display: flex;
     justify-content: center;
@@ -66,8 +74,10 @@
     left: 0;
     &--appname {
       font-size: 29px;
-      color: #e9b95e;
       font-weight: bold;
+      background-image: linear-gradient(92deg, #fcdc04 0%, #f26023 100%);
+      color: transparent;
+      background-clip: text;
     }
   }
 
@@ -76,17 +86,12 @@
       max-height: 0;
       overflow: hidden;
       transition: 0.3s linear;
-      background-color: #f8f8f9;
+      position: relative;
+      //  box-shadow: inset 0 8px 25px -10px #ccc, inset 0px -8px 25px -10px #ccc;
       padding-left: 20px;
     }
   }
 }
-
-// @supports (height: 100svh) {
-//   .menu-content__rows {
-//     height: calc(100svh - 90px);
-//   }
-// }
 
 .svg-container {
   margin-left: auto;

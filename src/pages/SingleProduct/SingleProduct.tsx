@@ -29,7 +29,6 @@ export const SingleProduct = () => {
     : product.price;
 
   const source = getImageUrl(product.imageUrl);
-  //const altAtr = product.imageUrl.split(".")[0];
 
   const handleAddInCartClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

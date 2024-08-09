@@ -14,21 +14,19 @@ export const LinkMenuRow: React.FC<LinkMenuRowProps> = ({
   iconUrl,
   onClick,
 }) => {
-  const getMenuIconUrl = (iconUrl: string) => {
-    return `/menu/${iconUrl}`;
-  };
   return (
     <Link key={title} to={linkTo} onClick={onClick} className="menu-row">
       {iconUrl && (
         <div className="menu-row-img-container">
           <ImageWrapper
-            src={getMenuIconUrl(iconUrl)}
-            width="40px"
-            height="40px"
+            className="menu-row__icon"
+            src={iconUrl}
+            width="30px"
+            height="30px"
           />
         </div>
       )}
-      <div>{title}</div>
+      <div className="menu-row__title">{title}</div>
     </Link>
   );
 };

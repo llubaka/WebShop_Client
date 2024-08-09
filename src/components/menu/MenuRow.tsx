@@ -1,4 +1,4 @@
-import { Arrow } from "../../svg/Arrow";
+import { Arrow } from "../../svg/Arrow/Arrow";
 import styled from "@emotion/styled";
 import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
 
@@ -15,21 +15,19 @@ export const MenuRow: React.FC<MenuRowProps> = ({
   iconUrl,
   onClick,
 }) => {
-  const getMenuIconUrl = (iconUrl: string) => {
-    return `/menu/${iconUrl}`;
-  };
   return (
     <div key={title} className="menu-row menu-row-expandable" onClick={onClick}>
       {iconUrl && (
         <ImageWrapper
-          src={getMenuIconUrl(iconUrl)}
-          width="40px"
-          height="40px"
+          className="menu-row__icon"
+          src={iconUrl}
+          width="30px"
+          height="30px"
         />
       )}
-      <div>{title}</div>
+      <div className="menu-row__title">{title}</div>
       <ArrowContainerStyled isExpanded={isExpanded} className="svg-container">
-        <Arrow color="#2d2c2c" />
+        <Arrow />
       </ArrowContainerStyled>
     </div>
   );

@@ -15,6 +15,7 @@ import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCartContext } from "../../context/cartContext";
 import { React100vhDiv } from "../common/React100vhDiv";
 import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
+import { InsetShadow } from "../common/Inset/InsetShadow";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -108,6 +109,10 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               isExpanded={isMenuRowOpened[el.title]}
               className="menu-content__inner__content"
             >
+              <InsetShadow
+                side="top"
+                style={{ top: 0, left: 0, width: "calc(100% + 20px)" }}
+              />
               {el.subMenu.map((subMenuElement) => {
                 if (subMenuElement.category)
                   return (
@@ -137,6 +142,10 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
 
                 return <></>;
               })}
+              <InsetShadow
+                side="bottom"
+                style={{ bottom: 0, left: 0, width: "calc(100% + 20px)" }}
+              />
             </InnerContainerStyled>
           </div>
         );

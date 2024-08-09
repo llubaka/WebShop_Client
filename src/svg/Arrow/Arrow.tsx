@@ -1,16 +1,20 @@
-interface ArrowProps {
-  color?: string;
-}
+import "./arrow.scss";
 
-export const Arrow: React.FC<ArrowProps> = ({ color = "black" }) => {
+export const Arrow: React.FC = () => {
   return (
     <svg
-      fill={color}
       width="15px"
       height="15px"
       viewBox="0 0 451.846 451.847"
       xmlSpace="preserve"
+      className="arrow-svg"
     >
+      <defs>
+        <linearGradient id="svg-color-gradient">
+          <stop offset="0%" stop-color="#fcdc04" />
+          <stop offset="100%" stop-color="#f26023" />
+        </linearGradient>
+      </defs>
       <g>
         <path
           d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
