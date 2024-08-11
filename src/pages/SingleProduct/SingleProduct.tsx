@@ -1,7 +1,6 @@
 import { ContentType, NavBanner } from "../../components/navBanner/NavBanner";
 import { useCartContext } from "../../context/cartContext";
 import { getById } from "../../data/getData/getFilteredProducts";
-import { getImageUrl } from "../../data/getData/getImageUrl";
 import "./singleProduct.scss";
 import { useParams } from "react-router";
 import AppSettings from "../../settings/appSettings.json";
@@ -28,8 +27,6 @@ export const SingleProduct = () => {
     ? ((+product.price * (100 - product.discount)) / 100).toFixed(2)
     : product.price;
 
-  const source = getImageUrl(product.imageUrl);
-
   const handleAddInCartClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -50,20 +47,20 @@ export const SingleProduct = () => {
     }
   };
 
+  const getProductImages = () => {
+    return [product.imageUrl, ...product.additionalImagesUrls];
+  };
+
   return (
     <>
       <NavBanner contentType={ContentType.INFO} content={product.info} />
       {hasAdditionalImages ? (
         <div className="carousel-container">
-          <Carousel
-            imageSources={product.additionalImagesUrls.map((url) =>
-              getImageUrl(url)
-            )}
-          />
+          <Carousel imageSources={getProductImages()} />
         </div>
       ) : (
         <div className="sp-container">
-          <ImageWrapper src={source} width="100%" height="40vh" />
+          <ImageWrapper src={product.imageUrl} width="100%" height="40vh" />
         </div>
       )}
       <div className="sp-container__content">

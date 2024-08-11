@@ -179,6 +179,8 @@
   width: 100%;
   vertical-align: top;
   border: 0;
+  height: 40vh;
+  object-fit: contain;
 }
 .carousel .slide iframe {
   display: inline-block;
@@ -245,4 +247,10 @@
 }
 .carousel:hover .slide .legend {
   opacity: 1;
+}
+.carousel-loader-container {
+  height: calc(40vh + 149px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

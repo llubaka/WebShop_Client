@@ -3,7 +3,6 @@ import { ContentType, NavBanner } from "../../components/navBanner/NavBanner";
 import { getById } from "../../data/getData/getFilteredProducts";
 import "./cart.scss";
 import { ProductType } from "../../globals/ProductType";
-import { getImageUrl } from "../../data/getData/getImageUrl";
 import { useCartContext } from "../../context/cartContext";
 import Settings from "../../settings/appSettings.json";
 import { useNavigate } from "react-router-dom";
@@ -95,7 +94,7 @@ export const Cart = () => {
       <div className="cart-content">
         {products &&
           products.map(({ product, count }) => {
-            const source = getImageUrl(product.imageUrl);
+            const source = product.imageUrl;
             const discountText = `-${product.discount}%`;
             const hasDiscount = !!product.discount;
             const price = (+product.price * count).toFixed(2);

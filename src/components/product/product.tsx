@@ -4,7 +4,6 @@ import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getSingleProductRouteLink } from "../../globals/Routes";
-import { getImageUrl } from "../../data/getData/getImageUrl";
 import { getById } from "../../data/getData/getFilteredProducts";
 import { HeartSvg } from "../../svg/Heart";
 import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
@@ -49,7 +48,6 @@ export const Product: React.FC<IProduct> = ({ id }) => {
     ? ((+product.price * (100 - product.discount)) / 100).toFixed(2)
     : product.price;
 
-  const source = getImageUrl(product.imageUrl);
   const discountText = `-${product.discount}%`;
 
   return (
@@ -72,7 +70,7 @@ export const Product: React.FC<IProduct> = ({ id }) => {
                 </div>
               )}
             </div>
-            <ImageWrapper src={source} width="100%" height="250px" />
+            <ImageWrapper src={product.imageUrl} width="100%" height="250px" />
           </div>
         </div>
         <p className="product-container__info">{product.info}</p>
