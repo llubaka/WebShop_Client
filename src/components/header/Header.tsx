@@ -36,6 +36,10 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
     }
   };
 
+  const handleLogoClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   const getCartCount = useCallback(() => {
     if (!cart.length) return 0;
 
@@ -49,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           isMenuOpened={isMenuOpened}
           toggleIsMenuOpened={toggleIsMenuOpened}
         />
-        <button onClick={toggleIsMenuOpened}>
+        <button onClick={toggleIsMenuOpened} style={{ marginRight: "8px" }}>
           {Settings.images.burgerMenu ? (
             <ImageWrapperNoLazy
               className="header__container__image--burger"
@@ -65,6 +69,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
         <Link
           to={getHomeRouteLink()}
           className="header__container__logo-button"
+          onClick={handleLogoClick}
         >
           <ImageWrapperNoLazy
             className="header__container__image--logo"
@@ -79,6 +84,12 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           className="header__container__cart-button"
           onClick={handleCartClick}
         >
+          {/* <div>
+            <Cart />
+            <div className="coin-container">
+              <Coin count={getCartCount()} />
+            </div>
+          </div> */}
           <div>
             <ImageWrapperNoLazy
               className="header__container__image--cart"

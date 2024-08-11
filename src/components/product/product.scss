@@ -66,9 +66,12 @@
       &--heart-icon {
         position: absolute;
         top: 3px;
+        padding: 0 20px 15px 0;
 
         &:hover {
-          animation: heartbeat 1s linear;
+          & > svg {
+            animation: heartbeat 1s linear;
+          }
         }
       }
     }
