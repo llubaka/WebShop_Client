@@ -1,9 +1,13 @@
 import Settings from "../../settings/appSettings.json";
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
 import { useCallback, useState } from "react";
-import { getCartRouteLink, getHomeRouteLink } from "../../globals/Routes";
+import {
+  getCartRouteLink,
+  getHomeRouteLink,
+  Routes,
+} from "../../globals/Routes";
 import { Menu } from "../menu/Menu";
 import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
 import { BurgerMenu } from "../../htmlImages/BurgerMenu/BurgerMenu";
@@ -15,7 +19,7 @@ type HeaderProps = {
 
 export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
   const { cart } = useCartContext();
-
+  const location = useLocation();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const toggleIsMenuOpened = () => {
@@ -37,7 +41,9 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
   };
 
   const handleLogoClick = () => {
-    window.scrollTo(0, 0);
+    if (location.pathname === Routes.HOME) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const getCartCount = useCallback(() => {
