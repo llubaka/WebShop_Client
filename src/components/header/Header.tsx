@@ -37,6 +37,8 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
     if (getCartCount() === 0) {
       e.preventDefault();
       showSnackbar();
+    } else if (location.pathname === Routes.CART) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
