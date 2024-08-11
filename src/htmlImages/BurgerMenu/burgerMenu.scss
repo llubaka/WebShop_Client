@@ -1,0 +1,22 @@
+.html-burger-menu {
+  width: 42px;
+  height: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  & > div {
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+  }
+  &__first {
+    background-color: #fd6d00;
+  }
+  &__second {
+    background-color: #fe9700;
+  }
+  &__third {
+    background-color: #ffc300;
+  }
+}

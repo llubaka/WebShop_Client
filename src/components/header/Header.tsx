@@ -6,6 +6,8 @@ import { useCallback, useState } from "react";
 import { getCartRouteLink, getHomeRouteLink } from "../../globals/Routes";
 import { Menu } from "../menu/Menu";
 import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
+import { BurgerMenu } from "../../htmlImages/BurgerMenu/BurgerMenu";
+import { Coin } from "../../htmlImages/Coin/Coin";
 
 type HeaderProps = {
   showSnackbar: () => void;
@@ -48,12 +50,16 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           toggleIsMenuOpened={toggleIsMenuOpened}
         />
         <button onClick={toggleIsMenuOpened}>
-          <ImageWrapperNoLazy
-            className="header__container__image--burger"
-            src={Settings.images.burgerMenu}
-            width="55px"
-            height="55px"
-          />
+          {Settings.images.burgerMenu ? (
+            <ImageWrapperNoLazy
+              className="header__container__image--burger"
+              src={Settings.images.burgerMenu}
+              width="55px"
+              height="55px"
+            />
+          ) : (
+            <BurgerMenu />
+          )}
         </button>
 
         <Link
@@ -81,19 +87,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
               height="50px"
             />
             <div className="coin-container">
-              <img
-                className="header__container__image--coin"
-                src={Settings.images.coin}
-                alt={Settings.images.coin}
-              />
-              <div
-                key={getCartCount()}
-                className={`header__container__cart-button--count ${
-                  getCartCount() > 0 && "animation"
-                }`}
-              >
-                {getCartCount()}
-              </div>
+              <Coin count={getCartCount()} />
             </div>
           </div>
         </Link>
