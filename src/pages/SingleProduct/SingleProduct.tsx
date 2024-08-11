@@ -60,7 +60,7 @@ export const SingleProduct = () => {
         </div>
       ) : (
         <div className="sp-container">
-          <ImageWrapper src={product.imageUrl} width="100%" height="40vh" />
+          <ImageWrapper src={product.imageUrl} width="100%" height="45vh" />
         </div>
       )}
       <div className="sp-container__content">
