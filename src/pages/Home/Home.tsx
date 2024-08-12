@@ -17,8 +17,7 @@ export const Home = () => {
         <section>
           <h1 className="home-container__main--heading"> Нови Продукти </h1>
           <p className="home-container__main--paragraph">
-            {" "}
-            Разгледайте нашите най-нови предложения{" "}
+            Разгледайте нашите най-нови предложения
           </p>
         </section>
         <section className="home-container__main--products">

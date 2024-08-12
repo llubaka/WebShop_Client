@@ -14,8 +14,8 @@ import {
   getLocalStorageItem,
   LocalStorageKeys,
 } from "../../helpers/localStorageFunctions";
-import { ImageWrapper } from "../../components/common/ImageWrapper/ImageWrapper";
 import { TrashCan } from "../../svg/TrashCan";
+import { ImageWrapperNoLazy } from "../../components/common/ImageWrapper/ImageWrapperNoLazy";
 
 type CartProductType = { count: number; product: ProductType }[];
 
@@ -122,7 +122,11 @@ export const Cart = () => {
                         {discountText}
                       </div>
                     )}
-                    <ImageWrapper src={source} height="100px" width="100px" />
+                    <ImageWrapperNoLazy
+                      src={source}
+                      height="100px"
+                      width="100px"
+                    />
                   </div>
                   <div className="cart-content__item--info">{product.info}</div>
                 </div>

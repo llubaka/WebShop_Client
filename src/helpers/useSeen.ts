@@ -2,6 +2,7 @@ import { RefObject, useEffect, useMemo, useState } from "react";
 
 export const useSeen = (ref: RefObject<HTMLElement>) => {
   const [isSeen, setIsSeen] = useState(false);
+  console.log(ref);
 
   const observer = useMemo(
     () =>

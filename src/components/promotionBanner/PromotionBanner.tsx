@@ -1,11 +1,11 @@
 import Settings from "../../settings/appSettings.json";
-import { ImageWithLoader } from "../common/ImageWithLoader";
+import { ImageWithLoaderNoLazy } from "../common/ImageWithLoaderNoLazy";
 import "./promotionBanner.scss";
 
 export const PromotionBanner: React.FC = () => {
   return (
     <div className="banner-container">
-      <ImageWithLoader
+      <ImageWithLoaderNoLazy
         className="banner-container__image"
         src={Settings.images.promotionsBanner}
       />

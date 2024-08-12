@@ -10,7 +10,7 @@ import { Carousel } from "../../components/common/Carousel/Carousel";
 import { Accordion } from "../../components/common/Accordion/Accordion";
 import { useNavigate } from "react-router-dom";
 import { getCartRouteLink } from "../../globals/Routes";
-import { ImageWrapper } from "../../components/common/ImageWrapper/ImageWrapper";
+import { ImageWrapperNoLazy } from "../../components/common/ImageWrapper/ImageWrapperNoLazy";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
@@ -60,7 +60,11 @@ export const SingleProduct = () => {
         </div>
       ) : (
         <div className="sp-container">
-          <ImageWrapper src={product.imageUrl} width="100%" height="45vh" />
+          <ImageWrapperNoLazy
+            src={product.imageUrl}
+            width="100%"
+            height="45vh"
+          />
         </div>
       )}
       <div className="sp-container__content">
