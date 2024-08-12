@@ -16,7 +16,6 @@ import { useCartContext } from "../../context/cartContext";
 import { React100vhDiv } from "../common/React100vhDiv";
 import { InsetShadow } from "../common/Inset/InsetShadow";
 import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
-import { title } from "process";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -82,7 +81,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
             title={el.title}
             iconUrl={el.iconUrl}
             onClick={toggleIsMenuOpened}
-            aria-label={`Navigate to ${title}`}
           />
         );
       if (el.tags.length > 0)
@@ -93,7 +91,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
             title={el.title}
             iconUrl={el.iconUrl}
             onClick={toggleIsMenuOpened}
-            aria-label={`Navigate to ${el.title}`}
           />
         );
 
@@ -127,7 +124,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
                       title={subMenuElement.title}
                       iconUrl={subMenuElement.iconUrl}
                       onClick={toggleIsMenuOpened}
-                      aria-label={`Navigate to ${subMenuElement.title}`}
                     />
                   );
                 if (subMenuElement.tags.length > 0)
@@ -141,7 +137,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
                       title={subMenuElement.title}
                       iconUrl={subMenuElement.iconUrl}
                       onClick={toggleIsMenuOpened}
-                      aria-label={`Navigate to ${subMenuElement.title}`}
                     />
                   );
 
@@ -175,6 +170,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
+          {/* <hr className="menu-content__hr" /> */}
           <React100vhDiv className="menu-content__rows">
             {Settings.images.menuCart && (
               <LinkMenuRow
@@ -182,7 +178,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
                 title={`КОЛИЧКА (${getCartCount()})`}
                 iconUrl={Settings.images.menuCart}
                 onClick={handleCartClick}
-                aria-label="Go to cart"
               />
             )}
             {Settings.images.menuFavorite && (
@@ -191,7 +186,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
                 title={`ЛЮБИМИ (${favorites.length})`}
                 iconUrl={Settings.images.menuFavorite}
                 onClick={handleFavoriteClick}
-                aria-label="Go to favorites"
               />
             )}
             {getMenuContent()}
