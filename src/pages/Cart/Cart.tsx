@@ -223,10 +223,7 @@ export const Cart = () => {
             );
           })}
       </div>
-      <div
-        style={{ visibility: cart.length > 0 ? "visible" : "hidden" }}
-        className="cart-order"
-      >
+      <div className="cart-order">
         {fullPrice &&
           fullPriceWithDiscount &&
           fullPrice !== fullPriceWithDiscount && (
@@ -258,7 +255,8 @@ export const Cart = () => {
             <div className="cart-order--delivery">
               <div>Доставка</div>
               <div className="cart-order--delivery__price">
-                {fullPriceWithDiscount > Settings.freeDeliveryFrom
+                {fullPriceWithDiscount > Settings.freeDeliveryFrom ||
+                cart.length === 0
                   ? "0.00лв."
                   : `${Settings.deliveryFee.toFixed(2)}лв.`}
               </div>
@@ -268,8 +266,10 @@ export const Cart = () => {
           <div>Сума</div>
           <div className="cart-order--pay-price__dds">с ДДС</div>
           <div className="cart-order--pay-price__price">
-            {fullPriceWithDiscount &&
-            fullPriceWithDiscount > Settings.freeDeliveryFrom
+            {cart.length === 0
+              ? "0.00лв."
+              : fullPriceWithDiscount &&
+                fullPriceWithDiscount > Settings.freeDeliveryFrom
               ? `${fullPriceWithDiscount.toFixed(2)}лв.`
               : `${(
                   (fullPriceWithDiscount as number) + Settings.deliveryFee

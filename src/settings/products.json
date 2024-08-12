@@ -98,7 +98,7 @@
     "price": "150.90",
     "imageUrl": "/products/ringFour.png",
     "discount": 12,
-    "tags": ["пръстен", "друго", "друго2", "друго3", "други2"],
+    "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг"],
     "additionalImagesUrls": [
       "/products/ringThree.png",
       "/products/ring.png",
