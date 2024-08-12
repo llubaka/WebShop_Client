@@ -1,9 +1,14 @@
 .cart-content {
-  margin: 35px 10px 10px 10px;
+  margin: 10px;
+  &--wrapper {
+    transition: height 0.3s ease-in;
+  }
+  &--fix-element {
+    padding-top: 25px;
+  }
   &__item {
     display: flex;
     position: relative;
-    margin-top: 25px;
 
     &--trashcan {
       position: absolute;

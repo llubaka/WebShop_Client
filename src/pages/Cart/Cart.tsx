@@ -17,48 +17,97 @@ import {
 import { TrashCan } from "../../svg/TrashCan";
 import { ImageWrapperNoLazy } from "../../components/common/ImageWrapper/ImageWrapperNoLazy";
 
-type CartProductType = { count: number; product: ProductType }[];
+type CartProductType = {
+  count: number;
+  product: ProductType;
+  isDeleted: boolean;
+}[];
 
 export const Cart = () => {
   const { cart, addProductInCart, decreaseProductInCart, removeProductInCart } =
     useCartContext();
 
-  const [products, setProducts] = useState<CartProductType>();
+  const [products, setProducts] = useState<CartProductType>([]);
   const navigate = useNavigate();
 
+  const mapCartToProducts = () => {
+    return cart.map((el) => {
+      return {
+        product: getById(el.productId),
+        count: el.count,
+        isDeleted: false,
+      };
+    });
+  };
+
   useEffect(() => {
-    setProducts(() =>
-      cart.map((el) => {
-        return {
-          product: getById(el.productId),
-          count: el.count,
-        };
-      })
-    );
-  }, [cart]);
+    if (products.length > 0) {
+      setProducts((prev) =>
+        prev.map((product) => {
+          const productInCart = cart.find(
+            (cartEl) => cartEl.productId === product.product.id
+          );
+
+          if (!productInCart) {
+            // Being deleted now
+            if (!product.isDeleted) {
+              const el = document.getElementById(product.product.id);
+              console.log(el);
+              if (el) {
+                el.style.height = el.offsetHeight + "px";
+                el.style.marginTop = "0px";
+                setTimeout(() => {
+                  el.style.height = "0px";
+                }, 0);
+              }
+            }
+
+            return { ...product, isDeleted: true };
+          } else {
+            return {
+              product: getById(productInCart.productId),
+              count: productInCart.count,
+              isDeleted: false,
+            };
+          }
+        })
+      );
+    } else {
+      setProducts(() =>
+        cart.map((el) => {
+          return {
+            product: getById(el.productId),
+            count: el.count,
+            isDeleted: false,
+          };
+        })
+      );
+    }
+  }, [cart, products.length]);
 
   // Go back to home if there is no products in the Cart
   useEffect(() => {
     try {
       const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
 
-      if (!lsCart || lsCart.length === 0) navigate(getHomeRouteLink());
+      if (!lsCart || lsCart.length === 0) {
+        setTimeout(() => {
+          navigate(getHomeRouteLink());
+        }, 300);
+      }
     } catch (error) {
       navigate(getHomeRouteLink());
     }
   }, [navigate, cart]);
 
-  const fullPrice =
-    products &&
-    products.reduce((prev, { product, count }) => {
-      const price = (+product.price * count).toFixed(2);
+  const fullPrice = mapCartToProducts().reduce((prev, { product, count }) => {
+    const price = (+product.price * count).toFixed(2);
 
-      return +price + prev;
-    }, 0);
+    return +price + prev;
+  }, 0);
 
-  const fullPriceWithDiscount =
-    products &&
-    products.reduce((prev, { product, count }) => {
+  const fullPriceWithDiscount = mapCartToProducts().reduce(
+    (prev, { product, count }) => {
       const hasDiscount = !!product.discount;
       const price = (+product.price * count).toFixed(2);
       const mainPrice = hasDiscount
@@ -66,7 +115,9 @@ export const Cart = () => {
         : price;
 
       return +mainPrice + prev;
-    }, 0);
+    },
+    0
+  );
 
   const decreaseItem = (id: string) => {
     decreaseProductInCart(id);
@@ -93,7 +144,7 @@ export const Cart = () => {
       <NavBanner contentType={ContentType.INFO} content="Количка" />
       <div className="cart-content">
         {products &&
-          products.map(({ product, count }) => {
+          products.map(({ product, count, isDeleted }) => {
             const source = product.imageUrl;
             const discountText = `-${product.discount}%`;
             const hasDiscount = !!product.discount;
@@ -103,7 +154,13 @@ export const Cart = () => {
               : price;
 
             return (
-              <div key={product.id}>
+              <div
+                id={product.id}
+                style={{ visibility: isDeleted ? "hidden" : "visible" }}
+                key={product.id}
+                className="cart-content--wrapper"
+              >
+                <div className="cart-content--fix-element"> </div>
                 <div
                   onClick={() => handleProductClick(product.id)}
                   role="link"
@@ -166,7 +223,10 @@ export const Cart = () => {
             );
           })}
       </div>
-      <div className="cart-order">
+      <div
+        style={{ visibility: cart.length > 0 ? "visible" : "hidden" }}
+        className="cart-order"
+      >
         {fullPrice &&
           fullPriceWithDiscount &&
           fullPrice !== fullPriceWithDiscount && (
