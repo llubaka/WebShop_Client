@@ -37,10 +37,17 @@ import { AutoScrollPage } from "../components/common/AutoScrollPage";
 import { FromMenu } from "../pages/FromMenu/FromMenu";
 import { Snackbar } from "../components/common/Snackbar/Snackbar";
 import { useCounter } from "../helpers/useCounter";
+import { SeenContext } from "../context/seenContext";
+import {
+  getSessionStorageItem,
+  SessionStorageKeys,
+  setSessionStorageItem,
+} from "../helpers/sessionStorageFunctions";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
   const [favorites, setFavorites] = useState<FavoriteType>([]);
+  const [seen, setSeen] = useState<Set<string>>(new Set<string>());
   const [isFavoriteSnackbarShown, setIsFavoriteSnackbarShown] = useState(false);
   const [isCartSnackbarShown, setIsCartSnackbarShown] = useState(false);
   const [isEmptyCartSnackbarVisible, setIsEmptyCartSnackBarVisible] =
@@ -202,12 +209,24 @@ function App() {
     });
   };
 
+  const setSeenImages: any = (imgSrc: string) => {
+    setSeen((curr) => {
+      const newSeenImages = [...curr, imgSrc];
+      setSessionStorageItem(SessionStorageKeys.SEEN_IMAGES, newSeenImages);
+
+      return new Set(newSeenImages);
+    });
+  };
+
   useEffect(() => {
     const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
     if (lsCart) setCart(() => lsCart);
 
     const lsFavorites = getLocalStorageItem(LocalStorageKeys.FAVORITES);
     if (lsFavorites) setFavorites(() => lsFavorites);
+
+    const ssSeen = getSessionStorageItem(SessionStorageKeys.SEEN_IMAGES);
+    if (lsFavorites) setSeen(() => new Set(ssSeen));
   }, []);
 
   return (
@@ -221,57 +240,62 @@ function App() {
       }}
     >
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
-        <AutoScrollPage>
-          <Snackbar
-            isVisible={isFavoriteSnackbarShown}
-            text="Добавено в Любими"
-            onClick={navigateToFavorites}
-          />
-          <Snackbar
-            isVisible={isCartSnackbarShown}
-            text="Добавено в Количката"
-            onClick={navigateToCart}
-          />
-          <Snackbar
-            isVisible={isEmptyCartSnackbarVisible}
-            text="Количката е празна"
-            onClick={closeEmptyCartSnackbar}
-          />
-          <Snackbar
-            isVisible={isEmptyFavoriteSnackbarVisible}
-            text="Няма любими"
-            onClick={closeEmptyFavoriteSnackbar}
-          />
-          <Header showSnackbar={showEmptyCartSnackbar} />
-          <Routes>
-            <Route path={CustomRoutes.HOME} element={<Home />} />
-            <Route path={CustomRoutes.NEW_PRODUCTS} element={<NewProducts />} />
-            <Route path={CustomRoutes.CART} element={<Cart />} />
-            <Route
-              path={CustomRoutes.FAVORITES}
-              element={<FavoriteProducts />}
+        <SeenContext.Provider value={{ seen, setSeen: setSeenImages }}>
+          <AutoScrollPage>
+            <Snackbar
+              isVisible={isFavoriteSnackbarShown}
+              text="Добавено в Любими"
+              onClick={navigateToFavorites}
             />
-            <Route
-              path={CustomRoutes.SINGLE_PRODUCT}
-              element={<SingleProduct />}
+            <Snackbar
+              isVisible={isCartSnackbarShown}
+              text="Добавено в Количката"
+              onClick={navigateToCart}
             />
-            <Route
-              path={CustomRoutes.BY_CATEGORY_PRODUCTS}
-              element={<ByCategoryProducts />}
+            <Snackbar
+              isVisible={isEmptyCartSnackbarVisible}
+              text="Количката е празна"
+              onClick={closeEmptyCartSnackbar}
             />
-            <Route
-              path={CustomRoutes.BY_TAG_PRODUCTS}
-              element={<ByTagProcuts />}
+            <Snackbar
+              isVisible={isEmptyFavoriteSnackbarVisible}
+              text="Няма любими"
+              onClick={closeEmptyFavoriteSnackbar}
             />
-            <Route
-              path={CustomRoutes.FROM_BANNER_PRODUCTS}
-              element={<FromBannerProducts />}
-            />
-            <Route path={CustomRoutes.FROM_MENU} element={<FromMenu />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-          <Footer />
-        </AutoScrollPage>
+            <Header showSnackbar={showEmptyCartSnackbar} />
+            <Routes>
+              <Route path={CustomRoutes.HOME} element={<Home />} />
+              <Route
+                path={CustomRoutes.NEW_PRODUCTS}
+                element={<NewProducts />}
+              />
+              <Route path={CustomRoutes.CART} element={<Cart />} />
+              <Route
+                path={CustomRoutes.FAVORITES}
+                element={<FavoriteProducts />}
+              />
+              <Route
+                path={CustomRoutes.SINGLE_PRODUCT}
+                element={<SingleProduct />}
+              />
+              <Route
+                path={CustomRoutes.BY_CATEGORY_PRODUCTS}
+                element={<ByCategoryProducts />}
+              />
+              <Route
+                path={CustomRoutes.BY_TAG_PRODUCTS}
+                element={<ByTagProcuts />}
+              />
+              <Route
+                path={CustomRoutes.FROM_BANNER_PRODUCTS}
+                element={<FromBannerProducts />}
+              />
+              <Route path={CustomRoutes.FROM_MENU} element={<FromMenu />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+            <Footer />
+          </AutoScrollPage>
+        </SeenContext.Provider>
       </FavoriteContext.Provider>
     </CartContext.Provider>
   );
