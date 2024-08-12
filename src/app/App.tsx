@@ -19,7 +19,7 @@ import {
   FavoriteContext,
   FavoriteType,
 } from "../context/favoriteContext";
-import { NewProducts } from "../pages/NewProducts/NewProducts";
+import { HomePageProducts } from "../pages/HomePageProducts/HomePageProducts";
 import { Cart } from "../pages/Cart/Cart";
 import { SingleProduct } from "../pages/SingleProduct/SingleProduct";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
@@ -266,8 +266,8 @@ function App() {
             <Routes>
               <Route path={CustomRoutes.HOME} element={<Home />} />
               <Route
-                path={CustomRoutes.NEW_PRODUCTS}
-                element={<NewProducts />}
+                path={CustomRoutes.HOME_PAGE_PRODUCTS}
+                element={<HomePageProducts />}
               />
               <Route path={CustomRoutes.CART} element={<Cart />} />
               <Route

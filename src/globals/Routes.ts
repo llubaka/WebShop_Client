@@ -1,6 +1,6 @@
 export enum Routes {
   HOME = "/",
-  NEW_PRODUCTS = "/new",
+  HOME_PAGE_PRODUCTS = "/special",
   CART = "/cart",
   FAVORITES = "/favorites",
   SINGLE_PRODUCT = "/product/:param",
@@ -42,8 +42,8 @@ export const getHomeRouteLink = () => {
   return Routes.HOME;
 };
 
-export const getNewProductsRouteLink = () => {
-  return Routes.NEW_PRODUCTS;
+export const getHomePageProductsRouteLink = () => {
+  return Routes.HOME_PAGE_PRODUCTS;
 };
 
 export const getCartRouteLink = () => {
