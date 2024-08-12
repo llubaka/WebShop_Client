@@ -14,7 +14,10 @@ export const HomeSections = () => {
       {sections.map((sect) => {
         return (
           <div key={sect.id} className="home-sections__banner">
-            <Link to={getFromBannerProductsLink(sect.id)}>
+            <Link
+              to={getFromBannerProductsLink(sect.id)}
+              aria-label="Check products from banner"
+            >
               <ImageWithLoader
                 className="home-sections__banner--image"
                 src={sect.imageUrl}

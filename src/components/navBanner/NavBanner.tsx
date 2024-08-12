@@ -33,7 +33,12 @@ export const NavBanner: React.FC<INavBanner> = ({ content, contentType }) => {
                 );
 
               return (
-                <Link className="navbar-container__link" key={tag} to={getByTagProductsLink(tag)}>
+                <Link
+                  className="navbar-container__link"
+                  key={tag}
+                  to={getByTagProductsLink(tag)}
+                  aria-label={`Navigate to ${tag}`}
+                >
                   {linkContent}
                 </Link>
               );
@@ -47,7 +52,11 @@ export const NavBanner: React.FC<INavBanner> = ({ content, contentType }) => {
 
   return (
     <div className="navbar-container">
-      <Link to={getHomeRouteLink()} className="navbar-container__home">
+      <Link
+        to={getHomeRouteLink()}
+        className="navbar-container__home"
+        aria-label="Navigate to home page"
+      >
         {Settings.appName}
       </Link>
       <div className="navbar-container__separator">/</div>

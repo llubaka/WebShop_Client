@@ -82,6 +82,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           to={getHomeRouteLink()}
           className="header__container__logo-button"
           onClick={handleLogoClick}
+          aria-label="Navigate to home page"
         >
           <ImageWrapperNoLazy
             className="header__container__image--logo"
@@ -95,6 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           to={getCartRouteLink()}
           className="header__container__cart-button"
           onClick={handleCartClick}
+          aria-label="Go to cart"
         >
           {/* <div>
             <Cart />

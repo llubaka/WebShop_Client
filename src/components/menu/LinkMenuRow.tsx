@@ -15,7 +15,13 @@ export const LinkMenuRow: React.FC<LinkMenuRowProps> = ({
   onClick,
 }) => {
   return (
-    <Link key={title} to={linkTo} onClick={onClick} className="menu-row">
+    <Link
+      key={title}
+      to={linkTo}
+      onClick={onClick}
+      className="menu-row"
+      aria-label={`Navigate to ${title}`}
+    >
       {iconUrl && (
         <div className="menu-row-img-container">
           <ImageWrapper

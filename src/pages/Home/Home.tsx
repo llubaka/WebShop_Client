@@ -30,7 +30,12 @@ export const Home = () => {
           })}
         </section>
         <div className="home-container__main--view-all-button-container">
-          <Link to={getNewProductsRouteLink()}>Виж всички</Link>
+          <Link
+            to={getNewProductsRouteLink()}
+            aria-label="See all suggested products"
+          >
+            Виж всички
+          </Link>
         </div>
         <HomeSections />
         <ShopInfo />
