@@ -21,7 +21,11 @@ export const Home = () => {
           </p>
         </section>
         <section className="home-container__main--products">
-          {newProductsIds.map((id) => {
+          {newProductsIds.map((id, index) => {
+            if (index < 2) {
+              return <Product key={id} id={id} lazyImageLoading={false} />;
+            }
+
             return <Product key={id} id={id} />;
           })}
         </section>

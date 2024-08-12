@@ -7,12 +7,17 @@ import { getSingleProductRouteLink } from "../../globals/Routes";
 import { getById } from "../../data/getData/getFilteredProducts";
 import { HeartSvg } from "../../svg/Heart";
 import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
+import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
 
 interface IProduct {
   id: string;
+  lazyImageLoading?: boolean;
 }
 
-export const Product: React.FC<IProduct> = ({ id }) => {
+export const Product: React.FC<IProduct> = ({
+  id,
+  lazyImageLoading = true,
+}) => {
   const { addProductInCart } = useCartContext();
   const { favorites, addFavorite } = useFavoriteContext();
   const navigate = useNavigate();
@@ -70,7 +75,19 @@ export const Product: React.FC<IProduct> = ({ id }) => {
                 </div>
               )}
             </div>
-            <ImageWrapper src={product.imageUrl} width="100%" height="250px" />
+            {lazyImageLoading ? (
+              <ImageWrapper
+                src={product.imageUrl}
+                width="100%"
+                height="250px"
+              />
+            ) : (
+              <ImageWrapperNoLazy
+                src={product.imageUrl}
+                width="100%"
+                height="250px"
+              />
+            )}
           </div>
         </div>
         <p className="product-container__info">{product.info}</p>
