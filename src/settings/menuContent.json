@@ -1,0 +1,80 @@
+[
+  {
+    "id": "2",
+    "iconUrl": "/images/menuHeart.png",
+    "title": "ПОРЪЧКОВИ МОДЕЛИ",
+    "tags": ["test1"],
+    "subMenu": []
+  },
+  {
+    "id": "3",
+    "iconUrl": "/images/menuHeart.png",
+    "title": "ПРЪСТЕНИ",
+    "tags": ["нов", "друг", "други2"],
+    "subMenu": []
+  },
+  {
+    "id": "4",
+    "iconUrl": "/images/menuHeart.png",
+    "title": "НОВО",
+    "tags": ["test1"],
+    "subMenu": [
+      {
+        "id": "1",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "СУПЕР НОВИ",
+        "tags": ["друг", "нов", "test1"]
+      },
+      {
+        "id": "2",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "ЕКСТРА НОВИ",
+        "tags": ["нов"]
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "iconUrl": "/images/menuHeart.png",
+    "title": "НОВО",
+    "tags": ["test1"],
+    "subMenu": [
+      {
+        "id": "1",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "СУПЕР НОВИ",
+        "tags": ["друг"]
+      },
+      {
+        "id": "2",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "ЕКСТРА НОВИ",
+        "tags": ["нов"]
+      },
+      {
+        "id": "3",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "СУПЕР НОВИ",
+        "tags": ["друг"]
+      },
+      {
+        "id": "4",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "ЕКСТРА НОВИ",
+        "tags": ["нов"]
+      },
+      {
+        "id": "5",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "СУПЕР НОВИ",
+        "tags": ["друг"]
+      },
+      {
+        "id": "6",
+        "iconUrl": "/images/menuHeart.png",
+        "title": "ЕКСТРА НОВИ",
+        "tags": ["нов"]
+      }
+    ]
+  }
+]

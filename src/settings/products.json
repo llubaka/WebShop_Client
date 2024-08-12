@@ -6,7 +6,6 @@
     "imageUrl": "/products/ring.jpg",
     "discount": 44,
     "tags": ["нов", "test1"],
-    "category": "",
     "additionalImagesUrls": [],
     "description": {
       "Характеристика": "Може да изберете и опция Взимане на продукт от магазина. В този вариант доставката е отново БЕЗПЛАТНА, трябва само да споменете до кой от нашите магазини желаете да Ви бъде доставен продукта. Наш служител ще се свърже с Вас при направена поръчка и избрана тази доставка.",
@@ -22,7 +21,6 @@
     "imageUrl": "/products/ringTT.png",
     "discount": 0,
     "tags": ["нов", "test2"],
-    "category": "",
     "additionalImagesUrls": [
       "/products/ringThree.png",
       "/products/ring.png",
@@ -47,7 +45,6 @@
     "imageUrl": "/products/ring.png",
     "discount": 39,
     "tags": ["нов"],
-    "category": "",
     "additionalImagesUrls": [],
     "description": {
       "characteristic": "characteristic1132",
@@ -63,7 +60,6 @@
     "imageUrl": "/products/ringTwo.png",
     "discount": 12,
     "tags": ["нов"],
-    "category": "",
     "additionalImagesUrls": [],
     "description": {
       "characteristic": "characteristic1132",
@@ -79,7 +75,6 @@
     "imageUrl": "/products/ringThree.png",
     "discount": 39,
     "tags": [],
-    "category": "papaya",
     "additionalImagesUrls": [
       "/products/ringThree.png",
       "/products/ring.png",
@@ -104,7 +99,6 @@
     "imageUrl": "/products/ringFour.png",
     "discount": 12,
     "tags": ["пръстен", "друго", "друго2", "друго3", "други2"],
-    "category": "сребърен",
     "additionalImagesUrls": [
       "/products/ringThree.png",
       "/products/ring.png",

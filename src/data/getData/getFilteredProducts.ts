@@ -1,13 +1,14 @@
 import { ProductType } from "../../globals/ProductType";
-import { LocalStorageKeys, getLocalStorageItem } from "../../helpers/localStorageFunctions";
+import {
+  LocalStorageKeys,
+  getLocalStorageItem,
+} from "../../helpers/localStorageFunctions";
 import { getAllProducts } from "./getAllProducts";
 
-export const getByCategory = (category: string): ProductType[] => {
-  return getAllProducts().filter((product) => product.category === category);
-};
-
 export const getByTags = (tags: string[]): ProductType[] => {
-  return getAllProducts().filter((product) => product.tags.some((tag) => tags.includes(tag)));
+  return getAllProducts().filter((product) =>
+    product.tags.some((tag) => tags.includes(tag))
+  );
 };
 
 export const getById = (id: string): ProductType => {

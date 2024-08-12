@@ -1,7 +1,6 @@
-import MenuSettings from "../../settings/menuSettings.json";
+import MenuContent from "../../settings/menuContent.json";
 import "./menu.scss";
 import {
-  getByCategoryProductsLink,
   getCartRouteLink,
   getFavoritesRouteLink,
   getFromMenuProductsLink,
@@ -16,6 +15,7 @@ import { useCartContext } from "../../context/cartContext";
 import { React100vhDiv } from "../common/React100vhDiv";
 import { InsetShadow } from "../common/Inset/InsetShadow";
 import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
+import { QueryParam } from "../../helpers/enum";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -72,41 +72,19 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
   };
 
   const getMenuContent = useCallback(() => {
-    return MenuSettings.map((el) => {
-      if (el.category)
-        return (
-          <LinkMenuRow
-            key={el.title}
-            linkTo={getByCategoryProductsLink(el.category)}
-            title={el.title}
-            iconUrl={el.iconUrl}
-            onClick={toggleIsMenuOpened}
-          />
-        );
-      if (el.tags.length > 0)
-        return (
-          <LinkMenuRow
-            key={el.title}
-            linkTo={getFromMenuProductsLink(el.id.toString(), "false")}
-            title={el.title}
-            iconUrl={el.iconUrl}
-            onClick={toggleIsMenuOpened}
-          />
-        );
-
+    return MenuContent.map((el) => {
       if (el.subMenu.length > 0) {
         return (
-          <div key={el.title} className="menu-content__inner">
+          <div key={el.id} className="menu-content__inner">
             <MenuRow
               iconUrl={el.iconUrl}
               title={el.title}
-              onClick={() => toggleIsMenuRowOpened(el.title)}
-              isExpanded={isMenuRowOpened[el.title]}
+              onClick={() => toggleIsMenuRowOpened(el.id)}
+              isExpanded={isMenuRowOpened[el.id]}
             />
-
             <InnerContainerStyled
               innerRows={el.subMenu.length}
-              isExpanded={isMenuRowOpened[el.title]}
+              isExpanded={isMenuRowOpened[el.id]}
               className="menu-content__inner__content"
             >
               <InsetShadow
@@ -114,26 +92,11 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
                 style={{ top: 0, left: 0, width: "calc(100% + 20px)" }}
               />
               {el.subMenu.map((subMenuElement) => {
-                if (subMenuElement.category)
-                  return (
-                    <LinkMenuRow
-                      key={subMenuElement.title}
-                      linkTo={getByCategoryProductsLink(
-                        subMenuElement.category
-                      )}
-                      title={subMenuElement.title}
-                      iconUrl={subMenuElement.iconUrl}
-                      onClick={toggleIsMenuOpened}
-                    />
-                  );
                 if (subMenuElement.tags.length > 0)
                   return (
                     <LinkMenuRow
-                      key={subMenuElement.title}
-                      linkTo={getFromMenuProductsLink(
-                        subMenuElement.id.toString(),
-                        "true"
-                      )}
+                      key={subMenuElement.id}
+                      linkTo={getFromMenuProductsLink(el.id, subMenuElement.id)}
                       title={subMenuElement.title}
                       iconUrl={subMenuElement.iconUrl}
                       onClick={toggleIsMenuOpened}
@@ -150,8 +113,19 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
           </div>
         );
       }
+      if (el.tags.length > 0) {
+        return (
+          <LinkMenuRow
+            key={el.id}
+            linkTo={getFromMenuProductsLink(el.id, QueryParam.NOT_SUBMENU)}
+            title={el.title}
+            iconUrl={el.iconUrl}
+            onClick={toggleIsMenuOpened}
+          />
+        );
+      }
 
-      return <React.Fragment key={el.title}></React.Fragment>;
+      return <React.Fragment key={el.id}></React.Fragment>;
     });
   }, [isMenuRowOpened, toggleIsMenuOpened]);
 
@@ -170,7 +144,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
-          {/* <hr className="menu-content__hr" /> */}
           <React100vhDiv className="menu-content__rows">
             {Settings.images.menuCart && (
               <LinkMenuRow

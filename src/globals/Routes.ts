@@ -4,10 +4,9 @@ export enum Routes {
   CART = "/cart",
   FAVORITES = "/favorites",
   SINGLE_PRODUCT = "/product/:param",
-  BY_CATEGORY_PRODUCTS = "/category/:param",
   BY_TAG_PRODUCTS = "/tags/:param",
   FROM_BANNER_PRODUCTS = "/frombanner/:param",
-  FROM_MENU = "frommenu/:param",
+  FROM_MENU = "frommenu/:param/:param2",
 }
 
 const setParam = (str: string, param: string, paramName = ":param") => {
@@ -24,10 +23,6 @@ export const getFromMenuProductsLink = (param: string, param2: string) => {
 
 export const getFromBannerProductsLink = (param: string) => {
   return setParam(Routes.FROM_BANNER_PRODUCTS, param);
-};
-
-export const getByCategoryProductsLink = (param: string) => {
-  return setParam(Routes.BY_CATEGORY_PRODUCTS, param);
 };
 
 export const getSingleProductRouteLink = (param: string) => {

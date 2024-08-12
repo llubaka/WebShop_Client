@@ -23,7 +23,6 @@ import { HomePageProducts } from "../pages/HomePageProducts/HomePageProducts";
 import { Cart } from "../pages/Cart/Cart";
 import { SingleProduct } from "../pages/SingleProduct/SingleProduct";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
-import { ByCategoryProducts } from "../pages/ByCategoryProducts/ByCategoryProducts";
 import { FavoriteProducts } from "../pages/FavoriteProducts/FavoriteProducts";
 import { Footer } from "../components/footer/Footer";
 import { FromBannerProducts } from "../pages/FromBanner/FromBannerProducts";
@@ -277,10 +276,6 @@ function App() {
               <Route
                 path={CustomRoutes.SINGLE_PRODUCT}
                 element={<SingleProduct />}
-              />
-              <Route
-                path={CustomRoutes.BY_CATEGORY_PRODUCTS}
-                element={<ByCategoryProducts />}
               />
               <Route
                 path={CustomRoutes.BY_TAG_PRODUCTS}
