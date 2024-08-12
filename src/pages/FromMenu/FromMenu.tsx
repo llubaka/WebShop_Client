@@ -8,8 +8,6 @@ import { QueryParam } from "../../helpers/enum";
 
 export const FromMenu = () => {
   const { param: id, param2: subId } = useParams();
-  console.log(id);
-  console.log(MenuContent.filter((row) => row.id === id)[0].tags);
 
   const tags =
     subId === QueryParam.NOT_SUBMENU
