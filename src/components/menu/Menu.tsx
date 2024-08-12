@@ -14,8 +14,8 @@ import styled from "@emotion/styled";
 import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCartContext } from "../../context/cartContext";
 import { React100vhDiv } from "../common/React100vhDiv";
-import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
 import { InsetShadow } from "../common/Inset/InsetShadow";
+import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -160,7 +160,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
       <nav className={navClass} onClick={handleMenuClick}>
         <div className="menu-content">
           <div className="menu-content--header" onClick={toggleIsMenuOpened}>
-            <ImageWrapper
+            <ImageWrapperNoLazy
               className="header__container__image--logo"
               src={Settings.images.logo}
               width="70px"
@@ -170,7 +170,6 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
-          {/* <hr className="menu-content__hr" /> */}
           <React100vhDiv className="menu-content__rows">
             {Settings.images.menuCart && (
               <LinkMenuRow

@@ -81,17 +81,11 @@ export const NotSeenImage: React.FC<ImageWrapperProps> = ({
   const ref = useRef<HTMLDivElement>(null);
   const isSeen = useSeen(ref, src);
 
-  const style = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
   return (
     <div
       {...props}
       ref={ref}
-      style={!isloaded ? { ...style, width, height } : { width, height }}
+      style={{ width, height }}
       className={`image-wrapper ${props.className || ""}`}
     >
       {isSeen && (
