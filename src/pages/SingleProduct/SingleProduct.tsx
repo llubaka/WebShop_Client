@@ -80,12 +80,14 @@ export const SingleProduct = () => {
         <button
           onClick={handleAddInCartClick}
           className="sp-container__content--button"
+          aria-label="Add product in cart"
         >
           Добави в количката
         </button>
         <button
           onClick={handleMakeOrder}
           className="sp-container__content--button sp-container__content--button--last"
+          aria-label="Make order"
         >
           Направи поръчка
         </button>

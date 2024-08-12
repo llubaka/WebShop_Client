@@ -61,7 +61,11 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           isMenuOpened={isMenuOpened}
           toggleIsMenuOpened={toggleIsMenuOpened}
         />
-        <button onClick={toggleIsMenuOpened} style={{ marginRight: "8px" }}>
+        <button
+          onClick={toggleIsMenuOpened}
+          style={{ marginRight: "8px" }}
+          aria-label="Open menu"
+        >
           {Settings.images.burgerMenu ? (
             <ImageWrapperNoLazy
               className="header__container__image--burger"

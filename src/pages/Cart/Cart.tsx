@@ -135,6 +135,7 @@ export const Cart = () => {
                     <button
                       className="cart-price-count--count__button"
                       onClick={() => decreaseItem(product.id)}
+                      aria-label="Decrease count of the product"
                     >
                       -
                     </button>
@@ -142,6 +143,7 @@ export const Cart = () => {
                     <button
                       className="cart-price-count--count__button"
                       onClick={() => increaseItem(product.id)}
+                      aria-label="Increase count of the product"
                     >
                       +
                     </button>

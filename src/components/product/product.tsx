@@ -64,6 +64,7 @@ export const Product: React.FC<IProduct> = ({
               <button
                 onClick={handleAddFavoriteClick}
                 className="product-image__actions--add-favorite"
+                aria-label="Add product to favorites"
               >
                 <span className="product-image__actions--add-favorite--heart-icon">
                   <HeartSvg color={isFavorite() ? "gold" : "#ddd"} />
@@ -102,6 +103,7 @@ export const Product: React.FC<IProduct> = ({
         <button
           onClick={handleAddInCartClick}
           className="product-container__add-to-cart-button"
+          aria-label="Add product to cart"
         >
           Добави в количката
         </button>
