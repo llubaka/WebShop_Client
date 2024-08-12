@@ -36,21 +36,21 @@ export const ShopInfo = () => {
   );
 };
 
-const ShopInfoStyled = styled("div")<{ collapsed: boolean; offsetHeight: number | undefined }>(
-  ({ collapsed, offsetHeight }) =>
-    () => {
-      if (collapsed)
-        return {
-          height: "250px",
-          "-webkit-mask-image":
-            " -webkit-gradient(linear, center bottom, center top, color-stop(1.00,  rgba(0,0,0,1)), color-stop(0.00,  rgba(0,0,0,0)))",
-        };
-      else {
-        if (offsetHeight) return { height: `${offsetHeight}px` };
-        else return {};
-      }
-    }
-);
+const ShopInfoStyled = styled("div")<{
+  collapsed: boolean;
+  offsetHeight: number | undefined;
+}>(({ collapsed, offsetHeight }) => () => {
+  if (collapsed)
+    return {
+      height: "250px",
+      WebkitMaskImage:
+        " -webkit-gradient(linear, center bottom, center top, color-stop(1.00,  rgba(0,0,0,1)), color-stop(0.00,  rgba(0,0,0,0)))",
+    };
+  else {
+    if (offsetHeight) return { height: `${offsetHeight}px` };
+    else return {};
+  }
+});
 
 const WrapElement = ({ children, type }: { children: any; type: string }) => {
   if (type === "title") return <h2>{children}</h2>;
