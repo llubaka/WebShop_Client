@@ -12,7 +12,10 @@ export const getByTags = (tags: string[]): ProductType[] => {
 };
 
 export const getById = (id: string): ProductType => {
-  return getAllProducts().filter((product) => product.id === id)[0];
+  const product = getAllProducts().find((product) => product.id === id);
+  if (!product) throw new Error(`No product with id: ${id}`);
+
+  return product;
 };
 
 export const getByIds = (ids: string[]): ProductType[] => {

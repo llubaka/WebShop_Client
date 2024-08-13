@@ -42,6 +42,7 @@ import {
   SessionStorageKeys,
   setSessionStorageItem,
 } from "../helpers/sessionStorageFunctions";
+import { useChangeTitle } from "./useChangeTitle";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -54,6 +55,7 @@ function App() {
   const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] =
     useState(false);
   const navigate = useNavigate();
+  useChangeTitle();
 
   const navigateToFavorites = () => {
     navigate(getFavoritesRouteLink());
