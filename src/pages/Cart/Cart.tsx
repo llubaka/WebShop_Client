@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContentType, NavBanner } from "../../components/navBanner/NavBanner";
 import { getById } from "../../data/getData/getFilteredProducts";
 import "./cart.scss";
@@ -29,6 +29,7 @@ export const Cart = () => {
 
   const [products, setProducts] = useState<CartProductType>([]);
   const navigate = useNavigate();
+  const isHeightSetRef = useRef(false);
 
   const mapCartToProducts = () => {
     return cart.map((el) => {
@@ -40,6 +41,21 @@ export const Cart = () => {
     });
   };
 
+  // Set height of the elements after products are populated from cart.
+  // Technique is used to enable transition for height.
+  useEffect(() => {
+    if (products.length > 0 && !isHeightSetRef.current) {
+      products.forEach(({ product: { id } }) => {
+        const el = document.getElementById(id);
+        if (el) el.style.height = el.offsetHeight + "px";
+      });
+
+      isHeightSetRef.current = true;
+    }
+  }, [products]);
+
+  // If products.length is 0, this means that the products are not yet populated from cart.
+  // Splitting the logic in the useEffect for before and after populating the products hook.
   useEffect(() => {
     if (products.length > 0) {
       setProducts((prev) =>
@@ -50,15 +66,14 @@ export const Cart = () => {
 
           if (!productInCart) {
             // Being deleted now
+            //
+            // Set height to enable transition
             if (!product.isDeleted) {
               const el = document.getElementById(product.product.id);
-              console.log(el);
+
               if (el) {
-                el.style.height = el.offsetHeight + "px";
                 el.style.marginTop = "0px";
-                setTimeout(() => {
-                  el.style.height = "0px";
-                }, 0);
+                el.style.height = "0px";
               }
             }
 
@@ -85,7 +100,8 @@ export const Cart = () => {
     }
   }, [cart, products.length]);
 
-  // Go back to home if there is no products in the Cart
+  // Go back to home if there is no products in the Cart.
+  // Timeout with 300ms to allow finishing of the animation/transition.
   useEffect(() => {
     try {
       const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
