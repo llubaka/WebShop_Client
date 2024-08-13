@@ -6,7 +6,7 @@ export enum Routes {
   SINGLE_PRODUCT = "/product/:param",
   BY_TAG_PRODUCTS = "/tags/:param",
   FROM_BANNER_PRODUCTS = "/frombanner/:param",
-  FROM_MENU = "frommenu/:param/:param2",
+  FROM_MENU = "/frommenu/:param/:param2",
 }
 
 const setParam = (str: string, param: string, paramName = ":param") => {
