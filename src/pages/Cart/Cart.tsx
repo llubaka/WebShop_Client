@@ -67,13 +67,14 @@ export const Cart = () => {
           if (!productInCart) {
             // Being deleted now
             //
-            // Set height to enable transition
+            // Set styles when product from Cart is deleted
             if (!product.isDeleted) {
               const el = document.getElementById(product.product.id);
 
               if (el) {
                 el.style.marginTop = "0px";
                 el.style.height = "0px";
+                el.style.filter = "blur(10px)";
               }
             }
 
@@ -172,7 +173,6 @@ export const Cart = () => {
             return (
               <div
                 id={product.id}
-                style={{ visibility: isDeleted ? "hidden" : "visible" }}
                 key={product.id}
                 className="cart-content--wrapper"
               >

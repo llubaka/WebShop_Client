@@ -1,7 +1,9 @@
 .cart-content {
   margin: 10px;
   &--wrapper {
-    transition: height 0.3s ease-in;
+    filter: blur(0px);
+    overflow: hidden;
+    transition: all 0.3s ease-in;
   }
   &--fix-element {
     padding-top: 25px;
