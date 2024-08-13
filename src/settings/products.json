@@ -27,9 +27,7 @@
       "/products/ringTT.png",
       "/products/ringTT.png",
       "/products/ringThree.png",
-      "/products/ring.png",
-      "/products/ringTT.png",
-      "/products/ringTT.png"
+      "/products/ring.png"
     ],
     "description": {
       "characteristic": "characteristic1132",
@@ -78,11 +76,6 @@
     "additionalImagesUrls": [
       "/products/ringThree.png",
       "/products/ring.png",
-      "/products/ringTT.png",
-      "/products/ringTT.png",
-      "/products/ringThree.png",
-      "/products/ring.png",
-      "/products/ringTT.png",
       "/products/ringTT.png"
     ],
     "description": {
@@ -99,16 +92,7 @@
     "imageUrl": "/products/ringFour.png",
     "discount": 12,
     "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг"],
-    "additionalImagesUrls": [
-      "/products/ringThree.png",
-      "/products/ring.png",
-      "/products/ringTT.png",
-      "/products/ringTT.png",
-      "/products/ringThree.png",
-      "/products/ring.png",
-      "/products/ringTT.png",
-      "/products/ringTT.png"
-    ],
+    "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
     "description": {
       "characteristic": "characteristic1132",
       "description": "description1123",

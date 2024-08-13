@@ -80,6 +80,7 @@
   position: relative;
   list-style: none;
   white-space: nowrap;
+  padding-left: 0px;
 }
 .carousel .thumb {
   transition: border 0.15s ease-in;
@@ -253,4 +254,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.carousel-customer-thumbs-center {
+  .carousel .thumbs {
+    display: flex;
+    justify-content: center;
+  }
 }

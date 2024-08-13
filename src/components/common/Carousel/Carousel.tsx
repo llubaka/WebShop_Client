@@ -24,6 +24,8 @@ export const Carousel: React.FC<CarouselProps> = ({ imageSources }) => {
   }, [imageSources]);
 
   const style = isMainImageLoading ? { display: "none" } : {};
+  const carouselClass =
+    imageSources.length <= 3 ? "carousel-customer-thumbs-center" : "";
 
   return (
     <>
@@ -32,9 +34,9 @@ export const Carousel: React.FC<CarouselProps> = ({ imageSources }) => {
           <ClipLoader />
         </div>
       )}
-      <div style={{ ...style }}>
+      <div className={carouselClass} style={{ ...style }}>
         <RSCarousel
-          showArrows
+          showArrows={false}
           autoPlay
           infiniteLoop
           showStatus={false}
