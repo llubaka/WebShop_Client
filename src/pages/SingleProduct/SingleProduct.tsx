@@ -43,7 +43,7 @@ export const SingleProduct = () => {
     if (isProductInCart(id as string)) {
       navigate(getCartRouteLink());
     } else {
-      addProductInCart(id as string, true);
+      addProductInCart(id as string, false);
       navigate(getCartRouteLink());
     }
   };

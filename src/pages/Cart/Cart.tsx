@@ -157,7 +157,7 @@ export const Cart = () => {
   };
 
   return (
-    <div>
+    <div className="cart-container-div">
       <NavBanner contentType={ContentType.INFO} content="Количка" />
       <div className="cart-content">
         {products &&
@@ -266,6 +266,8 @@ export const Cart = () => {
             {fullPriceWithDiscount && fullPriceWithDiscount.toFixed(2)}лв.
           </div>
         </div>
+      </div>
+      <div className="cart-order__delivery-pay-price-container">
         {(Settings.freeDeliveryFrom || Settings.freeDeliveryFrom === 0) &&
           fullPriceWithDiscount && (
             <div className="cart-order--delivery">
@@ -292,6 +294,13 @@ export const Cart = () => {
                 ).toFixed(2)}лв.`}
           </div>
         </div>
+        <button
+          role="link"
+          aria-label="Finish order"
+          className="cart-order__delivery-pay-price-container--finish-order"
+        >
+          Завършви поръчката
+        </button>
       </div>
     </div>
   );
