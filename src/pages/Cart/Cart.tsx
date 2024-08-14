@@ -161,7 +161,7 @@ export const Cart = () => {
       <NavBanner contentType={ContentType.INFO} content="Количка" />
       <div className="cart-content">
         {products &&
-          products.map(({ product, count, isDeleted }) => {
+          products.map(({ product, count }) => {
             const source = product.imageUrl;
             const discountText = `-${product.discount}%`;
             const hasDiscount = !!product.discount;
@@ -186,7 +186,7 @@ export const Cart = () => {
                     onClick={(e) => handleDeleteClick(e, product.id)}
                     className="cart-content__item--trashcan"
                   >
-                    <TrashCan color="#a7a7a7" />
+                    <TrashCan color="rgb(155, 155, 155)" />
                   </div>
 
                   <div className="cart-content__item--image__container--image">

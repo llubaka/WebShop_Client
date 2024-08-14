@@ -77,10 +77,10 @@
       }
       &--discount {
         text-align: right;
-        color: silver;
+        color: rgb(155, 155, 155);
         font-size: 14px;
         text-decoration: line-through;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
       }
     }
   }
@@ -91,7 +91,7 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   &--full-price {
     display: flex;
-    color: silver;
+    color: rgb(155, 155, 155);
     font-size: 17px;
     text-decoration: line-through;
     &__price {
@@ -100,7 +100,7 @@
   }
   &--discount {
     display: flex;
-    color: rgb(255, 23, 23);
+    color: rgb(231, 45, 52);
     font-size: 17px;
     &__price {
       margin-left: auto;
@@ -109,7 +109,6 @@
   &--price {
     display: flex;
     font-size: 17px;
-    color: #666666;
     &__price {
       margin-left: auto;
     }
@@ -117,7 +116,6 @@
   &--delivery {
     display: flex;
     font-size: 17px;
-    color: #666666;
     &__price {
       margin-left: auto;
     }
@@ -129,7 +127,7 @@
     &__dds {
       margin-left: 5px;
       font-size: 13px;
-      color: silver;
+      color: rgb(155, 155, 155);
       transform: translateY(7px);
       font-weight: 500;
     }

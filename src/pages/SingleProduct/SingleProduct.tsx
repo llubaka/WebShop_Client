@@ -11,6 +11,7 @@ import { Accordion } from "../../components/common/Accordion/Accordion";
 import { useNavigate } from "react-router-dom";
 import { getCartRouteLink } from "../../globals/Routes";
 import { ImageWrapperNoLazy } from "../../components/common/ImageWrapper/ImageWrapperNoLazy";
+import { DeepSeparator } from "../../components/common/DeepSeparator/DeepSeparator";
 
 export const SingleProduct = () => {
   const { param: id } = useParams();
@@ -95,7 +96,7 @@ export const SingleProduct = () => {
 
       <div className="sp-additional-info">
         <div className="sp-contact-container">
-          <div className="sp-div-separator"></div>
+          <DeepSeparator />
           {(contact.telephone || contact.email) && (
             <div className="sp-additional-info__container">
               {contact.telephone && (
@@ -136,11 +137,12 @@ export const SingleProduct = () => {
               )}
             </div>
           )}
-          <div className="sp-div-separator"></div>{" "}
+          <DeepSeparator />
         </div>
         <div className="sp-accordion-container">
           <Accordion items={product.description} />
         </div>
+        <DeepSeparator />
       </div>
     </>
   );

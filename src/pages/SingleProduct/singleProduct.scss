@@ -42,6 +42,7 @@
 }
 
 .sp-additional-info {
+  margin-bottom: -20px;
   font-size: 14px;
   &__container {
     margin: 10px 10px 20px 10px;
@@ -92,12 +93,5 @@
 }
 
 .sp-accordion-container {
-  margin: 0 10px 10px 10px;
-}
-
-.sp-div-separator {
-  height: 20px;
-  background: rgb(243 243 243 / 70%);
-  border-top: 3px solid rgb(231 231 231 / 76%);
-  border-bottom: 3px solid rgb(231 231 231 / 76%);
+  margin: 0 10px;
 }
