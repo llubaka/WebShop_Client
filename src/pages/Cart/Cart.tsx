@@ -136,6 +136,11 @@ export const Cart = () => {
     0
   );
 
+  const fullPriceWithDiscountAndDelivery =
+    fullPriceWithDiscount > Settings.freeDeliveryFrom
+      ? fullPriceWithDiscount
+      : fullPriceWithDiscount + Settings.deliveryFee;
+
   const decreaseItem = (id: string) => {
     decreaseProductInCart(id);
   };
@@ -286,12 +291,7 @@ export const Cart = () => {
           <div className="cart-order--pay-price__price">
             {cart.length === 0
               ? "0.00лв."
-              : fullPriceWithDiscount &&
-                fullPriceWithDiscount > Settings.freeDeliveryFrom
-              ? `${fullPriceWithDiscount.toFixed(2)}лв.`
-              : `${(
-                  (fullPriceWithDiscount as number) + Settings.deliveryFee
-                ).toFixed(2)}лв.`}
+              : `${fullPriceWithDiscountAndDelivery.toFixed(2)}лв.`}
           </div>
         </div>
         <button
