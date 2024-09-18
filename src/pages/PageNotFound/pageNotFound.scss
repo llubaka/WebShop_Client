@@ -1,0 +1,20 @@
+.pnf-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 0px;
+  &__fof {
+    font-size: 70px;
+    font-weight: bold;
+    background-clip: text;
+    background-image: linear-gradient(92deg, #fcdc04, #f26023);
+    color: #0000;
+  }
+
+  &__pnf {
+    font-size: 20px;
+    color: #e7bb69;
+    font-weight: bold;
+  }
+}

@@ -98,12 +98,6 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
           onClick={handleCartClick}
           aria-label="Go to cart"
         >
-          {/* <div>
-            <Cart />
-            <div className="coin-container">
-              <Coin count={getCartCount()} />
-            </div>
-          </div> */}
           <div>
             <ImageWrapperNoLazy
               className="header__container__image--cart"

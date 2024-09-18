@@ -1,0 +1,15 @@
+.error-page-container {
+  background: linear-gradient(178deg, #fcdc04, #f26023);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  &__title {
+    font-size: 20px;
+  }
+  &__link {
+    font-size: 20px;
+    text-decoration: underline;
+  }
+}
