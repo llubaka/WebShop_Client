@@ -263,7 +263,10 @@ function App() {
               text="Няма любими"
               onClick={closeEmptyFavoriteSnackbar}
             />
-            <Header showSnackbar={showEmptyCartSnackbar} />
+            <Header
+              showSnackbar={showEmptyCartSnackbar}
+              closeSnackbars={closeSnackbars}
+            />
             <Routes>
               <Route path={CustomRoutes.HOME} element={<Home />} />
               <Route

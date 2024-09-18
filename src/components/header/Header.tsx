@@ -15,9 +15,13 @@ import { Coin } from "../../htmlImages/Coin/Coin";
 
 type HeaderProps = {
   showSnackbar: () => void;
+  closeSnackbars: () => void;
 };
 
-export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
+export const Header: React.FC<HeaderProps> = ({
+  showSnackbar,
+  closeSnackbars,
+}) => {
   const { cart } = useCartContext();
   const location = useLocation();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -39,6 +43,8 @@ export const Header: React.FC<HeaderProps> = ({ showSnackbar }) => {
       showSnackbar();
     } else if (location.pathname === Routes.CART) {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      closeSnackbars();
     }
   };
 
