@@ -1,3 +1,11 @@
+@import "./mixins.scss";
+
+.main-content-contaier {
+  @include phones-tablets-up {
+    min-height: calc(100vh - 663px);
+  }
+}
+
 /* Box sizing rules */
 *,
 *::before,

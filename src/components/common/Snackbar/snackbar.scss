@@ -1,3 +1,5 @@
+@import "../../../mixins.scss";
+
 .snackbar-container {
   position: fixed;
   bottom: 15px;
@@ -9,8 +11,19 @@
   align-items: center;
   justify-content: center;
   transition: transform 1s;
+  cursor: pointer;
+  @include phones-tablets-up {
+    justify-content: flex-end;
+    padding: 0 10px;
+  }
 
   &__snackbar {
+    @include phones-tablets-up {
+      width: auto;
+      min-width: 300px;
+      padding: 0 10px;
+      margin-right: 30px;
+    }
     border-radius: 8px;
     height: 100%;
     width: 90%;

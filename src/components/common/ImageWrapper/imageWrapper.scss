@@ -4,24 +4,14 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  object-fit: contain;
 }
 
 .product-image > .image-wrapper {
   & > img {
     @include phones-tablets-up {
+      width: 250px;
       padding: 5px;
-    }
-    @include desktops-up {
-      padding: 15px;
-    }
-    @include large-desktops-up {
-      padding: 20px;
-    }
-    @include extra-large-desktops-up {
-      padding: 30px;
-    }
-    @include s-extra-large-desktops-up {
-      padding: 50px;
     }
   }
 }

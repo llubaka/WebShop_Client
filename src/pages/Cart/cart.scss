@@ -3,6 +3,7 @@
 .cart-container-div {
   margin-bottom: -10px;
 }
+
 .cart-content {
   @include phones-tablets-up {
     flex: 1.2;
@@ -11,6 +12,7 @@
     margin-bottom: 14px;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px,
       rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+    height: max-content;
   }
 
   margin: 10px;
@@ -21,6 +23,11 @@
     @include phones-tablets-up {
       margin: 15px;
       margin-bottom: 20px;
+
+      &:last-child hr {
+        border: 1px solid white;
+        margin: 0;
+      }
     }
   }
   &--fix-element {
@@ -30,6 +37,7 @@
     display: flex;
     position: relative;
     margin-left: 5px;
+    cursor: pointer;
 
     &--trashcan {
       position: absolute;

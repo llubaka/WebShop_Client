@@ -267,32 +267,34 @@ function App() {
               showSnackbar={showEmptyCartSnackbar}
               closeSnackbars={closeSnackbars}
             />
-            <Routes>
-              <Route path={CustomRoutes.HOME} element={<Home />} />
-              <Route
-                path={CustomRoutes.HOME_PAGE_PRODUCTS}
-                element={<HomePageProducts />}
-              />
-              <Route path={CustomRoutes.CART} element={<Cart />} />
-              <Route
-                path={CustomRoutes.FAVORITES}
-                element={<FavoriteProducts />}
-              />
-              <Route
-                path={CustomRoutes.SINGLE_PRODUCT}
-                element={<SingleProduct />}
-              />
-              <Route
-                path={CustomRoutes.BY_TAG_PRODUCTS}
-                element={<ByTagProcuts />}
-              />
-              <Route
-                path={CustomRoutes.FROM_BANNER_PRODUCTS}
-                element={<FromBannerProducts />}
-              />
-              <Route path={CustomRoutes.FROM_MENU} element={<FromMenu />} />
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
+            <div className="main-content-contaier">
+              <Routes>
+                <Route path={CustomRoutes.HOME} element={<Home />} />
+                <Route
+                  path={CustomRoutes.HOME_PAGE_PRODUCTS}
+                  element={<HomePageProducts />}
+                />
+                <Route path={CustomRoutes.CART} element={<Cart />} />
+                <Route
+                  path={CustomRoutes.FAVORITES}
+                  element={<FavoriteProducts />}
+                />
+                <Route
+                  path={CustomRoutes.SINGLE_PRODUCT}
+                  element={<SingleProduct />}
+                />
+                <Route
+                  path={CustomRoutes.BY_TAG_PRODUCTS}
+                  element={<ByTagProcuts />}
+                />
+                <Route
+                  path={CustomRoutes.FROM_BANNER_PRODUCTS}
+                  element={<FromBannerProducts />}
+                />
+                <Route path={CustomRoutes.FROM_MENU} element={<FromMenu />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </div>
             <Footer />
           </AutoScrollPage>
         </SeenContext.Provider>
