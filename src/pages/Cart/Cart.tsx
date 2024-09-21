@@ -136,10 +136,12 @@ export const Cart = () => {
     0
   );
 
+  const deliveryFee = Settings.deliveryFee;
+
   const fullPriceWithDiscountAndDelivery =
     fullPriceWithDiscount > Settings.freeDeliveryFrom
       ? fullPriceWithDiscount
-      : fullPriceWithDiscount + Settings.deliveryFee;
+      : fullPriceWithDiscount + deliveryFee;
 
   const decreaseItem = (id: string) => {
     decreaseProductInCart(id);
