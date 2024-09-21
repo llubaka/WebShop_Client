@@ -10,6 +10,8 @@ import { HomeSections } from "../../components/homeSections/HomeSections";
 import HomePageProductsSettings from "../../settings/homePageProducts.json";
 
 export const Home = () => {
+  console.log(process.env.REACT_APP_API_KEY);
+
   const homePageProductsIds = getHomePageProductsIds();
   return (
     <div className="home-container">
