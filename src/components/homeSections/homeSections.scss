@@ -1,13 +1,34 @@
+@import "../../mixins.scss";
+
 .home-sections {
   margin-top: 40px;
+
+  @include phones-tablets-up {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   &__banner {
     margin-top: 10px;
     height: 200px;
+
+    @include phones-tablets-up {
+      flex: 0 0 50%;
+      padding: 0 10px;
+    }
+    @include desktops-up {
+      flex: 0 0 33%;
+    }
+    @include extra-large-desktops-up {
+      flex: 0 0 25%;
+    }
     &--image {
       height: 200px;
       width: 100%;
       object-fit: cover;
+      @include extra-large-desktops-up {
+        display: block;
+      }
     }
   }
 }

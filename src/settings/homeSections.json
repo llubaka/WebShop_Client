@@ -10,5 +10,17 @@
     "imageUrl": "/images/bannerTwo.png",
     "tags": [],
     "productsIds": []
+  },
+  {
+    "id": "219219",
+    "imageUrl": "/images/bannerOne.png",
+    "tags": ["пръстен", "друго", "друго2", "друго3"],
+    "productsIds": []
+  },
+  {
+    "id": "129120",
+    "imageUrl": "/images/bannerTwo.png",
+    "tags": [],
+    "productsIds": []
   }
 ]

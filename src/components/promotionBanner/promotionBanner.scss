@@ -1,8 +1,40 @@
+@import "../../mixins.scss";
+
 .banner-container {
   height: 20vh;
   &__image {
     height: 20vh;
     width: 100%;
     object-fit: cover;
+  }
+  @include phones-tablets-up {
+    height: 25vh;
+    &__image {
+      height: 25vh;
+    }
+  }
+  @include landscape-tablets-up {
+    height: 30vh;
+    &__image {
+      height: 30vh;
+    }
+  }
+  @include desktops-up {
+    height: 35vh;
+    &__image {
+      height: 35vh;
+    }
+  }
+  @include large-desktops-up {
+    height: 40vh;
+    &__image {
+      height: 40vh;
+    }
+  }
+  @include extra-large-desktops-up {
+    height: 45vh;
+    &__image {
+      height: 45vh;
+    }
   }
 }

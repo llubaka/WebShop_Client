@@ -1,5 +1,4 @@
 import "./cart.scss";
-//      <div className="html-cart"></div>
 export const Cart = () => {
   return (
     <div className="html-cart">

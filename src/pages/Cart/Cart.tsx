@@ -166,143 +166,150 @@ export const Cart = () => {
   return (
     <div className="cart-container-div">
       <NavBanner contentType={ContentType.INFO} content="Количка" />
-      <div className="cart-content">
-        {products &&
-          products.map(({ product, count }) => {
-            const source = product.imageUrl;
-            const discountText = `-${product.discount}%`;
-            const hasDiscount = !!product.discount;
-            const price = (+product.price * count).toFixed(2);
-            const mainPrice = hasDiscount
-              ? ((+price * (100 - product.discount)) / 100).toFixed(2)
-              : price;
+      <div className="cart-desktop-container">
+        <div className="cart-content">
+          {products &&
+            products.map(({ product, count }) => {
+              const source = product.imageUrl;
+              const discountText = `-${product.discount}%`;
+              const hasDiscount = !!product.discount;
+              const price = (+product.price * count).toFixed(2);
+              const mainPrice = hasDiscount
+                ? ((+price * (100 - product.discount)) / 100).toFixed(2)
+                : price;
 
-            return (
-              <div
-                id={product.id}
-                key={product.id}
-                className="cart-content--wrapper"
-              >
-                <div className="cart-content--fix-element"> </div>
+              return (
                 <div
-                  onClick={() => handleProductClick(product.id)}
-                  role="link"
-                  className="cart-content__item"
+                  id={product.id}
+                  key={product.id}
+                  className="cart-content--wrapper"
                 >
+                  <div className="cart-content--fix-element"> </div>
                   <div
-                    onClick={(e) => handleDeleteClick(e, product.id)}
-                    className="cart-content__item--trashcan"
+                    onClick={() => handleProductClick(product.id)}
+                    role="link"
+                    className="cart-content__item"
                   >
-                    <TrashCan color="rgb(155, 155, 155)" />
-                  </div>
+                    <div
+                      onClick={(e) => handleDeleteClick(e, product.id)}
+                      className="cart-content__item--trashcan"
+                    >
+                      <TrashCan color="rgb(155, 155, 155)" />
+                    </div>
 
-                  <div className="cart-content__item--image__container--image">
-                    {hasDiscount && (
-                      <div className="cart-content__item--image__container--discount">
-                        {discountText}
-                      </div>
-                    )}
-                    <ImageWrapperNoLazy
-                      src={source}
-                      height="100px"
-                      width="100px"
-                    />
-                  </div>
-                  <div className="cart-content__item--info">{product.info}</div>
-                </div>
-                <div className="cart-price-count">
-                  <div className="cart-price-count--count">
-                    <button
-                      className="cart-price-count--count__button"
-                      onClick={() => decreaseItem(product.id)}
-                      aria-label="Decrease count of the product"
-                    >
-                      -
-                    </button>
-                    <div>{count}</div>
-                    <button
-                      className="cart-price-count--count__button"
-                      onClick={() => increaseItem(product.id)}
-                      aria-label="Increase count of the product"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="cart-price-count--price">
-                    <div className="cart-price-count--price__content">
+                    <div className="cart-content__item--image__container--image">
                       {hasDiscount && (
-                        <div className="cart-price-count--price__content--discount">
-                          {price}лв.
+                        <div className="cart-content__item--image__container--discount">
+                          {discountText}
                         </div>
                       )}
-                      <div className="cart-price-count--price__content--full-price">
-                        {mainPrice}лв.
+                      <ImageWrapperNoLazy
+                        src={source}
+                        height="100px"
+                        width="100px"
+                      />
+                    </div>
+                    <div className="cart-content__item--info">
+                      {product.info}
+                    </div>
+                  </div>
+                  <div className="cart-price-count">
+                    <div className="cart-price-count--count">
+                      <button
+                        className="cart-price-count--count__button"
+                        onClick={() => decreaseItem(product.id)}
+                        aria-label="Decrease count of the product"
+                      >
+                        -
+                      </button>
+                      <div>{count}</div>
+                      <button
+                        className="cart-price-count--count__button"
+                        onClick={() => increaseItem(product.id)}
+                        aria-label="Increase count of the product"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <div className="cart-price-count--price">
+                      <div className="cart-price-count--price__content">
+                        {hasDiscount && (
+                          <div className="cart-price-count--price__content--discount">
+                            {price}лв.
+                          </div>
+                        )}
+                        <div className="cart-price-count--price__content--full-price">
+                          {mainPrice}лв.
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <hr className="hr-separator" />
                 </div>
-                <hr className="hr-separator" />
-              </div>
-            );
-          })}
-      </div>
-      <div className="cart-order">
-        {fullPrice &&
-          fullPriceWithDiscount &&
-          fullPrice !== fullPriceWithDiscount && (
-            <>
-              <div className="cart-order--full-price">
-                <div>Пълна цена</div>
-                <div className="cart-order--full-price__price">
-                  {fullPrice && fullPrice.toFixed(2)}лв.
-                </div>
-              </div>
-              <div className="cart-order--discount">
-                <div>Отстъпка</div>
-                {fullPrice && fullPriceWithDiscount && (
-                  <div className="cart-order--full-price__price">
-                    -{(fullPrice - fullPriceWithDiscount).toFixed(2)}лв.
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        <div className="cart-order--price">
-          <div>Общо</div>
-          <div className="cart-order--price__price">
-            {fullPriceWithDiscount && fullPriceWithDiscount.toFixed(2)}лв.
-          </div>
+              );
+            })}
         </div>
-      </div>
-      <div className="cart-order__delivery-pay-price-container">
-        {(Settings.freeDeliveryFrom || Settings.freeDeliveryFrom === 0) &&
-          fullPriceWithDiscount && (
-            <div className="cart-order--delivery">
-              <div>Доставка</div>
-              <div className="cart-order--delivery__price">
-                {fullPriceWithDiscount > Settings.freeDeliveryFrom ||
-                cart.length === 0
-                  ? "0.00лв."
-                  : `${Settings.deliveryFee.toFixed(2)}лв.`}
+        <div className="cart-desktop-container__prices">
+          <div className="cart-order">
+            {fullPrice &&
+              fullPriceWithDiscount &&
+              fullPrice !== fullPriceWithDiscount && (
+                <>
+                  <div className="cart-order--full-price">
+                    <div>Пълна цена</div>
+                    <div className="cart-order--full-price__price">
+                      {fullPrice && fullPrice.toFixed(2)}лв.
+                    </div>
+                  </div>
+                  <div className="cart-order--discount">
+                    <div>Отстъпка</div>
+                    {fullPrice && fullPriceWithDiscount && (
+                      <div className="cart-order--full-price__price">
+                        -{(fullPrice - fullPriceWithDiscount).toFixed(2)}лв.
+                      </div>
+                    )}
+                  </div>
+                </>
+              )}
+            <div className="cart-order--price">
+              <div>Общо</div>
+              <div className="cart-order--price__price">
+                {fullPriceWithDiscount && fullPriceWithDiscount.toFixed(2)}лв.
               </div>
             </div>
-          )}
-        <div className="cart-order--pay-price">
-          <div>Сума</div>
-          <div className="cart-order--pay-price__dds">с ДДС</div>
-          <div className="cart-order--pay-price__price">
-            {cart.length === 0
-              ? "0.00лв."
-              : `${fullPriceWithDiscountAndDelivery.toFixed(2)}лв.`}
+          </div>
+          <div className="cart-order__delivery-pay-price-container">
+            {(Settings.freeDeliveryFrom || Settings.freeDeliveryFrom === 0) &&
+              fullPriceWithDiscount && (
+                <div className="cart-order--delivery">
+                  <div>Доставка</div>
+                  <div className="cart-order--delivery__price">
+                    {fullPriceWithDiscount > Settings.freeDeliveryFrom ||
+                    cart.length === 0
+                      ? "0.00лв."
+                      : `${Settings.deliveryFee.toFixed(2)}лв.`}
+                  </div>
+                </div>
+              )}
+            <div className="cart-order--pay-price">
+              <div>Сума</div>
+              <div className="cart-order--pay-price__dds">с ДДС</div>
+              <div className="cart-order--pay-price__price">
+                {cart.length === 0
+                  ? "0.00лв."
+                  : `${fullPriceWithDiscountAndDelivery.toFixed(2)}лв.`}
+              </div>
+            </div>
+
+            <button
+              role="link"
+              aria-label="Finish order"
+              className="cart-order__delivery-pay-price-container--finish-order"
+            >
+              Завършви поръчката
+            </button>
           </div>
         </div>
-        <button
-          role="link"
-          aria-label="Finish order"
-          className="cart-order__delivery-pay-price-container--finish-order"
-        >
-          Завършви поръчката
-        </button>
       </div>
     </div>
   );

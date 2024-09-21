@@ -1,6 +1,27 @@
+@import "../../../mixins.scss";
 .image-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.product-image > .image-wrapper {
+  & > img {
+    @include phones-tablets-up {
+      padding: 5px;
+    }
+    @include desktops-up {
+      padding: 15px;
+    }
+    @include large-desktops-up {
+      padding: 20px;
+    }
+    @include extra-large-desktops-up {
+      padding: 30px;
+    }
+    @include s-extra-large-desktops-up {
+      padding: 50px;
+    }
+  }
 }

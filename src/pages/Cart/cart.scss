@@ -1,13 +1,27 @@
+@import "../../mixins.scss";
+
 .cart-container-div {
   margin-bottom: -10px;
 }
-
 .cart-content {
+  @include phones-tablets-up {
+    flex: 1.2;
+    border: 1px solid rgb(229, 229, 229);
+    border-radius: 4px;
+    margin-bottom: 14px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px,
+      rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+  }
+
   margin: 10px;
   &--wrapper {
     filter: blur(0px);
     overflow: hidden;
     transition: all 0.3s ease-in;
+    @include phones-tablets-up {
+      margin: 15px;
+      margin-bottom: 20px;
+    }
   }
   &--fix-element {
     padding-top: 25px;
@@ -92,15 +106,43 @@
   }
 }
 
+.cart-desktop-container {
+  &__prices {
+    display: inline;
+  }
+  @include phones-tablets-up {
+    display: flex;
+    &__prices {
+      position: sticky;
+      top: 141px;
+      flex: 1;
+      margin: 10px;
+      border: 1px solid rgb(229, 229, 229);
+      border-radius: 4px;
+      margin-bottom: 14px;
+      box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px,
+        rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+      height: max-content;
+    }
+  }
+}
+
 .cart-order {
   margin: 30px 15px 0px 15px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  @include phones-tablets-up {
+    margin: 15px 15px 0px 15px;
+  }
   &__delivery-pay-price-container {
     position: sticky;
     bottom: 0;
     background-color: white;
     margin: 0 15px;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+    @include phones-tablets-up {
+      margin: 0 15px 5px 15px;
+    }
     &--finish-order {
       padding: 16px;
       text-align: center;

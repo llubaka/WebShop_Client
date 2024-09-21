@@ -1,8 +1,14 @@
+@import "../../mixins.scss";
+
 .footer-item {
   flex: 50%;
   padding: 10px;
   display: flex;
   flex-direction: column;
+
+  @include phones-tablets-up {
+    flex: 33%;
+  }
 
   &__image {
     margin: auto;

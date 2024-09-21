@@ -1,3 +1,36 @@
+@import "../../mixins.scss";
+
+@include phones-tablets-up {
+  #last-deep-separator {
+    display: none;
+  }
+  .sp-page-container {
+    display: flex;
+  }
+  .sp-product-container {
+    padding-top: 20px;
+    margin: 20px;
+    flex: 50%;
+    position: sticky;
+    top: 110px;
+    height: max-content;
+  }
+
+  .sp-contact-info-container {
+    margin: 20px;
+    flex: 50%;
+    border: 1px solid rgb(229, 229, 229);
+    border-radius: 4px;
+    margin-bottom: 14px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px,
+      rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+    & div.deep-separator {
+      border: none;
+      background-color: white;
+    }
+  }
+}
+
 .sp-container {
   &__content {
     margin: 10px;
@@ -43,6 +76,9 @@
 
 .sp-additional-info {
   margin-bottom: -20px;
+  @include phones-tablets-up {
+    margin-bottom: 0;
+  }
   font-size: 14px;
   &__container {
     margin: 10px 10px 20px 10px;

@@ -27,3 +27,15 @@
     @content;
   }
 }
+
+@mixin extra-large-desktops-up {
+  @media (min-width: 1400px) {
+    @content;
+  }
+}
+
+@mixin s-extra-large-desktops-up {
+  @media (min-width: 1400px) {
+    @content;
+  }
+}

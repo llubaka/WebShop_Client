@@ -1,7 +1,25 @@
+@import "../../mixins.scss";
+
 .shopInfo {
   margin: 25px 10px 0 10px;
   overflow: hidden;
   transition: height 1.7s;
+
+  @include phones-tablets-up {
+    padding: 20px;
+  }
+  @include desktops-up {
+    padding: 15px;
+  }
+  @include large-desktops-up {
+    padding: 40px;
+  }
+  @include extra-large-desktops-up {
+    padding: 50px;
+  }
+  @include s-extra-large-desktops-up {
+    padding: 70px;
+  }
 
   & > div > p {
     font-family: sans-serif;

@@ -55,94 +55,99 @@ export const SingleProduct = () => {
   return (
     <>
       <NavBanner contentType={ContentType.INFO} content={product.info} />
-      {hasAdditionalImages ? (
-        <div className="carousel-container">
-          <Carousel imageSources={getProductImages()} />
-        </div>
-      ) : (
-        <div className="sp-container">
-          <ImageWrapperNoLazy
-            src={product.imageUrl}
-            width="100%"
-            height="45vh"
-          />
-        </div>
-      )}
-      <div className="sp-container__content">
-        <div className="sp-container__content__info">{product.info}</div>
-        <div className="sp-container__content__product-price">
-          {mainPrice}лв.
-          {hasDiscount && (
-            <span className="sp-container__content__product-price--discount">
-              {product.price}лв.
-            </span>
-          )}
-        </div>
-        <button
-          onClick={handleAddInCartClick}
-          className="sp-container__content--button"
-          aria-label="Add product in cart"
-        >
-          Добави в количката
-        </button>
-        <button
-          onClick={handleMakeOrder}
-          className="sp-container__content--button sp-container__content--button--last"
-          aria-label="Make order"
-        >
-          Направи поръчка
-        </button>
-      </div>
-
-      <div className="sp-additional-info">
-        <div className="sp-contact-container">
-          <DeepSeparator />
-          {(contact.telephone || contact.email) && (
-            <div className="sp-additional-info__container">
-              {contact.telephone && (
-                <div className="sp-additional-info--first">
-                  <a
-                    className="sp-additional-info--href"
-                    href={`tel:${contact.telephone}`}
-                  >
-                    <div className="sp-additional-info--href__container">
-                      Имате въпроси или желаете да поръчате?
-                    </div>
-                    <div className="sp-additional-info--href--contact">
-                      <span className="sp-additional-info--icon">
-                        <Telephone color="#e39606" />
-                      </span>
-                      {contact.telephone}
-                    </div>
-                  </a>
-                </div>
-              )}
-              {contact.email && (
-                <div>
-                  <a
-                    className="sp-additional-info--href"
-                    href={`mailto:${contact.email}`}
-                  >
-                    <div className="sp-additional-info--href__container">
-                      Може да се свържете с нас и по имейл:
-                    </div>
-                    <div className="sp-additional-info--href--contact">
-                      <span className="sp-additional-info--icon">
-                        <Envelope color="#e39606" />
-                      </span>
-                      {contact.email}
-                    </div>
-                  </a>
-                </div>
-              )}
+      <div className="sp-page-container">
+        <div className="sp-product-container">
+          {hasAdditionalImages ? (
+            <div className="carousel-container">
+              <Carousel imageSources={getProductImages()} />
+            </div>
+          ) : (
+            <div className="sp-container">
+              <ImageWrapperNoLazy
+                src={product.imageUrl}
+                width="100%"
+                height="45vh"
+              />
             </div>
           )}
-          <DeepSeparator />
         </div>
-        <div className="sp-accordion-container">
-          <Accordion items={product.description} />
+        <div className="sp-contact-info-container">
+          <div className="sp-container__content">
+            <div className="sp-container__content__info">{product.info}</div>
+            <div className="sp-container__content__product-price">
+              {mainPrice}лв.
+              {hasDiscount && (
+                <span className="sp-container__content__product-price--discount">
+                  {product.price}лв.
+                </span>
+              )}
+            </div>
+            <button
+              onClick={handleAddInCartClick}
+              className="sp-container__content--button"
+              aria-label="Add product in cart"
+            >
+              Добави в количката
+            </button>
+            <button
+              onClick={handleMakeOrder}
+              className="sp-container__content--button sp-container__content--button--last"
+              aria-label="Make order"
+            >
+              Направи поръчка
+            </button>
+          </div>
+          <div className="sp-additional-info">
+            <div className="sp-contact-container">
+              <DeepSeparator />
+              {(contact.telephone || contact.email) && (
+                <div className="sp-additional-info__container">
+                  {contact.telephone && (
+                    <div className="sp-additional-info--first">
+                      <a
+                        className="sp-additional-info--href"
+                        href={`tel:${contact.telephone}`}
+                      >
+                        <div className="sp-additional-info--href__container">
+                          Имате въпроси или желаете да поръчате?
+                        </div>
+                        <div className="sp-additional-info--href--contact">
+                          <span className="sp-additional-info--icon">
+                            <Telephone color="#e39606" />
+                          </span>
+                          {contact.telephone}
+                        </div>
+                      </a>
+                    </div>
+                  )}
+                  {contact.email && (
+                    <div>
+                      <a
+                        className="sp-additional-info--href"
+                        href={`mailto:${contact.email}`}
+                      >
+                        <div className="sp-additional-info--href__container">
+                          Може да се свържете с нас и по имейл:
+                        </div>
+                        <div className="sp-additional-info--href--contact">
+                          <span className="sp-additional-info--icon">
+                            <Envelope color="#e39606" />
+                          </span>
+                          {contact.email}
+                        </div>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              )}
+              <DeepSeparator />
+            </div>
+            <div className="sp-accordion-container">
+              <Accordion items={product.description} />
+            </div>
+            <DeepSeparator id="last-deep-separator" />
+          </div>
         </div>
-        <DeepSeparator />
       </div>
     </>
   );
