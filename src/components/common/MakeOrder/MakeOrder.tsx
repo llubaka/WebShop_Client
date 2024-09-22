@@ -5,6 +5,8 @@ export default function MakeOrder() {
   function sendEmail(e: any) {
     e.preventDefault();
 
+    console.log("ASF", process.env);
+
     if (!process.env.EMAIL_SERVICE_ID) {
       console.log("Email service id is undefined.");
       return;
