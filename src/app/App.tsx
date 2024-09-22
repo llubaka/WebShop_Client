@@ -200,6 +200,7 @@ function App() {
 
   const clearCart: ClearCartFuncType = () => {
     setCart([]);
+    setLocalStorageItem(LocalStorageKeys.CART, []);
   };
 
   const addFavorite: AddFavoriteFuncType = (productId: string) => {
