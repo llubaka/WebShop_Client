@@ -1,17 +1,19 @@
+import { decrypt, encrypt } from "./encryption";
+
 export enum LocalStorageKeys {
-  CART = "cart",
-  FAVORITES = "favorites",
-  SEND_EMAILS = "sm",
-  LAST_ORDER = "lo",
+  CART = "b15cd43e-af19-4138-b79c-ea73263c76a3",
+  FAVORITES = "f49f5927-9185-4875-a4de-151f13d165ed",
+  SEND_EMAILS = "8895b839-4750-483d-a650-cde1b70a4761",
+  LAST_ORDER = "44f62f43-4166-4829-a31a-0a1ffc1b2109",
 }
 
 export const getLocalStorageItem = (key: LocalStorageKeys) => {
   const data = localStorage.getItem(key);
-  if (data) return JSON.parse(data);
+  if (data) return JSON.parse(decrypt(data, 3));
 
   return null;
 };
 
 export const setLocalStorageItem = (key: LocalStorageKeys, value: {} | []) => {
-  localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(key, encrypt(JSON.stringify(value), 3));
 };

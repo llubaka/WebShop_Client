@@ -92,18 +92,18 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
       return;
     }
 
-    if (!process.env.REACT_APP_EMAIL_SERVICE_ID) {
-      console.log("Email service id is undefined.");
-      return;
-    }
-    if (!process.env.REACT_APP_EMAIL_TEMPLATE_ID) {
-      console.log("Email template id is undefined.");
-      return;
-    }
-    if (!process.env.REACT_APP_EMAIL_PUBLIC_KEY) {
-      console.log("Email public key is undefined.");
-      return;
-    }
+    // if (!process.env.REACT_APP_EMAIL_SERVICE_ID) {
+    //   console.log("Email service id is undefined.");
+    //   return;
+    // }
+    // if (!process.env.REACT_APP_EMAIL_TEMPLATE_ID) {
+    //   console.log("Email template id is undefined.");
+    //   return;
+    // }
+    // if (!process.env.REACT_APP_EMAIL_PUBLIC_KEY) {
+    //   console.log("Email public key is undefined.");
+    //   return;
+    // }
 
     const lastOrderDate = new Date(getLocalStorageItem(LocalStorageKeys.LAST_ORDER));
     const has24HoursDifferenceFromLastOrder = has24HoursDifference(lastOrderDate);
@@ -123,12 +123,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
 
     setIsSending(true);
 
-    await emailjs.sendForm(
-      process.env.REACT_APP_EMAIL_SERVICE_ID,
-      process.env.REACT_APP_EMAIL_TEMPLATE_ID,
-      e.target,
-      process.env.REACT_APP_EMAIL_PUBLIC_KEY
-    );
+    await emailjs.sendForm("service_ff90gkl", "template_ts9kpce", e.target, "n8HUGbQ7YC5VWzvST");
 
     setIsSending(false);
     closeMakeOrderModal();
