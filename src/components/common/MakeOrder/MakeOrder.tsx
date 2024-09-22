@@ -7,25 +7,25 @@ export default function MakeOrder() {
 
     console.log("ASF", process.env);
 
-    if (!process.env.EMAIL_SERVICE_ID) {
+    if (!process.env.REACT_APP_EMAIL_SERVICE_ID) {
       console.log("Email service id is undefined.");
       return;
     }
-    if (!process.env.EMAIL_TEMPLATE_ID) {
+    if (!process.env.REACT_APP_EMAIL_TEMPLATE_ID) {
       console.log("Email template id is undefined.");
       return;
     }
-    if (!process.env.EMAIL_PUBLIC_KEY) {
+    if (!process.env.REACT_APP_EMAIL_PUBLIC_KEY) {
       console.log("Email public key is undefined.");
       return;
     }
 
     emailjs
       .sendForm(
-        process.env.EMAIL_SERVICE_ID,
-        process.env.EMAIL_TEMPLATE_ID,
+        process.env.REACT_APP_EMAIL_SERVICE_ID,
+        process.env.REACT_APP_EMAIL_TEMPLATE_ID,
         e.target,
-        process.env.EMAIL_PUBLIC_KEY
+        process.env.REACT_APP_EMAIL_PUBLIC_KEY
       )
       .then(
         (result) => {
