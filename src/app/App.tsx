@@ -45,6 +45,7 @@ import {
 } from "../helpers/sessionStorageFunctions";
 import { useChangeTitle } from "./useChangeTitle";
 import { MakeOrder } from "../components/common/MakeOrder/MakeOrder";
+import { uuidv4 } from "../helpers/uuidv4";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -299,6 +300,7 @@ function App() {
             />
 
             <MakeOrder
+              key={uuidv4()}
               isVisible={isOrderModalVisible}
               closeModal={closeOrderModal}
               showSnackbar={showFinishedOrderSnackbar}

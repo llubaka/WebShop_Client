@@ -19,6 +19,22 @@ type MakeOrderProps = {
   showSnackbar: () => void;
 };
 
+const initFormValues = {
+  name: "",
+  email: "",
+  telephone: "",
+  address: "",
+  products: "",
+  price: "",
+  discount: "",
+};
+const initErrors = {
+  name: true,
+  email: true,
+  telephone: true,
+  address: true,
+};
+
 export const MakeOrder: React.FC<MakeOrderProps> = ({
   isVisible,
   closeModal,
@@ -28,22 +44,9 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
   const navigate = useNavigate();
   const [isSending, setIsSending] = useState(false);
   const [formActivated, setFormActivated] = useState(false);
-  const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    telephone: "",
-    address: "",
-    products: "",
-    price: "",
-    discount: "",
-  });
+  const [formValues, setFormValues] = useState(initFormValues);
 
-  const [errors, setErrors] = useState({
-    name: true,
-    email: true,
-    telephone: true,
-    address: true,
-  });
+  const [errors, setErrors] = useState(initErrors);
 
   const mapProducts = useCallback(() => {
     return mapCartToProducts(cart).map((el) => {
@@ -86,7 +89,6 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
     validateForm();
 
     if (Object.values(errors).some((err) => err === true)) {
-      console.log("error");
       return;
     }
 
@@ -159,21 +161,45 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
     validateTelephone(formValues.telephone);
     validateAddress(formValues.address);
   };
-  console.log(errors);
+
+  const closeMakeOrderModal = () => {
+    closeModal();
+    setErrors(initErrors);
+    setFormValues(initFormValues);
+  };
+
+  const formatNumber = (value: string) => {
+    return value
+      .split("")
+      .map((char, index) => {
+        if (
+          (index === 2 && value.length > 3) ||
+          (index === 4 && value.length > 5) ||
+          (index === 6 && value.length > 7)
+        ) {
+          return char + " ";
+        }
+        return char;
+      })
+      .join("");
+  };
 
   if (isSending) return <ClipLoader className="make-order-loader" />;
 
   if (!isVisible) return <></>;
 
   return (
-    <React100vhDiv onClick={closeModal} className="make-order-container">
+    <React100vhDiv
+      onClick={closeMakeOrderModal}
+      className="make-order-container"
+    >
       <div
         onClick={handleInnerContainerClick}
         className="make-order-container__inner-container"
       >
         <div className="make-order-navbanner-copy">
           <Link
-            onClick={closeModal}
+            onClick={closeMakeOrderModal}
             to={getHomeRouteLink()}
             aria-label="Navigate to home"
             className="make-order-navbanner-copy__title"
@@ -187,29 +213,31 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
         </div>
         <form className="contact-form" onSubmit={sendEmail}>
           <Input
-            label="Име"
+            label="Име или фамилия"
             type="text"
-            name="name"
+            name="firstName"
             value={formValues.name}
             hasError={errors.name}
             maxLength={50}
             forceShowError={formActivated}
-            errorMessage="Въведете: Име"
+            errorMessage="Въведете: Вашето име или фамилия"
             onBlur={() => validateName(formValues.name)}
             onChange={({ target: { value } }) => {
-              if (value !== "" && !/^[A-Za-zА-Яа-я]+$/.test(value)) {
+              let newValue = value.replace(/\s+/g, "").trim();
+
+              if (newValue !== "" && !/^[A-Za-zА-Яа-я]+$/.test(newValue)) {
                 return;
               }
 
-              validateName(value);
+              validateName(newValue);
               setFormValues((curr) => {
-                return { ...curr, name: value };
+                return { ...curr, name: newValue };
               });
             }}
           />
 
           <Input
-            label="Email за връзка"
+            label="Вашият имейл адрес"
             type="text"
             name="email"
             maxLength={100}
@@ -218,10 +246,11 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             forceShowError={formActivated}
             onBlur={() => validateEmail(formValues.email)}
             errorMessage="Въведете: Email за връзка"
-            onChange={(e) => {
-              validateEmail(e.target.value);
+            onChange={({ target: { value } }) => {
+              let newValue = value.replace(/\s+/g, "").trim();
+              validateEmail(newValue);
               setFormValues((curr) => {
-                return { ...curr, email: e.target.value };
+                return { ...curr, email: newValue };
               });
             }}
           />
@@ -231,18 +260,19 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             type="text"
             name="telephone"
             inputMode="numeric"
-            value={formValues.telephone}
+            value={formatNumber(formValues.telephone)}
             hasError={errors.telephone}
-            maxLength={10}
+            maxLength={13}
             onBlur={() => validateTelephone(formValues.telephone)}
             forceShowError={formActivated}
             errorMessage="Въведете: Телефон - 0XX XX XX XXX"
             onChange={({ target: { value } }) => {
-              if (value !== "" && !/^\d+$/.test(value)) {
+              let newValue = value.replace(/\s+/g, "").trim();
+
+              if (newValue !== "" && !/^\d+$/.test(newValue)) {
                 return;
               }
 
-              let newValue = value;
               if (newValue.length === 1 && newValue !== "0")
                 newValue = `0${newValue}`;
 
@@ -262,10 +292,19 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             forceShowError={formActivated}
             errorMessage="Въведете: Адрес за доставка"
             onBlur={() => validateAddress(formValues.address)}
-            onChange={(e) => {
-              validateAddress(e.target.value);
+            onChange={({ target: { value } }) => {
+              let newValue = value.trimStart();
+              if (
+                value.length > 2 &&
+                value[value.length - 1] === " " &&
+                value[value.length - 2] === " "
+              ) {
+                newValue = newValue.substring(0, newValue.length - 1);
+              }
+
+              validateAddress(newValue);
               setFormValues((curr) => {
-                return { ...curr, address: e.target.value };
+                return { ...curr, address: newValue };
               });
             }}
           />

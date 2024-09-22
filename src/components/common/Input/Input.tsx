@@ -46,9 +46,10 @@ export const Input: React.FC<InputProps> = ({
       return "input-container__label move-label colored-label";
 
     if (isClicked && !props.value)
-      return "input-container__label move-label  colored-label";
+      return "input-container__label move-label colored-label";
 
-    if (!isClicked && props.value) return "input-container__label move-label";
+    if (!isClicked && props.value)
+      return "input-container__label move-label colored-label";
 
     return "input-container__label";
   };
