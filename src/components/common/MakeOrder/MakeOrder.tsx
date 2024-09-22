@@ -230,6 +230,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             label="Телефон за връзка"
             type="text"
             name="telephone"
+            inputMode="numeric"
             value={formValues.telephone}
             hasError={errors.telephone}
             maxLength={10}
