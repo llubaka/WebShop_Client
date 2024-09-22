@@ -16,6 +16,7 @@ import {
 } from "../../helpers/localStorageFunctions";
 import { TrashCan } from "../../svg/TrashCan";
 import { ImageWrapperNoLazy } from "../../components/common/ImageWrapper/ImageWrapperNoLazy";
+import MakeOrder from "../../components/common/MakeOrder/MakeOrder";
 
 type CartProductType = {
   count: number;
@@ -165,6 +166,7 @@ export const Cart = () => {
 
   return (
     <div className="cart-container-div">
+      <MakeOrder />
       <NavBanner contentType={ContentType.INFO} content="Количка" />
       <div className="cart-desktop-container">
         <div className="cart-content">
