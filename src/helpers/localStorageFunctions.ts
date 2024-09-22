@@ -1,6 +1,8 @@
 export enum LocalStorageKeys {
   CART = "cart",
   FAVORITES = "favorites",
+  SEND_EMAILS = "sm",
+  LAST_ORDER = "lo",
 }
 
 export const getLocalStorageItem = (key: LocalStorageKeys) => {

@@ -4,14 +4,11 @@ import "./makeOrder.scss";
 import emailjs from "emailjs-com";
 import { Input } from "../Input/Input";
 import { useCartContext } from "../../../context/cartContext";
-import {
-  calcFullPrice,
-  calcFullPriceWithDiscount,
-  mapCartToProducts,
-} from "../../../helpers/cartFunctions";
+import { calcFullPrice, calcFullPriceWithDiscount, mapCartToProducts } from "../../../helpers/cartFunctions";
 import ClipLoader from "../Loader/ClipLoader";
 import { Link, useNavigate } from "react-router-dom";
 import { getHomeRouteLink } from "../../../globals/Routes";
+import { getLocalStorageItem, LocalStorageKeys, setLocalStorageItem } from "../../../helpers/localStorageFunctions";
 
 type MakeOrderProps = {
   isVisible: boolean;
@@ -35,11 +32,7 @@ const initErrors = {
   address: true,
 };
 
-export const MakeOrder: React.FC<MakeOrderProps> = ({
-  isVisible,
-  closeModal,
-  showSnackbar,
-}) => {
+export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, showSnackbar }) => {
   const { cart, clearCart } = useCartContext();
   const navigate = useNavigate();
   const [isSending, setIsSending] = useState(false);
@@ -75,13 +68,17 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
       return {
         ...curr,
         products: stringifyProducts(),
-        discount: `${(
-          calcFullPrice(cart) - calcFullPriceWithDiscount(cart)
-        ).toFixed(2)}лв.`,
+        discount: `${(calcFullPrice(cart) - calcFullPriceWithDiscount(cart)).toFixed(2)}лв.`,
         price: `${calcFullPriceWithDiscount(cart).toFixed(2)}лв.`,
       };
     });
   }, [cart, mapProducts, stringifyProducts]);
+
+  const has24HoursDifference = (lastOrderDate: Date): boolean => {
+    const msIn24Hours = 24 * 60 * 60 * 1000; // milliseconds in 24 hours
+    const timeDifference = Math.abs(new Date().getTime() - lastOrderDate.getTime());
+    return timeDifference >= msIn24Hours;
+  };
 
   const sendEmail = async (e: any) => {
     e.preventDefault();
@@ -105,6 +102,19 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
       return;
     }
 
+    const lastOrderDate = new Date(getLocalStorageItem(LocalStorageKeys.LAST_ORDER));
+    const has24HoursDifferenceFromLastOrder = has24HoursDifference(lastOrderDate);
+
+    const count = getLocalStorageItem(LocalStorageKeys.SEND_EMAILS) || 0;
+
+    if (count + 1 > 5 && has24HoursDifferenceFromLastOrder) {
+      setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, 0);
+    }
+
+    setLocalStorageItem(LocalStorageKeys.LAST_ORDER, new Date());
+    if (count + 1 > 5) return;
+    setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, count + 1);
+
     setIsSending(true);
 
     await emailjs.sendForm(
@@ -121,9 +131,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
     navigate(getHomeRouteLink());
   };
 
-  const handleInnerContainerClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const handleInnerContainerClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
   };
 
@@ -189,14 +197,8 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
   if (!isVisible) return <></>;
 
   return (
-    <React100vhDiv
-      onClick={closeMakeOrderModal}
-      className="make-order-container"
-    >
-      <div
-        onClick={handleInnerContainerClick}
-        className="make-order-container__inner-container"
-      >
+    <React100vhDiv onClick={closeMakeOrderModal} className="make-order-container">
+      <div onClick={handleInnerContainerClick} className="make-order-container__inner-container">
         <div className="make-order-navbanner-copy">
           <Link
             onClick={closeMakeOrderModal}
@@ -207,9 +209,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             OnyxGold
           </Link>
           <span className="make-order-navbanner-copy__slash">/</span>
-          <span className="make-order-navbanner-copy__info">
-            Завършване на поръчка
-          </span>
+          <span className="make-order-navbanner-copy__info">Завършване на поръчка</span>
         </div>
         <form className="contact-form" onSubmit={sendEmail}>
           <Input
@@ -273,8 +273,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
                 return;
               }
 
-              if (newValue.length === 1 && newValue !== "0")
-                newValue = `0${newValue}`;
+              if (newValue.length === 1 && newValue !== "0") newValue = `0${newValue}`;
 
               validateTelephone(newValue);
               setFormValues((curr) => {
@@ -294,11 +293,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             onBlur={() => validateAddress(formValues.address)}
             onChange={({ target: { value } }) => {
               let newValue = value.trimStart();
-              if (
-                value.length > 2 &&
-                value[value.length - 1] === " " &&
-                value[value.length - 2] === " "
-              ) {
+              if (value.length > 2 && value[value.length - 1] === " " && value[value.length - 2] === " ") {
                 newValue = newValue.substring(0, newValue.length - 1);
               }
 
@@ -309,19 +304,9 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             }}
           />
 
-          <input
-            hidden
-            type="text"
-            name="products"
-            value={formValues.products}
-          />
+          <input hidden type="text" name="products" value={formValues.products} />
 
-          <input
-            hidden
-            type="text"
-            name="discount"
-            value={formValues.discount}
-          />
+          <input hidden type="text" name="discount" value={formValues.discount} />
 
           <input hidden type="text" name="price" value={formValues.price} />
 
