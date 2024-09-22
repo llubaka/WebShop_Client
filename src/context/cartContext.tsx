@@ -13,12 +13,15 @@ export type DecreaseProductInCartFuncType = (productId: string) => void;
 
 export type RemoveProductInCartFuncType = (productId: string) => void;
 
+export type ClearCartFuncType = () => void;
+
 export type CartContextType = {
   cart: CartType;
   addProductInCart: AddProductInCartFuncType;
   decreaseProductInCart: DecreaseProductInCartFuncType;
   removeProductInCart: RemoveProductInCartFuncType;
   isProductInCart: IsProductInCartFuncType;
+  clearCart: ClearCartFuncType;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);

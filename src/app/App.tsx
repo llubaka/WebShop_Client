@@ -6,6 +6,7 @@ import {
   AddProductInCartFuncType,
   CartContext,
   CartType,
+  ClearCartFuncType,
   DecreaseProductInCartFuncType,
   RemoveProductInCartFuncType,
 } from "../context/cartContext";
@@ -55,10 +56,11 @@ function App() {
     useState(false);
   const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] =
     useState(false);
+  const [isFinishedOrderSnackbarVisible, setIsFinishedOrderSnackbarVisible] =
+    useState(false);
   const [isOrderModalVisible, setIsOrderModalVisible] = useState(false);
   const navigate = useNavigate();
   useChangeTitle();
-
   const navigateToFavorites = () => {
     navigate(getFavoritesRouteLink());
     setIsFavoriteSnackbarShown(() => false);
@@ -87,6 +89,12 @@ function App() {
     restartCountdown();
   };
 
+  const showFinishedOrderSnackbar = () => {
+    closeSnackbars();
+    setIsFinishedOrderSnackbarVisible(() => true);
+    restartCountdown();
+  };
+
   const closeEmptyCartSnackbar = () => {
     setIsEmptyCartSnackBarVisible(() => false);
   };
@@ -95,11 +103,16 @@ function App() {
     setIsEmptyFavoriteSnackbarVisible(() => false);
   };
 
+  const closeFinishedOrderSnackbar = () => {
+    setIsFinishedOrderSnackbarVisible(() => false);
+  };
+
   const closeSnackbars = useCallback(() => {
     setIsCartSnackbarShown(() => false);
     setIsFavoriteSnackbarShown(() => false);
     setIsEmptyCartSnackBarVisible(() => false);
     setIsEmptyFavoriteSnackbarVisible(() => false);
+    setIsFinishedOrderSnackbarVisible(() => false);
   }, []);
 
   const { restartCountdown } = useCounter(5, closeSnackbars);
@@ -184,6 +197,10 @@ function App() {
     });
   };
 
+  const clearCart: ClearCartFuncType = () => {
+    setCart([]);
+  };
+
   const addFavorite: AddFavoriteFuncType = (productId: string) => {
     setFavorites((curr) => {
       let newFavorites: FavoriteType = [];
@@ -248,6 +265,7 @@ function App() {
         isProductInCart,
         decreaseProductInCart,
         removeProductInCart,
+        clearCart,
       }}
     >
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
@@ -274,9 +292,16 @@ function App() {
               onClick={closeEmptyFavoriteSnackbar}
             />
 
+            <Snackbar
+              isVisible={isFinishedOrderSnackbarVisible}
+              text="Поръчката е завършена"
+              onClick={closeFinishedOrderSnackbar}
+            />
+
             <MakeOrder
               isVisible={isOrderModalVisible}
               closeModal={closeOrderModal}
+              showSnackbar={showFinishedOrderSnackbar}
             />
             <Header
               showSnackbar={showEmptyCartSnackbar}

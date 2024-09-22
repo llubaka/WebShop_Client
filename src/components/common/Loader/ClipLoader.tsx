@@ -75,7 +75,11 @@ function ClipLoader({
     return null;
   }
 
-  return <span style={style} {...additionalprops} />;
+  return (
+    <span {...additionalprops}>
+      <span style={style} />
+    </span>
+  );
 }
 
 export default ClipLoader;

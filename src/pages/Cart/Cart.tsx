@@ -289,7 +289,7 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
               className="cart-order__delivery-pay-price-container--finish-order"
               onClick={setVisible}
             >
-              Завършви поръчката
+              Завърши поръчката
             </button>
           </div>
         </div>
