@@ -26,6 +26,8 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
     telephone: "",
     address: "",
     products: "",
+    price: "",
+    discount: "",
   });
 
   const mapProducts = useCallback(() => {
@@ -41,28 +43,26 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
   const stringifyProducts = useCallback(() => {
     let str = "";
     mapProducts().forEach((el) => {
-      str += `Продукт: ${el.name},____________________________________________________________
-      Брой: ${el.count},____________________________________________________________                                                   
-      id: ${el.id}____________________________________________________________`;
+      <div>
+        <div>Продукт: {el.name} </div>;<div> Брой: {el.count} </div>;
+        <div> id: {el.id}</div>;
+      </div>;
     });
 
-    str += `Направена отстъпка: ${(
-      calcFullPrice(cart) - calcFullPriceWithDiscount(cart)
-    ).toFixed(
-      2
-    )}лв.____________________________________________________________`;
-    str += `Цена на продукти: ${calcFullPriceWithDiscount(cart).toFixed(
-      2
-    )}лв.____________________________________________________________`;
-
     return str;
-  }, [cart, mapProducts]);
+  }, [mapProducts]);
 
   useEffect(() => {
     setFormValues((curr) => {
       return {
         ...curr,
         products: stringifyProducts(),
+        discount: `${(
+          calcFullPrice(cart) - calcFullPriceWithDiscount(cart)
+        ).toFixed(2)}лв.`,
+        price: `Цена на продукти: ${calcFullPriceWithDiscount(cart).toFixed(
+          2
+        )}лв.`,
       };
     });
   }, [cart, mapProducts, stringifyProducts]);
@@ -169,6 +169,15 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             name="products"
             value={formValues.products}
           />
+
+          <input
+            hidden
+            type="text"
+            name="discount"
+            value={formValues.discount}
+          />
+
+          <input hidden type="text" name="price" value={formValues.price} />
 
           <input type="submit" value="Send" />
         </form>

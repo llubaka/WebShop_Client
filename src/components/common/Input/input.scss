@@ -13,6 +13,10 @@
     box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
     overflow: hidden;
     width: 100%;
+    outline: none;
+    &:focus {
+      border: 2px solid #e59700;
+    }
   }
   &__label {
     position: absolute;
