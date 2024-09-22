@@ -160,7 +160,12 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             }
           />
 
-          <input hidden type="text" name="products" />
+          <input
+            hidden
+            type="text"
+            name="products"
+            value={formValues.products}
+          />
 
           <input type="submit" value="Send" />
         </form>
