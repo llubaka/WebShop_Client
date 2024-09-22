@@ -194,7 +194,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             hasError={errors.name}
             maxLength={50}
             forceShowError={formActivated}
-            errorMessage="Въведете Име"
+            errorMessage="Въведете: Име"
             onBlur={() => validateName(formValues.name)}
             onChange={({ target: { value } }) => {
               if (value !== "" && !/^[A-Za-zА-Яа-я]+$/.test(value)) {
@@ -217,7 +217,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             hasError={errors.email}
             forceShowError={formActivated}
             onBlur={() => validateEmail(formValues.email)}
-            errorMessage="Въведете Имейл"
+            errorMessage="Въведете: Email за връзка"
             onChange={(e) => {
               validateEmail(e.target.value);
               setFormValues((curr) => {
@@ -235,7 +235,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             maxLength={10}
             onBlur={() => validateTelephone(formValues.telephone)}
             forceShowError={formActivated}
-            errorMessage="Въведете Телефон - 0XX XX XX XXX"
+            errorMessage="Въведете: Телефон - 0XX XX XX XXX"
             onChange={({ target: { value } }) => {
               if (value !== "" && !/^\d+$/.test(value)) {
                 return;
@@ -259,7 +259,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
             value={formValues.address}
             hasError={errors.address}
             forceShowError={formActivated}
-            errorMessage="Въведете Адрес"
+            errorMessage="Въведете: Адрес за доставка"
             onBlur={() => validateAddress(formValues.address)}
             onChange={(e) => {
               validateAddress(e.target.value);
