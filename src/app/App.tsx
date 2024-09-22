@@ -10,16 +10,8 @@ import {
   DecreaseProductInCartFuncType,
   RemoveProductInCartFuncType,
 } from "../context/cartContext";
-import {
-  LocalStorageKeys,
-  getLocalStorageItem,
-  setLocalStorageItem,
-} from "../helpers/localStorageFunctions";
-import {
-  AddFavoriteFuncType,
-  FavoriteContext,
-  FavoriteType,
-} from "../context/favoriteContext";
+import { LocalStorageKeys, getLocalStorageItem, setLocalStorageItem } from "../helpers/localStorageFunctions";
+import { AddFavoriteFuncType, FavoriteContext, FavoriteType } from "../context/favoriteContext";
 import { HomePageProducts } from "../pages/HomePageProducts/HomePageProducts";
 import { Cart } from "../pages/Cart/Cart";
 import { SingleProduct } from "../pages/SingleProduct/SingleProduct";
@@ -27,22 +19,14 @@ import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
 import { FavoriteProducts } from "../pages/FavoriteProducts/FavoriteProducts";
 import { Footer } from "../components/footer/Footer";
 import { FromBannerProducts } from "../pages/FromBanner/FromBannerProducts";
-import {
-  Routes as CustomRoutes,
-  getCartRouteLink,
-  getFavoritesRouteLink,
-} from "../globals/Routes";
+import { Routes as CustomRoutes, getCartRouteLink, getFavoritesRouteLink } from "../globals/Routes";
 import { ByTagProcuts } from "../pages/ByTagProducts/ByTagProducts";
 import { AutoScrollPage } from "../components/common/AutoScrollPage";
 import { FromMenu } from "../pages/FromMenu/FromMenu";
 import { Snackbar } from "../components/common/Snackbar/Snackbar";
 import { useCounter } from "../helpers/useCounter";
 import { SeenContext } from "../context/seenContext";
-import {
-  getSessionStorageItem,
-  SessionStorageKeys,
-  setSessionStorageItem,
-} from "../helpers/sessionStorageFunctions";
+import { getSessionStorageItem, SessionStorageKeys, setSessionStorageItem } from "../helpers/sessionStorageFunctions";
 import { useChangeTitle } from "./useChangeTitle";
 import { MakeOrder } from "../components/common/MakeOrder/MakeOrder";
 import { uuidv4 } from "../helpers/uuidv4";
@@ -53,12 +37,9 @@ function App() {
   const [seen, setSeen] = useState<Set<string>>(new Set<string>());
   const [isFavoriteSnackbarShown, setIsFavoriteSnackbarShown] = useState(false);
   const [isCartSnackbarShown, setIsCartSnackbarShown] = useState(false);
-  const [isEmptyCartSnackbarVisible, setIsEmptyCartSnackBarVisible] =
-    useState(false);
-  const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] =
-    useState(false);
-  const [isFinishedOrderSnackbarVisible, setIsFinishedOrderSnackbarVisible] =
-    useState(false);
+  const [isEmptyCartSnackbarVisible, setIsEmptyCartSnackBarVisible] = useState(false);
+  const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] = useState(false);
+  const [isFinishedOrderSnackbarVisible, setIsFinishedOrderSnackbarVisible] = useState(false);
   const [isOrderModalVisible, setIsOrderModalVisible] = useState(false);
   const navigate = useNavigate();
   useChangeTitle();
@@ -122,14 +103,11 @@ function App() {
     return cart.some((el) => el.productId === productId);
   };
 
-  const decreaseProductInCart: DecreaseProductInCartFuncType = (
-    productId: string
-  ) => {
+  const decreaseProductInCart: DecreaseProductInCartFuncType = (productId: string) => {
     if (isProductInCart(productId)) {
       let newCart: CartType;
       setCart((curr) => {
-        const currCount = curr.filter((el) => el.productId === productId)[0]
-          .count;
+        const currCount = curr.filter((el) => el.productId === productId)[0].count;
 
         // Remove
         if (currCount === 1) {
@@ -153,9 +131,7 @@ function App() {
     }
   };
 
-  const removeProductInCart: RemoveProductInCartFuncType = (
-    productId: string
-  ) => {
+  const removeProductInCart: RemoveProductInCartFuncType = (productId: string) => {
     setCart((curr) => {
       const newCart = curr.filter((pr) => pr.productId !== productId);
 
@@ -166,10 +142,7 @@ function App() {
     });
   };
 
-  const addProductInCart: AddProductInCartFuncType = (
-    productId: string,
-    showSnackbar: boolean
-  ) => {
+  const addProductInCart: AddProductInCartFuncType = (productId: string, showSnackbar: boolean) => {
     setCart((curr) => {
       let newCart: CartType;
 
@@ -224,8 +197,7 @@ function App() {
       }
 
       setLocalStorageItem(LocalStorageKeys.FAVORITES, newFavorites);
-      if (newFavorites.length === 0)
-        setIsEmptyFavoriteSnackbarVisible(() => true);
+      if (newFavorites.length === 0) setIsEmptyFavoriteSnackbarVisible(() => true);
 
       return newFavorites;
     });
@@ -273,16 +245,8 @@ function App() {
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
         <SeenContext.Provider value={{ seen, setSeen: setSeenImages }}>
           <AutoScrollPage>
-            <Snackbar
-              isVisible={isFavoriteSnackbarShown}
-              text="Добавено в Любими"
-              onClick={navigateToFavorites}
-            />
-            <Snackbar
-              isVisible={isCartSnackbarShown}
-              text="Добавено в Количката"
-              onClick={navigateToCart}
-            />
+            <Snackbar isVisible={isFavoriteSnackbarShown} text="Добавено в Любими" onClick={navigateToFavorites} />
+            <Snackbar isVisible={isCartSnackbarShown} text="Добавено в Количката" onClick={navigateToCart} />
             <Snackbar
               isVisible={isEmptyCartSnackbarVisible}
               text="Количката е празна"
@@ -301,42 +265,21 @@ function App() {
             />
 
             <MakeOrder
-              key={uuidv4()}
+              // key={isOrderModalVisible}
               isVisible={isOrderModalVisible}
               closeModal={closeOrderModal}
               showSnackbar={showFinishedOrderSnackbar}
             />
-            <Header
-              showSnackbar={showEmptyCartSnackbar}
-              closeSnackbars={closeSnackbars}
-            />
+            <Header showSnackbar={showEmptyCartSnackbar} closeSnackbars={closeSnackbars} />
             <div className="main-content-contaier">
               <Routes>
                 <Route path={CustomRoutes.HOME} element={<Home />} />
-                <Route
-                  path={CustomRoutes.HOME_PAGE_PRODUCTS}
-                  element={<HomePageProducts />}
-                />
-                <Route
-                  path={CustomRoutes.CART}
-                  element={<Cart setVisible={showOrderModal} />}
-                />
-                <Route
-                  path={CustomRoutes.FAVORITES}
-                  element={<FavoriteProducts />}
-                />
-                <Route
-                  path={CustomRoutes.SINGLE_PRODUCT}
-                  element={<SingleProduct />}
-                />
-                <Route
-                  path={CustomRoutes.BY_TAG_PRODUCTS}
-                  element={<ByTagProcuts />}
-                />
-                <Route
-                  path={CustomRoutes.FROM_BANNER_PRODUCTS}
-                  element={<FromBannerProducts />}
-                />
+                <Route path={CustomRoutes.HOME_PAGE_PRODUCTS} element={<HomePageProducts />} />
+                <Route path={CustomRoutes.CART} element={<Cart setVisible={showOrderModal} />} />
+                <Route path={CustomRoutes.FAVORITES} element={<FavoriteProducts />} />
+                <Route path={CustomRoutes.SINGLE_PRODUCT} element={<SingleProduct />} />
+                <Route path={CustomRoutes.BY_TAG_PRODUCTS} element={<ByTagProcuts />} />
+                <Route path={CustomRoutes.FROM_BANNER_PRODUCTS} element={<FromBannerProducts />} />
                 <Route path={CustomRoutes.FROM_MENU} element={<FromMenu />} />
                 <Route path="*" element={<PageNotFound />} />
               </Routes>

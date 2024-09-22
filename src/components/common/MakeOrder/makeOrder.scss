@@ -64,3 +64,10 @@
     margin: 0 5px;
   }
 }
+
+.reached-limit {
+  color: rgb(255, 90, 90);
+  &__tel {
+    color: black;
+  }
+}

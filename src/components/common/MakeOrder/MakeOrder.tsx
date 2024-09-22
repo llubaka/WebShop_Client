@@ -9,6 +9,8 @@ import ClipLoader from "../Loader/ClipLoader";
 import { Link, useNavigate } from "react-router-dom";
 import { getHomeRouteLink } from "../../../globals/Routes";
 import { getLocalStorageItem, LocalStorageKeys, setLocalStorageItem } from "../../../helpers/localStorageFunctions";
+import AppSettings from "../../../settings/appSettings.json";
+import { Telephone } from "../../../svg/Telephone";
 
 type MakeOrderProps = {
   isVisible: boolean;
@@ -38,6 +40,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
   const [isSending, setIsSending] = useState(false);
   const [formActivated, setFormActivated] = useState(false);
   const [formValues, setFormValues] = useState(initFormValues);
+  const [reachedOrderLimit, setReachedOrderLimit] = useState(false);
 
   const [errors, setErrors] = useState(initErrors);
 
@@ -112,7 +115,10 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     }
 
     setLocalStorageItem(LocalStorageKeys.LAST_ORDER, new Date());
-    if (count + 1 > 5) return;
+    if (count + 1 > 5) {
+      setReachedOrderLimit(true);
+      return;
+    }
     setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, count + 1);
 
     setIsSending(true);
@@ -125,7 +131,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     );
 
     setIsSending(false);
-    closeModal();
+    closeMakeOrderModal();
     clearCart();
     showSnackbar();
     navigate(getHomeRouteLink());
@@ -171,9 +177,11 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
   };
 
   const closeMakeOrderModal = () => {
+    setFormActivated(false);
     closeModal();
     setErrors(initErrors);
     setFormValues(initFormValues);
+    setReachedOrderLimit(false);
   };
 
   const formatNumber = (value: string) => {
@@ -245,7 +253,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
             hasError={errors.email}
             forceShowError={formActivated}
             onBlur={() => validateEmail(formValues.email)}
-            errorMessage="Въведете: Email за връзка"
+            errorMessage="Въведете: Имейл адрес"
             onChange={({ target: { value } }) => {
               let newValue = value.replace(/\s+/g, "").trim();
               validateEmail(newValue);
@@ -309,6 +317,23 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
           <input hidden type="text" name="discount" value={formValues.discount} />
 
           <input hidden type="text" name="price" value={formValues.price} />
+
+          {reachedOrderLimit && (
+            <div className="reached-limit">
+              <div>Достигнахте лимит на поръчки.</div>
+              <div>
+                За да поръчате, моля свържете се с нас на телефон:
+                <a className="sp-additional-info--href" href={`tel:${AppSettings.contact.telephone}`}>
+                  <div className="sp-additional-info--href--contact">
+                    <span className="sp-additional-info--icon">
+                      <Telephone color="#e39606" />
+                    </span>
+                    {AppSettings.contact.telephone}
+                  </div>
+                </a>
+              </div>
+            </div>
+          )}
 
           <button
             type="submit"
