@@ -41,18 +41,19 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({
   const stringifyProducts = useCallback(() => {
     let str = "";
     mapProducts().forEach((el) => {
-      str += `Продукт: ${el.name},                                                        
-      Брой: ${el.count},                                                        
-      id: ${el.id}                                                          `;
+      str += `Продукт: ${el.name}...................................................................,
+      Брой: ${el.count}...................................................................,                                                        
+      id: ${el.id}_______________________________________________________________________________`;
     });
 
     str += `Направена отстъпка: ${(
       calcFullPrice(cart) - calcFullPriceWithDiscount(cart)
-    ).toFixed(2)}лв.
-                                                                                      `;
+    ).toFixed(
+      2
+    )}лв....................................................................,`;
     str += `Цена на продукти: ${calcFullPriceWithDiscount(cart).toFixed(
       2
-    )}лв.                                                                           `;
+    )}лв....................................................................`;
 
     return str;
   }, [cart, mapProducts]);
