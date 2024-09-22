@@ -43,6 +43,7 @@ import {
   setSessionStorageItem,
 } from "../helpers/sessionStorageFunctions";
 import { useChangeTitle } from "./useChangeTitle";
+import { MakeOrder } from "../components/common/MakeOrder/MakeOrder";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -54,6 +55,7 @@ function App() {
     useState(false);
   const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] =
     useState(false);
+  const [isOrderModalVisible, setIsOrderModalVisible] = useState(false);
   const navigate = useNavigate();
   useChangeTitle();
 
@@ -219,6 +221,14 @@ function App() {
     });
   };
 
+  const showOrderModal = () => {
+    setIsOrderModalVisible(true);
+  };
+
+  const closeOrderModal = () => {
+    setIsOrderModalVisible(false);
+  };
+
   useEffect(() => {
     const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
     if (lsCart) setCart(() => lsCart);
@@ -263,6 +273,11 @@ function App() {
               text="Няма любими"
               onClick={closeEmptyFavoriteSnackbar}
             />
+
+            <MakeOrder
+              isVisible={isOrderModalVisible}
+              closeModal={closeOrderModal}
+            />
             <Header
               showSnackbar={showEmptyCartSnackbar}
               closeSnackbars={closeSnackbars}
@@ -274,7 +289,10 @@ function App() {
                   path={CustomRoutes.HOME_PAGE_PRODUCTS}
                   element={<HomePageProducts />}
                 />
-                <Route path={CustomRoutes.CART} element={<Cart />} />
+                <Route
+                  path={CustomRoutes.CART}
+                  element={<Cart setVisible={showOrderModal} />}
+                />
                 <Route
                   path={CustomRoutes.FAVORITES}
                   element={<FavoriteProducts />}

@@ -16,7 +16,12 @@ import {
 } from "../../helpers/localStorageFunctions";
 import { TrashCan } from "../../svg/TrashCan";
 import { ImageWrapperNoLazy } from "../../components/common/ImageWrapper/ImageWrapperNoLazy";
-import MakeOrder from "../../components/common/MakeOrder/MakeOrder";
+import {
+  calcDeliveryFee,
+  calcFullPrice,
+  calcFullPriceWithDiscount,
+  calcFullPriceWithDiscountAndDelivery,
+} from "../../helpers/cartFunctions";
 
 type CartProductType = {
   count: number;
@@ -24,23 +29,16 @@ type CartProductType = {
   isDeleted: boolean;
 }[];
 
-export const Cart = () => {
+type CartProps = {
+  setVisible: () => void;
+};
+
+export const Cart: React.FC<CartProps> = ({ setVisible }) => {
   const { cart, addProductInCart, decreaseProductInCart, removeProductInCart } =
     useCartContext();
-
   const [products, setProducts] = useState<CartProductType>([]);
   const navigate = useNavigate();
   const isHeightSetRef = useRef(false);
-
-  const mapCartToProducts = () => {
-    return cart.map((el) => {
-      return {
-        product: getById(el.productId),
-        count: el.count,
-        isDeleted: false,
-      };
-    });
-  };
 
   // Set height of the elements after products are populated from cart.
   // Technique is used to enable transition for height.
@@ -118,31 +116,14 @@ export const Cart = () => {
     }
   }, [navigate, cart]);
 
-  const fullPrice = mapCartToProducts().reduce((prev, { product, count }) => {
-    const price = (+product.price * count).toFixed(2);
+  const fullPrice = calcFullPrice(cart);
 
-    return +price + prev;
-  }, 0);
+  const fullPriceWithDiscount = calcFullPriceWithDiscount(cart);
 
-  const fullPriceWithDiscount = mapCartToProducts().reduce(
-    (prev, { product, count }) => {
-      const hasDiscount = !!product.discount;
-      const price = (+product.price * count).toFixed(2);
-      const mainPrice = hasDiscount
-        ? ((+price * (100 - product.discount)) / 100).toFixed(2)
-        : price;
-
-      return +mainPrice + prev;
-    },
-    0
-  );
-
-  const deliveryFee = Settings.deliveryFee;
+  const deliveryFee = calcDeliveryFee;
 
   const fullPriceWithDiscountAndDelivery =
-    fullPriceWithDiscount > Settings.freeDeliveryFrom
-      ? fullPriceWithDiscount
-      : fullPriceWithDiscount + deliveryFee;
+    calcFullPriceWithDiscountAndDelivery(cart);
 
   const decreaseItem = (id: string) => {
     decreaseProductInCart(id);
@@ -166,7 +147,6 @@ export const Cart = () => {
 
   return (
     <div className="cart-container-div">
-      <MakeOrder />
       <NavBanner contentType={ContentType.INFO} content="Количка" />
       <div className="cart-desktop-container">
         <div className="cart-content">
@@ -289,7 +269,7 @@ export const Cart = () => {
                     {fullPriceWithDiscount > Settings.freeDeliveryFrom ||
                     cart.length === 0
                       ? "0.00лв."
-                      : `${Settings.deliveryFee.toFixed(2)}лв.`}
+                      : `${deliveryFee.toFixed(2)}лв.`}
                   </div>
                 </div>
               )}
@@ -307,6 +287,7 @@ export const Cart = () => {
               role="link"
               aria-label="Finish order"
               className="cart-order__delivery-pay-price-container--finish-order"
+              onClick={setVisible}
             >
               Завършви поръчката
             </button>

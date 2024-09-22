@@ -1,17 +1,27 @@
 import React, { forwardRef, useState, useEffect, HTMLAttributes } from "react";
 
-export const React100vhDiv = forwardRef<
-  HTMLDivElement,
-  HTMLAttributes<HTMLDivElement>
->(({ style, ...other }, ref) => {
-  let height = use100vh();
+interface React100vhDivInterface extends HTMLAttributes<HTMLDivElement> {
+  heightOffset?: number;
+}
 
-  const styleWithRealHeight = {
-    ...style,
-    height: height ? `${height - 90}px` : "calc(100vh - 90px)",
-  };
-  return <div ref={ref} style={styleWithRealHeight} {...other} />;
-});
+export const React100vhDiv = forwardRef<HTMLDivElement, React100vhDivInterface>(
+  ({ heightOffset, style, ...other }, ref) => {
+    let height = use100vh();
+
+    const styleWithRealHeight = heightOffset
+      ? {
+          ...style,
+          height: height
+            ? `${height - heightOffset}px`
+            : `calc(100vh - ${heightOffset}px)`,
+        }
+      : {
+          ...style,
+          height: height ? `${height}px` : "100vh",
+        };
+    return <div ref={ref} style={styleWithRealHeight} {...other} />;
+  }
+);
 
 export function use100vh(): number | null {
   const [height, setHeight] = useState<number | null>(measureHeight);

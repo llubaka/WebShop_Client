@@ -144,7 +144,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               {Settings.appName}
             </div>
           </div>
-          <React100vhDiv className="menu-content__rows">
+          <React100vhDiv heightOffset={90} className="menu-content__rows">
             {Settings.images.menuCart && (
               <LinkMenuRow
                 linkTo={getCartRouteLink()}

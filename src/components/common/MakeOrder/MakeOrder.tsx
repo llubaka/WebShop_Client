@@ -1,11 +1,71 @@
-import React from "react";
+import { useCallback, useEffect, useState } from "react";
+import { React100vhDiv } from "../React100vhDiv";
+import "./makeOrder.scss";
 import emailjs from "emailjs-com";
+import { Input } from "../Input/Input";
+import { useCartContext } from "../../../context/cartContext";
+import {
+  calcFullPrice,
+  calcFullPriceWithDiscount,
+  mapCartToProducts,
+} from "../../../helpers/cartFunctions";
 
-export default function MakeOrder() {
-  function sendEmail(e: any) {
+type MakeOrderProps = {
+  isVisible: boolean;
+  closeModal: () => void;
+};
+
+export const MakeOrder: React.FC<MakeOrderProps> = ({
+  isVisible,
+  closeModal,
+}) => {
+  const { cart } = useCartContext();
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    telephone: "",
+    address: "",
+    products: "",
+  });
+
+  const mapProducts = useCallback(() => {
+    return mapCartToProducts(cart).map((el) => {
+      return {
+        count: el.count,
+        name: el.product.info,
+        id: el.product.id,
+      };
+    });
+  }, [cart]);
+
+  const stringifyProducts = useCallback(() => {
+    let str = "";
+    mapProducts().forEach((el) => {
+      str += `Продукт: ${el.name}, \nБрой: ${el.count}, \nid: ${el.id} \n\n`;
+    });
+
+    str += `Направена отстъпка: ${(
+      calcFullPrice(cart) - calcFullPriceWithDiscount(cart)
+    ).toFixed(2)}лв.
+    \n`;
+    str += `Цена на продукти: ${calcFullPriceWithDiscount(cart).toFixed(
+      2
+    )}лв.\n\n`;
+
+    return str;
+  }, [cart, mapProducts]);
+
+  useEffect(() => {
+    setFormValues((curr) => {
+      return {
+        ...curr,
+        products: stringifyProducts(),
+      };
+    });
+  }, [cart, mapProducts, stringifyProducts]);
+
+  const sendEmail = (e: any) => {
     e.preventDefault();
-
-    console.log("ASF", process.env);
 
     if (!process.env.REACT_APP_EMAIL_SERVICE_ID) {
       console.log("Email service id is undefined.");
@@ -35,21 +95,76 @@ export default function MakeOrder() {
           console.log(error.text);
         }
       );
-  }
+  };
+
+  const handleInnerContainerClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+  };
+
+  if (!isVisible) return <></>;
 
   return (
-    <form className="contact-form" onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="name" />
-      <label>Email</label>
-      <input type="email" name="email" />
-      <label>Telephone</label>
-      <input type="text" name="telephone" />
-      <label>address</label>
-      <input type="email" name="address" />
-      <label>products</label>
-      <input type="email" name="products" />
-      <input type="submit" value="Send" />
-    </form>
+    <React100vhDiv onClick={closeModal} className="make-order-container">
+      <div
+        onClick={handleInnerContainerClick}
+        className="make-order-container__inner-container"
+      >
+        <form className="contact-form" onSubmit={sendEmail}>
+          <Input
+            label="Име"
+            type="text"
+            name="name"
+            value={formValues.name}
+            onChange={(e) =>
+              setFormValues((curr) => {
+                return { ...curr, name: e.target.value };
+              })
+            }
+          />
+
+          <Input
+            label="Email"
+            type="email"
+            name="email"
+            value={formValues.email}
+            onChange={(e) =>
+              setFormValues((curr) => {
+                return { ...curr, email: e.target.value };
+              })
+            }
+          />
+
+          <Input
+            label="Телефон"
+            type="text"
+            name="telephone"
+            value={formValues.telephone}
+            onChange={(e) =>
+              setFormValues((curr) => {
+                return { ...curr, telephone: e.target.value };
+              })
+            }
+          />
+
+          <Input
+            label="Адрес"
+            type="text"
+            name="address"
+            value={formValues.address}
+            onChange={(e) =>
+              setFormValues((curr) => {
+                return { ...curr, address: e.target.value };
+              })
+            }
+          />
+
+          <input hidden type="text" name="products" />
+
+          <input type="submit" value="Send" />
+        </form>
+      </div>
+    </React100vhDiv>
   );
-}
+};
