@@ -4,6 +4,7 @@ import { getById } from "../../data/getData/getFilteredProducts";
 import "./singleProduct.scss";
 import { useParams } from "react-router";
 import AppSettings from "../../settings/appSettings.json";
+import AdditionalProductsInfo from "../../settings/productsAdditionalInfo.json";
 import { Envelope } from "../../svg/Envleope";
 import { Telephone } from "../../svg/Telephone";
 import { Carousel } from "../../components/common/Carousel/Carousel";
@@ -24,20 +25,14 @@ export const SingleProduct = () => {
   const hasAdditionalImages = product.additionalImagesUrls.length > 0;
 
   const hasDiscount = !!product.discount;
-  const mainPrice = hasDiscount
-    ? ((+product.price * (100 - product.discount)) / 100).toFixed(2)
-    : product.price;
+  const mainPrice = hasDiscount ? ((+product.price * (100 - product.discount)) / 100).toFixed(2) : product.price;
 
-  const handleAddInCartClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleAddInCartClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     addProductInCart(id as string, true);
   };
 
-  const handleMakeOrder = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleMakeOrder = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
 
     if (isProductInCart(id as string)) {
@@ -52,6 +47,8 @@ export const SingleProduct = () => {
     return [product.imageUrl, ...product.additionalImagesUrls];
   };
 
+  const productDescription = { ...product.description, ...AdditionalProductsInfo };
+
   return (
     <>
       <NavBanner contentType={ContentType.INFO} content={product.info} />
@@ -63,11 +60,7 @@ export const SingleProduct = () => {
             </div>
           ) : (
             <div className="sp-container">
-              <ImageWrapperNoLazy
-                src={product.imageUrl}
-                width="100%"
-                height="45vh"
-              />
+              <ImageWrapperNoLazy src={product.imageUrl} width="100%" height="45vh" />
             </div>
           )}
         </div>
@@ -77,9 +70,7 @@ export const SingleProduct = () => {
             <div className="sp-container__content__product-price">
               {mainPrice}лв.
               {hasDiscount && (
-                <span className="sp-container__content__product-price--discount">
-                  {product.price}лв.
-                </span>
+                <span className="sp-container__content__product-price--discount">{product.price}лв.</span>
               )}
             </div>
             <button
@@ -104,10 +95,7 @@ export const SingleProduct = () => {
                 <div className="sp-additional-info__container">
                   {contact.telephone && (
                     <div className="sp-additional-info--first">
-                      <a
-                        className="sp-additional-info--href"
-                        href={`tel:${contact.telephone}`}
-                      >
+                      <a className="sp-additional-info--href" href={`tel:${contact.telephone}`}>
                         <div className="sp-additional-info--href__container">
                           Имате въпроси или желаете да поръчате?
                         </div>
@@ -122,13 +110,8 @@ export const SingleProduct = () => {
                   )}
                   {contact.email && (
                     <div>
-                      <a
-                        className="sp-additional-info--href"
-                        href={`mailto:${contact.email}`}
-                      >
-                        <div className="sp-additional-info--href__container">
-                          Може да се свържете с нас и по имейл:
-                        </div>
+                      <a className="sp-additional-info--href" href={`mailto:${contact.email}`}>
+                        <div className="sp-additional-info--href__container">Може да се свържете с нас и по имейл:</div>
                         <div className="sp-additional-info--href--contact">
                           <span className="sp-additional-info--icon">
                             <Envelope color="#e39606" />
@@ -143,7 +126,7 @@ export const SingleProduct = () => {
               <DeepSeparator />
             </div>
             <div className="sp-accordion-container">
-              <Accordion items={product.description} />
+              <Accordion items={productDescription} />
             </div>
             <DeepSeparator id="last-deep-separator" />
           </div>

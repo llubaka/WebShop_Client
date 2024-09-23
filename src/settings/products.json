@@ -9,9 +9,7 @@
     "additionalImagesUrls": [],
     "description": {
       "Характеристика": "Може да изберете и опция Взимане на продукт от магазина. В този вариант доставката е отново БЕЗПЛАТНА, трябва само да споменете до кой от нашите магазини желаете да Ви бъде доставен продукта. Наш служител ще се свърже с Вас при направена поръчка и избрана тази доставка.",
-      "Описание": "Разчупената форма на този сребърен пръстен прилепва елегантно към всяка ръка, а комбинация на цветните кристали Ви кара да не откъсвате погледа си от него! Размери: 20мм Х 13мм, 8.00гр Опакован във фирмена опаковка. Пръстенът е със сертификат. 9,00 гр",
-      "Гаранция": "Бижута Паладиум съществуват от 1991г. Ние сме едни от първите производители на бижута в България. Притежаваме регистрация в Министерството на финансите и лиценз за производство и търговия с благородни метали и изделия с тях и от тях от МФ, което дава гаранция за произхода и автентичността на нашите бижута.",
-      "Доставка": "За поръчки над 100.00лв. доставката е БЕЗПЛАТНА ДО ОФИС НА ЕКОНТ!"
+      "Описание": "Разчупената форма на този сребърен пръстен прилепва елегантно към всяка ръка, а комбинация на цветните кристали Ви кара да не откъсвате погледа си от него! Размери: 20мм Х 13мм, 8.00гр Опакован във фирмена опаковка. Пръстенът е със сертификат. 9,00 гр"
     }
   },
   {
@@ -31,9 +29,7 @@
     ],
     "description": {
       "characteristic": "characteristic1132",
-      "description": "description1123",
-      "guarantee": "guarantee1241",
-      "delivery": "delivery13232"
+      "description": "description1123"
     }
   },
   {
@@ -46,9 +42,7 @@
     "additionalImagesUrls": [],
     "description": {
       "characteristic": "characteristic1132",
-      "description": "description1123",
-      "guarantee": "guarantee1241",
-      "delivery": "delivery13232"
+      "description": "description1123"
     }
   },
   {
@@ -61,9 +55,7 @@
     "additionalImagesUrls": [],
     "description": {
       "characteristic": "characteristic1132",
-      "description": "description1123",
-      "guarantee": "guarantee1241",
-      "delivery": "delivery13232"
+      "description": "description1123"
     }
   },
   {
@@ -73,16 +65,10 @@
     "imageUrl": "/products/ringThree.png",
     "discount": 39,
     "tags": [],
-    "additionalImagesUrls": [
-      "/products/ringThree.png",
-      "/products/ring.png",
-      "/products/ringTT.png"
-    ],
+    "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png", "/products/ringTT.png"],
     "description": {
       "characteristic": "characteristic1132",
-      "description": "description1123",
-      "guarantee": "guarantee1241",
-      "delivery": "delivery13232"
+      "description": "description1123"
     }
   },
   {
@@ -95,9 +81,7 @@
     "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
     "description": {
       "characteristic": "characteristic1132",
-      "description": "description1123",
-      "guarantee": "guarantee1241",
-      "delivery": "delivery13232"
+      "description": "description1123"
     }
   }
 ]

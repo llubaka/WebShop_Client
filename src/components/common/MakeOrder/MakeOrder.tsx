@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { React100vhDiv } from "../React100vhDiv";
 import "./makeOrder.scss";
 import emailjs from "emailjs-com";
@@ -11,6 +11,9 @@ import { getHomeRouteLink } from "../../../globals/Routes";
 import { getLocalStorageItem, LocalStorageKeys, setLocalStorageItem } from "../../../helpers/localStorageFunctions";
 import AppSettings from "../../../settings/appSettings.json";
 import { Telephone } from "../../../svg/Telephone";
+import { DropDown } from "../DropDown/DropDown";
+import Cities from "../../../settings/econtCities.json";
+import Offices from "../../../settings/econtOffices.json";
 
 type MakeOrderProps = {
   isVisible: boolean;
@@ -32,7 +35,13 @@ const initErrors = {
   email: true,
   telephone: true,
   address: true,
+  orderError: true,
 };
+
+enum OrderType {
+  ADDRESS = "До адрес",
+  ECONT_OFFICE = "До офис на Еконт",
+}
 
 export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, showSnackbar }) => {
   const { cart, clearCart } = useCartContext();
@@ -41,8 +50,47 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
   const [formActivated, setFormActivated] = useState(false);
   const [formValues, setFormValues] = useState(initFormValues);
   const [reachedOrderLimit, setReachedOrderLimit] = useState(false);
+  const [econtCity, setEcontCity] = useState({ city: "", id: "" as any });
+  const [econtOffice, setEcontOffice] = useState("");
+  const [orderType, setOrderType] = useState<OrderType | "">("");
+
+  const handleOnChangeCity = (value: string) => {
+    setEcontCity({ city: value, id: Cities.find((el) => el.city === value)?.id });
+    setEcontOffice("");
+  };
+
+  const handleOnChageOffice = (value: string) => {
+    setEcontOffice(value);
+  };
+
+  const handleOrderTypeChange = (value: string) => {
+    setOrderType(value as OrderType);
+    setEcontOffice("");
+    setEcontCity({ city: "", id: "" });
+    setFormValues((curr) => {
+      return { ...curr, address: "" };
+    });
+
+    if (value === OrderType.ECONT_OFFICE) {
+      setErrors((curr) => {
+        return { ...curr, address: false };
+      });
+    }
+  };
 
   const [errors, setErrors] = useState(initErrors);
+
+  const cities = useMemo(() => {
+    return Cities.map((el) => el.city);
+  }, []);
+
+  const offices = useMemo(() => {
+    if (econtCity.id || econtCity.id === 0) {
+      return Offices.filter((el) => el.cityId === econtCity.id).map((el) => `${el.name} - ${el.address}`);
+    }
+
+    return [];
+  }, [econtCity.id]);
 
   const mapProducts = useCallback(() => {
     return mapCartToProducts(cart).map((el) => {
@@ -110,12 +158,12 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
 
     const count = getLocalStorageItem(LocalStorageKeys.SEND_EMAILS) || 0;
 
-    if (count + 1 > 5 && has24HoursDifferenceFromLastOrder) {
+    if (count + 1 > AppSettings.maxSendEmailCountForDay && has24HoursDifferenceFromLastOrder) {
       setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, 0);
     }
 
     setLocalStorageItem(LocalStorageKeys.LAST_ORDER, new Date());
-    if (count + 1 > 5) {
+    if (count + 1 > AppSettings.maxSendEmailCountForDay) {
       setReachedOrderLimit(true);
       return;
     }
@@ -169,14 +217,46 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     });
   };
 
+  const validateOrderType = () => {
+    if (!orderType) {
+      setErrors((curr) => {
+        return { ...curr, orderError: true };
+      });
+
+      return;
+    }
+
+    if (orderType === OrderType.ADDRESS) {
+      validateAddress(formValues.address);
+      setErrors((curr) => {
+        return { ...curr, orderError: !formValues.address };
+      });
+
+      return;
+    }
+
+    if (orderType === OrderType.ECONT_OFFICE) {
+      const officeError = !econtOffice;
+      const cityError = !econtCity.city;
+
+      setErrors((curr) => {
+        return { ...curr, orderError: officeError || cityError };
+      });
+      return;
+    }
+  };
+
   const validateForm = () => {
     validateEmail(formValues.email);
     validateName(formValues.name);
     validateTelephone(formValues.telephone);
-    validateAddress(formValues.address);
+    validateOrderType();
   };
 
   const closeMakeOrderModal = () => {
+    setEcontOffice("");
+    setEcontCity({ city: "", id: "" });
+    setOrderType("");
     setFormActivated(false);
     closeModal();
     setErrors(initErrors);
@@ -290,33 +370,76 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
             }}
           />
 
-          <Input
-            label="Адрес за доставка"
-            type="text"
-            name="address"
-            value={formValues.address}
-            hasError={errors.address}
-            forceShowError={formActivated}
-            errorMessage="Въведете: Адрес за доставка"
-            onBlur={() => validateAddress(formValues.address)}
-            onChange={({ target: { value } }) => {
-              let newValue = value.trimStart();
-              if (value.length > 2 && value[value.length - 1] === " " && value[value.length - 2] === " ") {
-                newValue = newValue.substring(0, newValue.length - 1);
-              }
-
-              validateAddress(newValue);
-              setFormValues((curr) => {
-                return { ...curr, address: newValue };
-              });
-            }}
-          />
-
           <input hidden type="text" name="products" value={formValues.products} />
 
           <input hidden type="text" name="discount" value={formValues.discount} />
 
           <input hidden type="text" name="price" value={formValues.price} />
+          <div className="city-dropdown-container">
+            <DropDown
+              value={orderType || ""}
+              options={[OrderType.ADDRESS, OrderType.ECONT_OFFICE]}
+              placeholder="Изберете начин на доставка"
+              onChange={handleOrderTypeChange}
+              errorMessage="Изберете начина на доставка"
+              hasError={!orderType && formActivated}
+            />
+          </div>
+
+          {orderType === OrderType.ADDRESS && (
+            <>
+              <Input
+                label="Адрес за доставка"
+                type="text"
+                name="address"
+                value={formValues.address}
+                hasError={errors.address}
+                forceShowError={formActivated}
+                errorMessage="Въведете: Адрес за доставка"
+                onBlur={() => validateAddress(formValues.address)}
+                onChange={({ target: { value } }) => {
+                  let newValue = value.trimStart();
+                  if (value.length > 2 && value[value.length - 1] === " " && value[value.length - 2] === " ") {
+                    newValue = newValue.substring(0, newValue.length - 1);
+                  }
+
+                  validateAddress(newValue);
+                  setFormValues((curr) => {
+                    return { ...curr, address: newValue };
+                  });
+                }}
+              />
+            </>
+          )}
+          {orderType === OrderType.ECONT_OFFICE && (
+            <>
+              <div className="city-dropdown-container">
+                <DropDown
+                  value={econtCity.city}
+                  options={cities}
+                  placeholder="Изберете град"
+                  onChange={handleOnChangeCity}
+                  errorMessage="Изберете град за доставка"
+                  hasError={!econtCity.city && formActivated}
+                />
+              </div>
+
+              <DropDown
+                value={econtOffice}
+                options={offices}
+                placeholder="Изберете офис на Еконт"
+                onChange={handleOnChageOffice}
+                errorMessage="Изберете офис на Еконт"
+                hasError={!econtOffice && formActivated}
+              />
+            </>
+          )}
+
+          <input hidden type="text" name="orderType" value={orderType} />
+
+          <input hidden type="text" name="econtCity" value={econtCity.city} />
+
+          <input hidden type="text" name="econtOffice" value={econtOffice} />
 
           {reachedOrderLimit && (
             <div className="reached-limit">

@@ -17,18 +17,17 @@
     border: 1px solid rgb(229, 229, 229);
     border-radius: 4px;
     margin-bottom: 14px;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px,
-      rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
   }
 
   .sp-contact-info-container {
+    height: max-content;
     margin: 20px;
     flex: 50%;
     border: 1px solid rgb(229, 229, 229);
     border-radius: 4px;
     margin-bottom: 14px;
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px,
-      rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
     & div.deep-separator {
       border: none;
       background-color: white;

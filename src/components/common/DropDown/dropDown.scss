@@ -1,0 +1,95 @@
+@import "../../../mixins.scss";
+
+.dropdown-ccn {
+  border: 1px solid rgb(229, 151, 0);
+  box-shadow: inset 0 1px 4px 0 rgba(229, 151, 0, 0.3);
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 0 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.Dropdown-root {
+  position: relative;
+}
+
+.dropdown-arrow-svg-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  & svg {
+    transform: rotate(90deg);
+    position: absolute;
+    right: 10px;
+  }
+}
+.dropdown-placeholder {
+  color: #a9a9a9;
+}
+
+.dropdown-menu {
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.0392156863), 0 10px 15px 0 rgba(0, 0, 0, 0.0392156863);
+  max-height: 170px;
+  overflow-y: scroll;
+  font-family: sans-serif;
+  position: absolute;
+  top: 48px;
+  background-color: white;
+  z-index: 2;
+  width: 100%;
+  top: 48px;
+  left: 0;
+
+  @include phones-tablets-up {
+    ::-webkit-scrollbar {
+      width: 16px; /* Width of the entire scrollbar */
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent; /* Make the scrollbar track transparent */
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgb(229, 151, 0); /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Roundness of the scrollbar thumb */
+      border: 3px solid transparent; /* Padding around the scrollbar thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Color of the scrollbar thumb when hovered */
+    }
+
+    /* For Firefox */
+    scrollbar-width: 10px; /* Width of the scrollbar */
+    scrollbar-color: rgb(234, 160, 12) transparent; /* Color of the scrollbar thumb and transparent track */
+  }
+}
+
+.is-selected {
+  color: rgb(35, 38, 59);
+}
+.Dropdown-option {
+  cursor: pointer;
+  padding: 5px 16px;
+  z-index: 1;
+  position: relative;
+}
+.dd-error-message {
+  font-size: 14px;
+  color: rgb(255, 90, 90);
+}
+
+.dropdown-error-css {
+  border: 2px solid rgb(255, 90, 90);
+}
