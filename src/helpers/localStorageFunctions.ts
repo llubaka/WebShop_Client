@@ -5,6 +5,7 @@ export enum LocalStorageKeys {
   FAVORITES = "f49f5927-9185-4875-a4de-151f13d165ed",
   SEND_EMAILS = "8895b839-4750-483d-a650-cde1b70a4761",
   LAST_ORDER = "44f62f43-4166-4829-a31a-0a1ffc1b2109",
+  AGREED_TO_POLICY = "d2c15bac-e025-47ce-a9e4-025677357138",
 }
 
 export const getLocalStorageItem = (key: LocalStorageKeys) => {

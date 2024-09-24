@@ -38,6 +38,7 @@ import {
 import { useChangeTitle } from "./useChangeTitle";
 import { MakeOrder } from "../components/common/MakeOrder/MakeOrder";
 import { CompliancePage } from "../pages/Compliance/CompliancePage";
+import { PolicyPopUp } from "../components/common/PolicyPopUp/PolicyPopUp";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -49,6 +50,8 @@ function App() {
   const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] = useState(false);
   const [isFinishedOrderSnackbarVisible, setIsFinishedOrderSnackbarVisible] = useState(false);
   const [isOrderModalVisible, setIsOrderModalVisible] = useState(false);
+  const [hasAgreedToPolicy, setHasAgreedToPolicy] = useState(false);
+
   const navigate = useNavigate();
   useChangeTitle();
   const navigateToFavorites = () => {
@@ -235,9 +238,17 @@ function App() {
     const lsFavorites = getLocalStorageItem(LocalStorageKeys.FAVORITES);
     if (lsFavorites) setFavorites(() => lsFavorites);
 
+    const lsAgreedToPolicy = getLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY);
+    if (lsAgreedToPolicy) setHasAgreedToPolicy(() => lsAgreedToPolicy);
+
     const ssSeen = getSessionStorageItem(SessionStorageKeys.SEEN_IMAGES);
     if (lsFavorites) setSeen(() => new Set(ssSeen));
   }, []);
+
+  const handleAgree = () => {
+    setHasAgreedToPolicy(true);
+    setLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY, true);
+  };
 
   return (
     <CartContext.Provider
@@ -253,6 +264,7 @@ function App() {
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
         <SeenContext.Provider value={{ seen, setSeen: setSeenImages }}>
           <AutoScrollPage>
+            {!hasAgreedToPolicy && <PolicyPopUp onAgree={handleAgree} />}
             <Snackbar
               isVisible={isFavoriteSnackbarShown}
               text="Добавено в Любими"

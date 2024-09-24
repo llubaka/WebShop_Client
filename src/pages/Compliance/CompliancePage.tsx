@@ -41,11 +41,11 @@ export const CompliancePage = () => {
           <h3>User Rights</h3>
           <p>
             You have the right to access, rectify, or delete your personal data. Please contact us
-            at
+            at &nbsp;
             <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
             </a>
-            for any requests.
+            &nbsp; for any requests.
           </p>
           <h3>Cookies</h3>
           <p>
@@ -54,7 +54,7 @@ export const CompliancePage = () => {
           </p>
           <h3>Contact Information</h3>
           <p>
-            If you have any questions about our privacy policy, please contact us at
+            If you have any questions about our privacy policy, please contact us at &nbsp;
             <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
             </a>
@@ -93,11 +93,11 @@ export const CompliancePage = () => {
           <h3>Права на потребителите</h3>
           <p>
             Имате право на достъп, коригиране или изтриване на вашите лични данни. Моля, свържете се
-            с нас на{" "}
+            с нас на&nbsp;
             <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
-            </a>{" "}
-            за всякакви заявки.
+            </a>
+            &nbsp;за всякакви заявки.
           </p>
           <h3>Бисквитки</h3>
           <p>
@@ -106,7 +106,8 @@ export const CompliancePage = () => {
           </p>
           <h3>Контактна информация</h3>
           <p>
-            Ако имате въпроси относно нашата политика за поверителност, моля, свържете се с нас на
+            Ако имате въпроси относно нашата политика за поверителност, моля, свържете се с нас
+            на&nbsp;
             <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
             </a>

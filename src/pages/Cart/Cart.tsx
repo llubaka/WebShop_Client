@@ -6,14 +6,8 @@ import { ProductType } from "../../globals/ProductType";
 import { useCartContext } from "../../context/cartContext";
 import Settings from "../../settings/appSettings.json";
 import { useNavigate } from "react-router-dom";
-import {
-  getHomeRouteLink,
-  getSingleProductRouteLink,
-} from "../../globals/Routes";
-import {
-  getLocalStorageItem,
-  LocalStorageKeys,
-} from "../../helpers/localStorageFunctions";
+import { getHomeRouteLink, getSingleProductRouteLink } from "../../globals/Routes";
+import { getLocalStorageItem, LocalStorageKeys } from "../../helpers/localStorageFunctions";
 import { TrashCan } from "../../svg/TrashCan";
 import { ImageWrapperNoLazy } from "../../components/common/ImageWrapper/ImageWrapperNoLazy";
 import {
@@ -34,8 +28,7 @@ type CartProps = {
 };
 
 export const Cart: React.FC<CartProps> = ({ setVisible }) => {
-  const { cart, addProductInCart, decreaseProductInCart, removeProductInCart } =
-    useCartContext();
+  const { cart, addProductInCart, decreaseProductInCart, removeProductInCart } = useCartContext();
   const [products, setProducts] = useState<CartProductType>([]);
   const navigate = useNavigate();
   const isHeightSetRef = useRef(false);
@@ -59,9 +52,7 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
     if (products.length > 0) {
       setProducts((prev) =>
         prev.map((product) => {
-          const productInCart = cart.find(
-            (cartEl) => cartEl.productId === product.product.id
-          );
+          const productInCart = cart.find((cartEl) => cartEl.productId === product.product.id);
 
           if (!productInCart) {
             // Being deleted now
@@ -116,14 +107,15 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
     }
   }, [navigate, cart]);
 
+  const hasAgreedToPolicy = getLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY);
+
   const fullPrice = calcFullPrice(cart);
 
   const fullPriceWithDiscount = calcFullPriceWithDiscount(cart);
 
   const deliveryFee = calcDeliveryFee;
 
-  const fullPriceWithDiscountAndDelivery =
-    calcFullPriceWithDiscountAndDelivery(cart);
+  const fullPriceWithDiscountAndDelivery = calcFullPriceWithDiscountAndDelivery(cart);
 
   const decreaseItem = (id: string) => {
     decreaseProductInCart(id);
@@ -137,10 +129,7 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
     navigate(getSingleProductRouteLink(id));
   };
 
-  const handleDeleteClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    id: string
-  ) => {
+  const handleDeleteClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string) => {
     e.stopPropagation();
     removeProductInCart(id);
   };
@@ -161,11 +150,7 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
                 : price;
 
               return (
-                <div
-                  id={product.id}
-                  key={product.id}
-                  className="cart-content--wrapper"
-                >
+                <div id={product.id} key={product.id} className="cart-content--wrapper">
                   <div className="cart-content--fix-element"> </div>
                   <div
                     onClick={() => handleProductClick(product.id)}
@@ -185,15 +170,9 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
                           {discountText}
                         </div>
                       )}
-                      <ImageWrapperNoLazy
-                        src={source}
-                        height="100px"
-                        width="100px"
-                      />
+                      <ImageWrapperNoLazy src={source} height="100px" width="100px" />
                     </div>
-                    <div className="cart-content__item--info">
-                      {product.info}
-                    </div>
+                    <div className="cart-content__item--info">{product.info}</div>
                   </div>
                   <div className="cart-price-count">
                     <div className="cart-price-count--count">
@@ -233,26 +212,24 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
         </div>
         <div className="cart-desktop-container__prices">
           <div className="cart-order">
-            {fullPrice &&
-              fullPriceWithDiscount &&
-              fullPrice !== fullPriceWithDiscount && (
-                <>
-                  <div className="cart-order--full-price">
-                    <div>Пълна цена</div>
+            {fullPrice && fullPriceWithDiscount && fullPrice !== fullPriceWithDiscount && (
+              <>
+                <div className="cart-order--full-price">
+                  <div>Пълна цена</div>
+                  <div className="cart-order--full-price__price">
+                    {fullPrice && fullPrice.toFixed(2)}лв.
+                  </div>
+                </div>
+                <div className="cart-order--discount">
+                  <div>Отстъпка</div>
+                  {fullPrice && fullPriceWithDiscount && (
                     <div className="cart-order--full-price__price">
-                      {fullPrice && fullPrice.toFixed(2)}лв.
+                      -{(fullPrice - fullPriceWithDiscount).toFixed(2)}лв.
                     </div>
-                  </div>
-                  <div className="cart-order--discount">
-                    <div>Отстъпка</div>
-                    {fullPrice && fullPriceWithDiscount && (
-                      <div className="cart-order--full-price__price">
-                        -{(fullPrice - fullPriceWithDiscount).toFixed(2)}лв.
-                      </div>
-                    )}
-                  </div>
-                </>
-              )}
+                  )}
+                </div>
+              </>
+            )}
             <div className="cart-order--price">
               <div>Общо</div>
               <div className="cart-order--price__price">
@@ -266,8 +243,7 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
                 <div className="cart-order--delivery">
                   <div>Доставка</div>
                   <div className="cart-order--delivery__price">
-                    {fullPriceWithDiscount > Settings.freeDeliveryFrom ||
-                    cart.length === 0
+                    {fullPriceWithDiscount > Settings.freeDeliveryFrom || cart.length === 0
                       ? "0.00лв."
                       : `${deliveryFee.toFixed(2)}лв.`}
                   </div>
@@ -288,6 +264,7 @@ export const Cart: React.FC<CartProps> = ({ setVisible }) => {
               aria-label="Finish order"
               className="cart-order__delivery-pay-price-container--finish-order"
               onClick={setVisible}
+              disabled={!hasAgreedToPolicy}
             >
               Завърши поръчката
             </button>

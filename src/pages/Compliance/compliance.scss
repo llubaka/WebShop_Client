@@ -1,3 +1,5 @@
+@import "../../mixins.scss";
+
 .compliance {
   margin: 20px 30px;
   border: 1px solid rgb(229, 229, 229);
@@ -6,9 +8,10 @@
   box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
   padding: 0 20px 20px 20px;
   position: relative;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   & a {
-    margin: 0 5px;
     text-decoration: underline;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   }
   &__lng {
     display: flex;
@@ -31,5 +34,11 @@
       cursor: pointer;
       border-radius: 4px;
     }
+  }
+
+  @include landscape-tablets-up {
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
