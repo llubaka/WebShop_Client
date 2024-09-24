@@ -24,7 +24,7 @@ export const useChangeTitle = () => {
       case getStringBetweenChars(Routes.BY_TAG_PRODUCTS):
       case getStringBetweenChars(Routes.FROM_BANNER_PRODUCTS):
       case getStringBetweenChars(Routes.FROM_MENU):
-      case Routes.HOME_PAGE_PRODUCTS.replace("/", ""):
+      case Routes.NEW_PRODUCTS_PAGE.replace("/", ""):
         document.title = `${webAppName} - Разглеждане на златни бижута`;
         break;
       case Routes.HOME.replace("/", ""):
@@ -34,9 +34,7 @@ export const useChangeTitle = () => {
         document.title = `${webAppName} - Любими`;
         break;
       case getStringBetweenChars(Routes.SINGLE_PRODUCT):
-        const lastQueryParam = location.pathname.substring(
-          location.pathname.lastIndexOf("/") + 1
-        );
+        const lastQueryParam = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
 
         const info = lastQueryParam ? getById(lastQueryParam).info : "";
         document.title = `${webAppName} - ${info}`;

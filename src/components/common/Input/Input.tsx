@@ -18,7 +18,7 @@ export const Input: React.FC<InputProps> = ({
   ...props
 }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [isBlurred, setIsBlurred] = useState(false);
+  const [, setIsBlurred] = useState(false);
   const [isActivated, setIsActivated] = useState(false);
 
   const handleFocused = () => {
@@ -42,14 +42,11 @@ export const Input: React.FC<InputProps> = ({
 
   //Adding or removing move-label css
   const css = () => {
-    if (props.value && isClicked)
-      return "input-container__label move-label colored-label";
+    if (props.value && isClicked) return "input-container__label move-label colored-label";
 
-    if (isClicked && !props.value)
-      return "input-container__label move-label colored-label";
+    if (isClicked && !props.value) return "input-container__label move-label colored-label";
 
-    if (!isClicked && props.value)
-      return "input-container__label move-label colored-label";
+    if (!isClicked && props.value) return "input-container__label move-label colored-label";
 
     return "input-container__label";
   };
@@ -73,9 +70,7 @@ export const Input: React.FC<InputProps> = ({
           </div>
         </div>
       </div>
-      {showError() && (
-        <div className="input-container__error">{errorMessage}</div>
-      )}
+      {showError() && <div className="input-container__error">{errorMessage}</div>}
     </div>
   );
 };

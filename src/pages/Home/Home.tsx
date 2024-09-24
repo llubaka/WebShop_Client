@@ -3,7 +3,7 @@ import { PromotionBanner } from "../../components/promotionBanner/PromotionBanne
 import Settings from "../../settings/appSettings.json";
 import "./home.scss";
 import { Link } from "react-router-dom";
-import { getHomePageProductsRouteLink } from "../../globals/Routes";
+import { getNewProductsPageRouteLink } from "../../globals/Routes";
 import { getHomePageProductsIds } from "../../data/getData/getHomePageProducts";
 import { ShopInfo } from "../../components/shopInfo/ShopInfo";
 import { HomeSections } from "../../components/homeSections/HomeSections";
@@ -16,12 +16,8 @@ export const Home = () => {
       {Settings.images.promotionsBanner && <PromotionBanner />}
       <div className="home-container__main">
         <section>
-          <h1 className="home-container__main--heading">
-            {HomePageProductsSettings.title}
-          </h1>
-          <p className="home-container__main--paragraph">
-            {HomePageProductsSettings.subTitle}
-          </p>
+          <h1 className="home-container__main--heading">{HomePageProductsSettings.title}</h1>
+          <p className="home-container__main--paragraph">{HomePageProductsSettings.subTitle}</p>
         </section>
         <section className="home-container__main--products">
           {homePageProductsIds.map((id, index) => {
@@ -33,10 +29,7 @@ export const Home = () => {
           })}
         </section>
         <div className="home-container__main--view-all-button-container">
-          <Link
-            to={getHomePageProductsRouteLink()}
-            aria-label="See all suggested products"
-          >
+          <Link to={getNewProductsPageRouteLink()} aria-label="See all new suggested products">
             {HomePageProductsSettings.buttonText}
           </Link>
         </div>

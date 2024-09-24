@@ -1,0 +1,35 @@
+.compliance {
+  margin: 20px 30px;
+  border: 1px solid rgb(229, 229, 229);
+  border-radius: 4px;
+  margin-bottom: 14px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+  padding: 0 20px 20px 20px;
+  position: relative;
+  & a {
+    margin: 0 5px;
+    text-decoration: underline;
+  }
+  &__lng {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    & > div {
+      cursor: pointer;
+      border: 1px solid;
+      margin-left: 10px;
+      padding: 0 5px;
+
+      background-color: #e7bb69;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  }
+}

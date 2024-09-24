@@ -10,9 +10,13 @@ import {
   DecreaseProductInCartFuncType,
   RemoveProductInCartFuncType,
 } from "../context/cartContext";
-import { LocalStorageKeys, getLocalStorageItem, setLocalStorageItem } from "../helpers/localStorageFunctions";
+import {
+  LocalStorageKeys,
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from "../helpers/localStorageFunctions";
 import { AddFavoriteFuncType, FavoriteContext, FavoriteType } from "../context/favoriteContext";
-import { HomePageProducts } from "../pages/HomePageProducts/HomePageProducts";
+import { NewProductsPage } from "../pages/HomePageProducts/NewProductsPage";
 import { Cart } from "../pages/Cart/Cart";
 import { SingleProduct } from "../pages/SingleProduct/SingleProduct";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
@@ -26,10 +30,14 @@ import { FromMenu } from "../pages/FromMenu/FromMenu";
 import { Snackbar } from "../components/common/Snackbar/Snackbar";
 import { useCounter } from "../helpers/useCounter";
 import { SeenContext } from "../context/seenContext";
-import { getSessionStorageItem, SessionStorageKeys, setSessionStorageItem } from "../helpers/sessionStorageFunctions";
+import {
+  getSessionStorageItem,
+  SessionStorageKeys,
+  setSessionStorageItem,
+} from "../helpers/sessionStorageFunctions";
 import { useChangeTitle } from "./useChangeTitle";
 import { MakeOrder } from "../components/common/MakeOrder/MakeOrder";
-import { uuidv4 } from "../helpers/uuidv4";
+import { CompliancePage } from "../pages/Compliance/CompliancePage";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -245,8 +253,16 @@ function App() {
       <FavoriteContext.Provider value={{ favorites, addFavorite }}>
         <SeenContext.Provider value={{ seen, setSeen: setSeenImages }}>
           <AutoScrollPage>
-            <Snackbar isVisible={isFavoriteSnackbarShown} text="Добавено в Любими" onClick={navigateToFavorites} />
-            <Snackbar isVisible={isCartSnackbarShown} text="Добавено в Количката" onClick={navigateToCart} />
+            <Snackbar
+              isVisible={isFavoriteSnackbarShown}
+              text="Добавено в Любими"
+              onClick={navigateToFavorites}
+            />
+            <Snackbar
+              isVisible={isCartSnackbarShown}
+              text="Добавено в Количката"
+              onClick={navigateToCart}
+            />
             <Snackbar
               isVisible={isEmptyCartSnackbarVisible}
               text="Количката е празна"
@@ -265,7 +281,6 @@ function App() {
             />
 
             <MakeOrder
-              // key={isOrderModalVisible}
               isVisible={isOrderModalVisible}
               closeModal={closeOrderModal}
               showSnackbar={showFinishedOrderSnackbar}
@@ -274,13 +289,14 @@ function App() {
             <div className="main-content-contaier">
               <Routes>
                 <Route path={CustomRoutes.HOME} element={<Home />} />
-                <Route path={CustomRoutes.HOME_PAGE_PRODUCTS} element={<HomePageProducts />} />
+                <Route path={CustomRoutes.NEW_PRODUCTS_PAGE} element={<NewProductsPage />} />
                 <Route path={CustomRoutes.CART} element={<Cart setVisible={showOrderModal} />} />
                 <Route path={CustomRoutes.FAVORITES} element={<FavoriteProducts />} />
                 <Route path={CustomRoutes.SINGLE_PRODUCT} element={<SingleProduct />} />
                 <Route path={CustomRoutes.BY_TAG_PRODUCTS} element={<ByTagProcuts />} />
                 <Route path={CustomRoutes.FROM_BANNER_PRODUCTS} element={<FromBannerProducts />} />
                 <Route path={CustomRoutes.FROM_MENU} element={<FromMenu />} />
+                <Route path={CustomRoutes.COMPLIANCE_PAGE} element={<CompliancePage />} />
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
             </div>

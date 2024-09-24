@@ -1,6 +1,6 @@
 @import "../../mixins.scss";
 
-@include phones-tablets-up {
+@include desktops-up {
   #last-deep-separator {
     display: none;
   }
@@ -36,7 +36,7 @@
 }
 
 .sp-container {
-  @include phones-tablets-up {
+  @include desktops-up {
     & .image-wrapper {
       height: auto !important;
     }
@@ -85,7 +85,7 @@
 
 .sp-additional-info {
   margin-bottom: -20px;
-  @include phones-tablets-up {
+  @include desktops-up {
     margin-bottom: 0;
   }
   font-size: 14px;
