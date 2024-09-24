@@ -4,16 +4,25 @@ import "./makeOrder.scss";
 import emailjs from "emailjs-com";
 import { Input } from "../Input/Input";
 import { useCartContext } from "../../../context/cartContext";
-import { calcFullPrice, calcFullPriceWithDiscount, mapCartToProducts } from "../../../helpers/cartFunctions";
+import {
+  calcFullPrice,
+  calcFullPriceWithDiscount,
+  mapCartToProducts,
+} from "../../../helpers/cartFunctions";
 import ClipLoader from "../Loader/ClipLoader";
 import { Link, useNavigate } from "react-router-dom";
 import { getHomeRouteLink } from "../../../globals/Routes";
-import { getLocalStorageItem, LocalStorageKeys, setLocalStorageItem } from "../../../helpers/localStorageFunctions";
+import {
+  getLocalStorageItem,
+  LocalStorageKeys,
+  setLocalStorageItem,
+} from "../../../helpers/localStorageFunctions";
 import AppSettings from "../../../settings/appSettings.json";
 import { Telephone } from "../../../svg/Telephone";
 import { DropDown } from "../DropDown/DropDown";
 import Cities from "../../../settings/econtCities.json";
 import Offices from "../../../settings/econtOffices.json";
+import { Pagination } from "../Pagination/Pagination";
 
 type MakeOrderProps = {
   isVisible: boolean;
@@ -48,11 +57,21 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
   const navigate = useNavigate();
   const [isSending, setIsSending] = useState(false);
   const [formActivated, setFormActivated] = useState(false);
+  const [formFirstStepActivated, setFormFirstStepActivated] = useState(false);
   const [formValues, setFormValues] = useState(initFormValues);
   const [reachedOrderLimit, setReachedOrderLimit] = useState(false);
   const [econtCity, setEcontCity] = useState({ city: "", id: "" as any });
   const [econtOffice, setEcontOffice] = useState("");
   const [orderType, setOrderType] = useState<OrderType | "">("");
+  const [page, setPage] = useState(0);
+
+  const handlePageChange = (page: number) => {
+    if (page === 1) {
+      handleNextStepClick();
+      return;
+    }
+    setPage(page);
+  };
 
   const handleOnChangeCity = (value: string) => {
     setEcontCity({ city: value, id: Cities.find((el) => el.city === value)?.id });
@@ -86,7 +105,9 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
 
   const offices = useMemo(() => {
     if (econtCity.id || econtCity.id === 0) {
-      return Offices.filter((el) => el.cityId === econtCity.id).map((el) => `${el.name} - ${el.address}`);
+      return Offices.filter((el) => el.cityId === econtCity.id).map(
+        (el) => `${el.name} - ${el.address}`
+      );
     }
 
     return [];
@@ -136,9 +157,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     setFormActivated(true);
     validateForm();
 
-    if (Object.values(errors).some((err) => err === true)) {
-      return;
-    }
+    if (!isFormValid()) return;
 
     if (!process.env.REACT_APP_EMAIL_SERVICE_ID) {
       console.log("Email service id is undefined.");
@@ -190,31 +209,45 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
   };
 
   const validateName = (str: string) => {
+    const isValid = !!str;
+
     setErrors((curr) => {
-      return { ...curr, name: !str };
+      return { ...curr, name: !isValid };
     });
+
+    return isValid;
   };
 
   const validateEmail = (str: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = emailRegex.test(str);
 
     setErrors((curr) => {
-      return { ...curr, email: !emailRegex.test(str) };
+      return { ...curr, email: !isValid };
     });
+
+    return isValid;
   };
 
   const validateTelephone = (str: string) => {
     const regex = /^0\d{9}$/;
+    const isValid = regex.test(str);
 
     setErrors((curr) => {
-      return { ...curr, telephone: !regex.test(str) };
+      return { ...curr, telephone: !isValid };
     });
+
+    return isValid;
   };
 
   const validateAddress = (str: string) => {
+    const isValid = !!str;
+
     setErrors((curr) => {
-      return { ...curr, address: !str };
+      return { ...curr, address: !isValid };
     });
+
+    return isValid;
   };
 
   const validateOrderType = () => {
@@ -246,6 +279,38 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     }
   };
 
+  const isFirstPageValid = () => {
+    return (
+      validateName(formValues.name) &&
+      validateEmail(formValues.email) &&
+      validateTelephone(formValues.telephone)
+    );
+  };
+
+  const isSecondPageValid = () => {
+    if (!orderType) return false;
+
+    if (orderType === OrderType.ADDRESS) {
+      return validateAddress(formValues.address);
+    }
+
+    if (orderType === OrderType.ECONT_OFFICE) {
+      return !!econtOffice && !!econtCity.city;
+    }
+  };
+
+  const isFormValid = () => {
+    return isFirstPageValid() && isSecondPageValid();
+  };
+
+  const handleNextStepClick = () => {
+    setFormFirstStepActivated(true);
+
+    if (isFirstPageValid()) {
+      setPage(1);
+    }
+  };
+
   const validateForm = () => {
     validateEmail(formValues.email);
     validateName(formValues.name);
@@ -254,6 +319,8 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
   };
 
   const closeMakeOrderModal = () => {
+    setPage(0);
+    setFormFirstStepActivated(false);
     setEcontOffice("");
     setEcontCity({ city: "", id: "" });
     setOrderType("");
@@ -300,140 +367,151 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
           <span className="make-order-navbanner-copy__info">Завършване на поръчка</span>
         </div>
         <form className="contact-form" onSubmit={sendEmail}>
-          <Input
-            label="Име или фамилия"
-            type="text"
-            name="firstName"
-            value={formValues.name}
-            hasError={errors.name}
-            maxLength={50}
-            forceShowError={formActivated}
-            errorMessage="Въведете: Вашето име или фамилия"
-            onBlur={() => validateName(formValues.name)}
-            onChange={({ target: { value } }) => {
-              let newValue = value.replace(/\s+/g, "").trim();
+          {page === 0 && (
+            <>
+              <Input
+                label="Име или фамилия"
+                type="text"
+                name="firstName"
+                value={formValues.name}
+                hasError={errors.name}
+                maxLength={50}
+                forceShowError={formActivated || formFirstStepActivated}
+                errorMessage="Въведете: Вашето име или фамилия"
+                onBlur={() => validateName(formValues.name)}
+                onChange={({ target: { value } }) => {
+                  let newValue = value.replace(/\s+/g, "").trim();
 
-              if (newValue !== "" && !/^[A-Za-zА-Яа-я]+$/.test(newValue)) {
-                return;
-              }
+                  if (newValue !== "" && !/^[A-Za-zА-Яа-я]+$/.test(newValue)) {
+                    return;
+                  }
 
-              validateName(newValue);
-              setFormValues((curr) => {
-                return { ...curr, name: newValue };
-              });
-            }}
-          />
+                  validateName(newValue);
+                  setFormValues((curr) => {
+                    return { ...curr, name: newValue };
+                  });
+                }}
+              />
 
-          <Input
-            label="Вашият имейл адрес"
-            type="text"
-            name="email"
-            maxLength={100}
-            value={formValues.email}
-            hasError={errors.email}
-            forceShowError={formActivated}
-            onBlur={() => validateEmail(formValues.email)}
-            errorMessage="Въведете: Имейл адрес"
-            onChange={({ target: { value } }) => {
-              let newValue = value.replace(/\s+/g, "").trim();
-              validateEmail(newValue);
-              setFormValues((curr) => {
-                return { ...curr, email: newValue };
-              });
-            }}
-          />
+              <Input
+                label="Вашият имейл адрес"
+                type="text"
+                name="email"
+                maxLength={100}
+                value={formValues.email}
+                hasError={errors.email}
+                forceShowError={formActivated || formFirstStepActivated}
+                onBlur={() => validateEmail(formValues.email)}
+                errorMessage="Въведете: Имейл адрес"
+                onChange={({ target: { value } }) => {
+                  let newValue = value.replace(/\s+/g, "").trim();
+                  validateEmail(newValue);
+                  setFormValues((curr) => {
+                    return { ...curr, email: newValue };
+                  });
+                }}
+              />
 
-          <Input
-            label="Телефон за връзка"
-            type="text"
-            name="telephone"
-            inputMode="numeric"
-            value={formatNumber(formValues.telephone)}
-            hasError={errors.telephone}
-            maxLength={13}
-            onBlur={() => validateTelephone(formValues.telephone)}
-            forceShowError={formActivated}
-            errorMessage="Въведете: Телефон - 0XX XX XX XXX"
-            onChange={({ target: { value } }) => {
-              let newValue = value.replace(/\s+/g, "").trim();
+              <Input
+                label="Телефон за връзка"
+                type="text"
+                name="telephone"
+                inputMode="numeric"
+                value={formatNumber(formValues.telephone)}
+                hasError={errors.telephone}
+                maxLength={13}
+                onBlur={() => validateTelephone(formValues.telephone)}
+                forceShowError={formActivated || formFirstStepActivated}
+                errorMessage="Въведете: Телефон - 0XX XX XX XXX"
+                onChange={({ target: { value } }) => {
+                  let newValue = value.replace(/\s+/g, "").trim();
 
-              if (newValue !== "" && !/^\d+$/.test(newValue)) {
-                return;
-              }
+                  if (newValue !== "" && !/^\d+$/.test(newValue)) {
+                    return;
+                  }
 
-              if (newValue.length === 1 && newValue !== "0") newValue = `0${newValue}`;
+                  if (newValue.length === 1 && newValue !== "0") newValue = `0${newValue}`;
 
-              validateTelephone(newValue);
-              setFormValues((curr) => {
-                return { ...curr, telephone: newValue };
-              });
-            }}
-          />
+                  validateTelephone(newValue);
+                  setFormValues((curr) => {
+                    return { ...curr, telephone: newValue };
+                  });
+                }}
+              />
+            </>
+          )}
+          {page === 1 && (
+            <>
+              <div className="city-dropdown-container">
+                <DropDown
+                  value={orderType || ""}
+                  options={[OrderType.ADDRESS, OrderType.ECONT_OFFICE]}
+                  placeholder="Начин на доставка"
+                  onChange={handleOrderTypeChange}
+                  errorMessage="Изберете начина на доставка"
+                  hasError={!orderType && formActivated}
+                />
+              </div>
+              {orderType === OrderType.ADDRESS && (
+                <>
+                  <Input
+                    label="Адрес за доставка"
+                    type="text"
+                    name="address"
+                    value={formValues.address}
+                    hasError={errors.address}
+                    forceShowError={formActivated}
+                    errorMessage="Въведете: Адрес за доставка"
+                    onBlur={() => validateAddress(formValues.address)}
+                    onChange={({ target: { value } }) => {
+                      let newValue = value.trimStart();
+                      if (
+                        value.length > 2 &&
+                        value[value.length - 1] === " " &&
+                        value[value.length - 2] === " "
+                      ) {
+                        newValue = newValue.substring(0, newValue.length - 1);
+                      }
+
+                      validateAddress(newValue);
+                      setFormValues((curr) => {
+                        return { ...curr, address: newValue };
+                      });
+                    }}
+                  />
+                </>
+              )}
+              {orderType === OrderType.ECONT_OFFICE && (
+                <>
+                  <div className="city-dropdown-container">
+                    <DropDown
+                      value={econtCity.city}
+                      options={cities}
+                      placeholder="Изберете град"
+                      onChange={handleOnChangeCity}
+                      errorMessage="Изберете град за доставка"
+                      hasError={!econtCity.city && formActivated}
+                    />
+                  </div>
+
+                  <DropDown
+                    value={econtOffice}
+                    options={offices}
+                    placeholder="Изберете офис на Еконт"
+                    onChange={handleOnChageOffice}
+                    errorMessage="Изберете офис на Еконт"
+                    hasError={!econtOffice && formActivated}
+                  />
+                </>
+              )}
+            </>
+          )}
 
           <input hidden type="text" name="products" value={formValues.products} />
 
           <input hidden type="text" name="discount" value={formValues.discount} />
 
           <input hidden type="text" name="price" value={formValues.price} />
-          <div className="city-dropdown-container">
-            <DropDown
-              value={orderType || ""}
-              options={[OrderType.ADDRESS, OrderType.ECONT_OFFICE]}
-              placeholder="Изберете начин на доставка"
-              onChange={handleOrderTypeChange}
-              errorMessage="Изберете начина на доставка"
-              hasError={!orderType && formActivated}
-            />
-          </div>
-
-          {orderType === OrderType.ADDRESS && (
-            <>
-              <Input
-                label="Адрес за доставка"
-                type="text"
-                name="address"
-                value={formValues.address}
-                hasError={errors.address}
-                forceShowError={formActivated}
-                errorMessage="Въведете: Адрес за доставка"
-                onBlur={() => validateAddress(formValues.address)}
-                onChange={({ target: { value } }) => {
-                  let newValue = value.trimStart();
-                  if (value.length > 2 && value[value.length - 1] === " " && value[value.length - 2] === " ") {
-                    newValue = newValue.substring(0, newValue.length - 1);
-                  }
-
-                  validateAddress(newValue);
-                  setFormValues((curr) => {
-                    return { ...curr, address: newValue };
-                  });
-                }}
-              />
-            </>
-          )}
-          {orderType === OrderType.ECONT_OFFICE && (
-            <>
-              <div className="city-dropdown-container">
-                <DropDown
-                  value={econtCity.city}
-                  options={cities}
-                  placeholder="Изберете град"
-                  onChange={handleOnChangeCity}
-                  errorMessage="Изберете град за доставка"
-                  hasError={!econtCity.city && formActivated}
-                />
-              </div>
-
-              <DropDown
-                value={econtOffice}
-                options={offices}
-                placeholder="Изберете офис на Еконт"
-                onChange={handleOnChageOffice}
-                errorMessage="Изберете офис на Еконт"
-                hasError={!econtOffice && formActivated}
-              />
-            </>
-          )}
 
           <input hidden type="text" name="orderType" value={orderType} />
 
@@ -446,7 +524,10 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
               <div>Достигнахте лимит на поръчки.</div>
               <div>
                 За да поръчате, моля свържете се с нас на телефон:
-                <a className="sp-additional-info--href" href={`tel:${AppSettings.contact.telephone}`}>
+                <a
+                  className="sp-additional-info--href"
+                  href={`tel:${AppSettings.contact.telephone}`}
+                >
                   <div className="sp-additional-info--href--contact">
                     <span className="sp-additional-info--icon">
                       <Telephone color="#e39606" />
@@ -458,13 +539,31 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
             </div>
           )}
 
-          <button
-            type="submit"
-            value="Send"
-            className="cart-order__delivery-pay-price-container--finish-order make-order-button"
-          >
-            Направи поръчка
-          </button>
+          <Pagination
+            className="make-order-pagination"
+            pages={2}
+            page={page}
+            onChange={handlePageChange}
+          />
+
+          {page === 0 && (
+            <button
+              onClick={handleNextStepClick}
+              type="button"
+              className="cart-order__delivery-pay-price-container--finish-order make-order-button"
+            >
+              Следваща стъпка
+            </button>
+          )}
+          {page === 1 && (
+            <button
+              type="submit"
+              value="Send"
+              className="cart-order__delivery-pay-price-container--finish-order make-order-button"
+            >
+              Направи поръчка
+            </button>
+          )}
         </form>
       </div>
     </React100vhDiv>

@@ -1,0 +1,16 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__page {
+    background-color: #a9a9a9;
+    cursor: pointer;
+    height: 5px;
+    width: 30px;
+    border-radius: 5px;
+    margin: 0 2px;
+    &--selected {
+      background-color: rgb(229, 151, 0);
+    }
+  }
+}

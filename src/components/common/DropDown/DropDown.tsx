@@ -1,23 +1,14 @@
-import ReactDropdown from "react-dropdown";
 import "./dropDown.scss";
 import { Arrow } from "../../../svg/Arrow/Arrow";
+import { useState } from "react";
 
 type DropDownProps = {
   options: string[];
   placeholder: string;
-  onChange: (arg: string) => void;
+  onChange: (value: string) => void;
   value: string;
-  disabled?: boolean;
   hasError: boolean;
   errorMessage: string;
-};
-
-const ArrowSvg = () => {
-  return (
-    <div className="dropdown-arrow-svg-container">
-      <Arrow />
-    </div>
-  );
 };
 
 export const DropDown: React.FC<DropDownProps> = ({
@@ -27,25 +18,63 @@ export const DropDown: React.FC<DropDownProps> = ({
   value,
   hasError,
   errorMessage,
-  disabled = false,
 }) => {
-  const css = hasError ? "dropdown-ccn dropdown-error-css" : "dropdown-ccn";
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleClicked = () => {
+    setIsVisible((prev) => !prev);
+  };
+
+  const handleBlurred = () => {
+    setIsVisible(false);
+  };
+
+  const hide = () => {
+    setIsVisible(false);
+  };
+
+  const handleOnClick = (value: string) => {
+    onChange(value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") {
+      setIsVisible((prev) => !prev);
+    }
+  };
+
+  const css = hasError ? "drop-down-container error-border" : "drop-down-container";
+  const placeholderCss = hasError ? "drop-down-container__placeholder error-color" : "drop-down-container__placeholder";
 
   return (
     <div>
-      <ReactDropdown
-        value={value}
-        placeholderClassName="dropdown-placeholder"
-        controlClassName={css}
-        menuClassName="dropdown-menu"
-        options={options}
-        placeholder={placeholder}
-        arrowClosed={<ArrowSvg />}
-        arrowOpen={<ArrowSvg />}
-        onChange={(option) => onChange(option.value)}
-        disabled={disabled}
-      />
-      {hasError && <div className="dd-error-message">{errorMessage} </div>}
+      <div tabIndex={0} className={css} onKeyDown={handleKeyDown} onClick={handleClicked} onBlur={handleBlurred}>
+        <div className="drop-down-container__svg">
+          <Arrow />
+        </div>
+        {value && <div className="drop-down-container__label">{placeholder}</div>}
+        <div className="drop-down-container__value">{value || <div className={placeholderCss}>{placeholder}</div>}</div>
+        {isVisible && (
+          <div className="drop-down-container__options">
+            {options.map((el) => {
+              return (
+                <div
+                  className="drop-down-container__options--option"
+                  key={el}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOnClick(el);
+                    hide();
+                  }}
+                >
+                  {el}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      {hasError && <div className="drop-down-container__error">{errorMessage} </div>}
     </div>
   );
 };
