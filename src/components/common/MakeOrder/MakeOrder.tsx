@@ -367,79 +367,77 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
           <span className="make-order-navbanner-copy__info">Завършване на поръчка</span>
         </div>
         <form className="contact-form" onSubmit={sendEmail}>
-          {page === 0 && (
-            <>
-              <Input
-                label="Име или фамилия"
-                type="text"
-                name="firstName"
-                value={formValues.name}
-                hasError={errors.name}
-                maxLength={50}
-                forceShowError={formActivated || formFirstStepActivated}
-                errorMessage="Въведете: Вашето име или фамилия"
-                onBlur={() => validateName(formValues.name)}
-                onChange={({ target: { value } }) => {
-                  let newValue = value.replace(/\s+/g, "").trim();
+          <div style={page === 1 ? { display: "none" } : {}}>
+            <Input
+              label="Име или фамилия"
+              type="text"
+              name="firstName"
+              value={formValues.name}
+              hasError={errors.name}
+              maxLength={50}
+              forceShowError={formActivated || formFirstStepActivated}
+              errorMessage="Въведете: Вашето име или фамилия"
+              onBlur={() => validateName(formValues.name)}
+              onChange={({ target: { value } }) => {
+                let newValue = value.replace(/\s+/g, "").trim();
 
-                  if (newValue !== "" && !/^[A-Za-zА-Яа-я]+$/.test(newValue)) {
-                    return;
-                  }
+                if (newValue !== "" && !/^[A-Za-zА-Яа-я]+$/.test(newValue)) {
+                  return;
+                }
 
-                  validateName(newValue);
-                  setFormValues((curr) => {
-                    return { ...curr, name: newValue };
-                  });
-                }}
-              />
+                validateName(newValue);
+                setFormValues((curr) => {
+                  return { ...curr, name: newValue };
+                });
+              }}
+            />
 
-              <Input
-                label="Вашият имейл адрес"
-                type="text"
-                name="email"
-                maxLength={100}
-                value={formValues.email}
-                hasError={errors.email}
-                forceShowError={formActivated || formFirstStepActivated}
-                onBlur={() => validateEmail(formValues.email)}
-                errorMessage="Въведете: Имейл адрес"
-                onChange={({ target: { value } }) => {
-                  let newValue = value.replace(/\s+/g, "").trim();
-                  validateEmail(newValue);
-                  setFormValues((curr) => {
-                    return { ...curr, email: newValue };
-                  });
-                }}
-              />
+            <Input
+              label="Вашият имейл адрес"
+              type="text"
+              name="email"
+              maxLength={100}
+              value={formValues.email}
+              hasError={errors.email}
+              forceShowError={formActivated || formFirstStepActivated}
+              onBlur={() => validateEmail(formValues.email)}
+              errorMessage="Въведете: Имейл адрес"
+              onChange={({ target: { value } }) => {
+                let newValue = value.replace(/\s+/g, "").trim();
+                validateEmail(newValue);
+                setFormValues((curr) => {
+                  return { ...curr, email: newValue };
+                });
+              }}
+            />
 
-              <Input
-                label="Телефон за връзка"
-                type="text"
-                name="telephone"
-                inputMode="numeric"
-                value={formatNumber(formValues.telephone)}
-                hasError={errors.telephone}
-                maxLength={13}
-                onBlur={() => validateTelephone(formValues.telephone)}
-                forceShowError={formActivated || formFirstStepActivated}
-                errorMessage="Въведете: Телефон - 0XX XX XX XXX"
-                onChange={({ target: { value } }) => {
-                  let newValue = value.replace(/\s+/g, "").trim();
+            <Input
+              label="Телефон за връзка"
+              type="text"
+              name="telephone"
+              inputMode="numeric"
+              value={formatNumber(formValues.telephone)}
+              hasError={errors.telephone}
+              maxLength={13}
+              onBlur={() => validateTelephone(formValues.telephone)}
+              forceShowError={formActivated || formFirstStepActivated}
+              errorMessage="Въведете: Телефон - 0XX XX XX XXX"
+              onChange={({ target: { value } }) => {
+                let newValue = value.replace(/\s+/g, "").trim();
 
-                  if (newValue !== "" && !/^\d+$/.test(newValue)) {
-                    return;
-                  }
+                if (newValue !== "" && !/^\d+$/.test(newValue)) {
+                  return;
+                }
 
-                  if (newValue.length === 1 && newValue !== "0") newValue = `0${newValue}`;
+                if (newValue.length === 1 && newValue !== "0") newValue = `0${newValue}`;
 
-                  validateTelephone(newValue);
-                  setFormValues((curr) => {
-                    return { ...curr, telephone: newValue };
-                  });
-                }}
-              />
-            </>
-          )}
+                validateTelephone(newValue);
+                setFormValues((curr) => {
+                  return { ...curr, telephone: newValue };
+                });
+              }}
+            />
+          </div>
           {page === 1 && (
             <>
               <div className="city-dropdown-container">
@@ -507,17 +505,29 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
             </>
           )}
 
-          <input hidden type="text" name="products" value={formValues.products} />
+          <input
+            hidden
+            type="text"
+            name="products"
+            value={formValues.products}
+            onChange={() => {}}
+          />
 
-          <input hidden type="text" name="discount" value={formValues.discount} />
+          <input
+            hidden
+            type="text"
+            name="discount"
+            value={formValues.discount}
+            onChange={() => {}}
+          />
 
-          <input hidden type="text" name="price" value={formValues.price} />
+          <input hidden type="text" name="price" value={formValues.price} onChange={() => {}} />
 
-          <input hidden type="text" name="orderType" value={orderType} />
+          <input hidden type="text" name="orderType" value={orderType} onChange={() => {}} />
 
-          <input hidden type="text" name="econtCity" value={econtCity.city} />
+          <input hidden type="text" name="econtCity" value={econtCity.city} onChange={() => {}} />
 
-          <input hidden type="text" name="econtOffice" value={econtOffice} />
+          <input hidden type="text" name="econtOffice" value={econtOffice} onChange={() => {}} />
 
           {reachedOrderLimit && (
             <div className="reached-limit">

@@ -9,8 +9,15 @@
     width: 30px;
     border-radius: 5px;
     margin: 0 2px;
+    transition: background 0.2s ease;
+    &:hover {
+      background-color: #c5c5c5;
+    }
     &--selected {
       background-color: rgb(229, 151, 0);
+      &:hover {
+        background-color: rgb(255, 170, 0);
+      }
     }
   }
 }
