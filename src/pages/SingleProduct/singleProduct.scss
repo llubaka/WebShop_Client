@@ -36,6 +36,11 @@
 }
 
 .sp-container {
+  @include phones-tablets-up {
+    & .image-wrapper {
+      height: auto !important;
+    }
+  }
   &__content {
     margin: 10px;
     &--button {
