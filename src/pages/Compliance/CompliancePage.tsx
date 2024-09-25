@@ -42,7 +42,7 @@ export const CompliancePage = () => {
           <p>
             You have the right to access, rectify, or delete your personal data. Please contact us
             at &nbsp;
-            <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
+            <a className="compliance--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
             </a>
             &nbsp; for any requests.
@@ -55,7 +55,7 @@ export const CompliancePage = () => {
           <h3>Contact Information</h3>
           <p>
             If you have any questions about our privacy policy, please contact us at &nbsp;
-            <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
+            <a className="compliance--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
             </a>
             .
@@ -94,7 +94,7 @@ export const CompliancePage = () => {
           <p>
             Имате право на достъп, коригиране или изтриване на вашите лични данни. Моля, свържете се
             с нас на&nbsp;
-            <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
+            <a className="compliance--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
             </a>
             &nbsp;за всякакви заявки.
@@ -108,7 +108,7 @@ export const CompliancePage = () => {
           <p>
             Ако имате въпроси относно нашата политика за поверителност, моля, свържете се с нас
             на&nbsp;
-            <a className="sp-additional-info--href" href={`mailto:${AppSettings.contact.email}`}>
+            <a className="compliance--href" href={`mailto:${AppSettings.contact.email}`}>
               {AppSettings.contact.email}
             </a>
             .
