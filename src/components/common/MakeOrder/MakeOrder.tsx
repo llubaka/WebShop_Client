@@ -445,7 +445,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
           </div>
           {page === 1 && (
             <>
-              <div className="city-dropdown-container">
+              <div className="x-dropdown-container">
                 <DropDown
                   value={orderType || ""}
                   options={[OrderType.ADDRESS, OrderType.ECONT_OFFICE]}
@@ -486,7 +486,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
               )}
               {orderType === OrderType.ECONT_OFFICE && (
                 <>
-                  <div className="city-dropdown-container">
+                  <div className="x-dropdown-container">
                     <DropDown
                       value={econtCity.city}
                       options={cities}
@@ -497,15 +497,16 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
                       separators={separators}
                     />
                   </div>
-
-                  <DropDown
-                    value={econtOffice}
-                    options={offices}
-                    placeholder="Изберете офис на Еконт"
-                    onChange={handleOnChageOffice}
-                    errorMessage="Изберете: Офис на Еконт"
-                    hasError={!econtOffice && formActivated}
-                  />
+                  <div className="x-dropdown-container">
+                    <DropDown
+                      value={econtOffice}
+                      options={offices}
+                      placeholder="Изберете офис на Еконт"
+                      onChange={handleOnChageOffice}
+                      errorMessage="Изберете: Офис на Еконт"
+                      hasError={!econtOffice && formActivated}
+                    />
+                  </div>
                 </>
               )}
               {orderType && (
