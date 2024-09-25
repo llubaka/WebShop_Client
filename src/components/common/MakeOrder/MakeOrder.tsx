@@ -39,6 +39,7 @@ const initFormValues = {
   products: "",
   price: "",
   discount: "",
+  additionalRequest: "",
 };
 const initErrors = {
   name: true,
@@ -506,6 +507,24 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
                     hasError={!econtOffice && formActivated}
                   />
                 </>
+              )}
+              {orderType && (
+                <Input
+                  label="Бележка"
+                  type="text"
+                  name="additionalRequest"
+                  maxLength={100}
+                  value={formValues.additionalRequest}
+                  hasError={false}
+                  forceShowError={false}
+                  onBlur={() => {}}
+                  errorMessage=""
+                  onChange={({ target: { value } }) => {
+                    setFormValues((curr) => {
+                      return { ...curr, additionalRequest: value };
+                    });
+                  }}
+                />
               )}
             </>
           )}
