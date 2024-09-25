@@ -51,6 +51,7 @@ export const DropDown: React.FC<DropDownProps> = ({
     e.stopPropagation();
   };
 
+  const style = separators ? { marginLeft: "5px" } : {};
   const css = hasError ? "drop-down-container error-border" : "drop-down-container";
   const placeholderCss = hasError
     ? "drop-down-container__placeholder error-color"
@@ -98,6 +99,7 @@ export const DropDown: React.FC<DropDownProps> = ({
                     </div>
                   )}
                   <div
+                    style={style}
                     className="drop-down-container__options--option"
                     onClick={(e) => {
                       e.stopPropagation();
