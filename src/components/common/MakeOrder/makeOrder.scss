@@ -65,6 +65,9 @@
     background-clip: text;
     font-weight: bold;
   }
+  &__info {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
   &__slash {
     margin: 0 5px;
   }
@@ -72,6 +75,7 @@
 
 .reached-limit {
   color: rgb(255, 90, 90);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   &__tel {
     color: black;
   }
