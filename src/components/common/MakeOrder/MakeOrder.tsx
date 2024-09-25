@@ -18,6 +18,7 @@ import {
   setLocalStorageItem,
 } from "../../../helpers/localStorageFunctions";
 import AppSettings from "../../../settings/appSettings.json";
+import EcontCitiesFirstLetters from "../../../settings/econtCitiesFirstLetters.json";
 import { Telephone } from "../../../svg/Telephone";
 import { DropDown } from "../DropDown/DropDown";
 import Cities from "../../../settings/econtCities.json";
@@ -203,6 +204,8 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     showSnackbar();
     navigate(getHomeRouteLink());
   };
+
+  const separators = new Set(EcontCitiesFirstLetters);
 
   const handleInnerContainerClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -490,6 +493,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
                       onChange={handleOnChangeCity}
                       errorMessage="Изберете: Град за доставка"
                       hasError={!econtCity.city && formActivated}
+                      separators={separators}
                     />
                   </div>
 
