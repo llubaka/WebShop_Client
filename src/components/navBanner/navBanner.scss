@@ -1,8 +1,7 @@
 .navbar-container {
-  font-size: 17px;
+  font-size: 16px;
   margin: 10px;
-  // from cursive
-  font-family: auto;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: #5a5a5a;
   &__home {
     background-image: linear-gradient(92deg, #fcdc04 0%, #f26023 100%);
@@ -11,8 +10,7 @@
     font-weight: bold;
   }
   & > a {
-    // from cursive
-    font-family: auto;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     display: inline;
   }
   &__separator {

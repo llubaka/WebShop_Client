@@ -106,14 +106,15 @@
 
   &--href {
     display: inline;
-    font-size: 15px;
+    font-family: Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva,
+      Verdana, sans-serif !important;
     &--contact {
       margin-top: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #e39606;
-      font-size: 16px;
+      font-size: 15px;
       padding: 6px 0 !important;
       border: 1px solid #e39606;
       border-radius: 3px;
@@ -125,6 +126,9 @@
     &__container {
       display: flex;
       align-items: center;
+      font-family: Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva,
+        Verdana, sans-serif;
+      font-size: 14px;
     }
   }
 }

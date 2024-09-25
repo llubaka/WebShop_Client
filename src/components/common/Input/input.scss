@@ -1,8 +1,10 @@
 .input-container {
   position: relative;
   &__error {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     font-size: 14px;
     color: rgb(255, 90, 90);
+    margin-left: 2px;
   }
   &__input {
     cursor: text;
@@ -35,6 +37,7 @@
     font-size: 20px;
     color: #a9a9a9;
     &--value {
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
       background-color: white;
       margin-left: 20px;
       padding: 0 3px;

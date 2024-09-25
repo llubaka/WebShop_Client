@@ -404,6 +404,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
               errorMessage="Въведете: Имейл адрес"
               onChange={({ target: { value } }) => {
                 let newValue = value.replace(/\s+/g, "").trim();
+                newValue = newValue.replace(",", ".");
                 validateEmail(newValue);
                 setFormValues((curr) => {
                   return { ...curr, email: newValue };
@@ -423,7 +424,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
               forceShowError={formActivated || formFirstStepActivated}
               errorMessage="Въведете: Телефон - 0XX XX XX XXX"
               onChange={({ target: { value } }) => {
-                let newValue = value.replace(/\s+/g, "").trim();
+                let newValue = value.replace(/\s+/g, "");
 
                 if (newValue !== "" && !/^\d+$/.test(newValue)) {
                   return;
@@ -446,7 +447,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
                   options={[OrderType.ADDRESS, OrderType.ECONT_OFFICE]}
                   placeholder="Начин на доставка"
                   onChange={handleOrderTypeChange}
-                  errorMessage="Изберете начина на доставка"
+                  errorMessage="Изберете: Начин на доставка"
                   hasError={!orderType && formActivated}
                 />
               </div>
@@ -487,7 +488,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
                       options={cities}
                       placeholder="Изберете град"
                       onChange={handleOnChangeCity}
-                      errorMessage="Изберете град за доставка"
+                      errorMessage="Изберете: Град за доставка"
                       hasError={!econtCity.city && formActivated}
                     />
                   </div>
@@ -497,7 +498,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
                     options={offices}
                     placeholder="Изберете офис на Еконт"
                     onChange={handleOnChageOffice}
-                    errorMessage="Изберете офис на Еконт"
+                    errorMessage="Изберете: Офис на Еконт"
                     hasError={!econtOffice && formActivated}
                   />
                 </>
