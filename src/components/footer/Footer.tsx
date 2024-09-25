@@ -11,11 +11,11 @@ export const Footer = () => {
     <footer className="footer">
       <ShopDescription />
       <div className="footer__info">
-        <p>
+        <div>
           &copy; {currYear} <span className="footer__info--app-name">{AppSettings.appName}</span>.
           Всички права запазени.
-        </p>
-        <p>
+        </div>
+        <div>
           <Link className="footer__info--link--policy" to={getCompliancePageRouteLink()}>
             Политика за поверителност
           </Link>
@@ -27,9 +27,9 @@ export const Footer = () => {
             {AppSettings.contact.telephone}
           </a>
           <div className="footer__info--link--space">&nbsp;|&nbsp;</div>
-        </p>
+        </div>
         {hasSocial && (
-          <p>
+          <div>
             Последвайте ни:&nbsp;
             {AppSettings.facebook && (
               <>
@@ -54,7 +54,7 @@ export const Footer = () => {
                 </a>
               </>
             )}
-          </p>
+          </div>
         )}
       </div>
     </footer>
