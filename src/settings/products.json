@@ -65,14 +65,196 @@
     "imageUrl": "/products/ringThree.png",
     "discount": 39,
     "tags": [],
-    "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png", "/products/ringTT.png"],
+    "additionalImagesUrls": [
+      "/products/ringThree.png",
+      "/products/ring.png",
+      "/products/ringTT.png"
+    ],
     "description": {
       "characteristic": "characteristic1132",
       "description": "description1123"
     }
   },
   {
-    "id": "5",
+    "id": "535325",
+    "info": "Сребърен Комплект Amina ",
+    "price": "150.90",
+    "imageUrl": "/products/ringFour.png",
+    "discount": 12,
+    "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг"],
+    "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "0352352",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "price": "200",
+    "imageUrl": "/products/ring.jpg",
+    "discount": 44,
+    "tags": ["нов", "test1"],
+    "additionalImagesUrls": [],
+    "description": {
+      "Характеристика": "Може да изберете и опция Взимане на продукт от магазина. В този вариант доставката е отново БЕЗПЛАТНА, трябва само да споменете до кой от нашите магазини желаете да Ви бъде доставен продукта. Наш служител ще се свърже с Вас при направена поръчка и избрана тази доставка.",
+      "Описание": "Разчупената форма на този сребърен пръстен прилепва елегантно към всяка ръка, а комбинация на цветните кристали Ви кара да не откъсвате погледа си от него! Размери: 20мм Х 13мм, 8.00гр Опакован във фирмена опаковка. Пръстенът е със сертификат. 9,00 гр"
+    }
+  },
+  {
+    "id": "352321",
+    "info": "Сребърен Комплект Amina ",
+    "price": "150.90",
+    "imageUrl": "/products/ringTT.png",
+    "discount": 0,
+    "tags": ["нов", "test2"],
+    "additionalImagesUrls": [
+      "/products/ringThree.png",
+      "/products/ring.png",
+      "/products/ringTT.png",
+      "/products/ringTT.png",
+      "/products/ringThree.png",
+      "/products/ring.png"
+    ],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "5322",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "price": "50.90",
+    "imageUrl": "/products/ring.png",
+    "discount": 39,
+    "tags": ["нов"],
+    "additionalImagesUrls": [],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "3325",
+    "info": "Сребърен Комплект Amina ",
+    "price": "150.90",
+    "imageUrl": "/products/ringTwo.png",
+    "discount": 12,
+    "tags": ["нов"],
+    "additionalImagesUrls": [],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "423",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "price": "50.90",
+    "imageUrl": "/products/ringThree.png",
+    "discount": 39,
+    "tags": [],
+    "additionalImagesUrls": [
+      "/products/ringThree.png",
+      "/products/ring.png",
+      "/products/ringTT.png"
+    ],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "51",
+    "info": "Сребърен Комплект Amina ",
+    "price": "150.90",
+    "imageUrl": "/products/ringFour.png",
+    "discount": 12,
+    "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг"],
+    "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "20",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "price": "200",
+    "imageUrl": "/products/ring.jpg",
+    "discount": 44,
+    "tags": ["нов", "test1"],
+    "additionalImagesUrls": [],
+    "description": {
+      "Характеристика": "Може да изберете и опция Взимане на продукт от магазина. В този вариант доставката е отново БЕЗПЛАТНА, трябва само да споменете до кой от нашите магазини желаете да Ви бъде доставен продукта. Наш служител ще се свърже с Вас при направена поръчка и избрана тази доставка.",
+      "Описание": "Разчупената форма на този сребърен пръстен прилепва елегантно към всяка ръка, а комбинация на цветните кристали Ви кара да не откъсвате погледа си от него! Размери: 20мм Х 13мм, 8.00гр Опакован във фирмена опаковка. Пръстенът е със сертификат. 9,00 гр"
+    }
+  },
+  {
+    "id": "31",
+    "info": "Сребърен Комплект Amina ",
+    "price": "150.90",
+    "imageUrl": "/products/ringTT.png",
+    "discount": 0,
+    "tags": ["нов", "test2"],
+    "additionalImagesUrls": [
+      "/products/ringThree.png",
+      "/products/ring.png",
+      "/products/ringTT.png",
+      "/products/ringTT.png",
+      "/products/ringThree.png",
+      "/products/ring.png"
+    ],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "32",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "price": "50.90",
+    "imageUrl": "/products/ring.png",
+    "discount": 39,
+    "tags": ["нов"],
+    "additionalImagesUrls": [],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "33",
+    "info": "Сребърен Комплект Amina ",
+    "price": "150.90",
+    "imageUrl": "/products/ringTwo.png",
+    "discount": 12,
+    "tags": ["нов"],
+    "additionalImagesUrls": [],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "44",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "price": "50.90",
+    "imageUrl": "/products/ringThree.png",
+    "discount": 39,
+    "tags": [],
+    "additionalImagesUrls": [
+      "/products/ringThree.png",
+      "/products/ring.png",
+      "/products/ringTT.png"
+    ],
+    "description": {
+      "characteristic": "characteristic1132",
+      "description": "description1123"
+    }
+  },
+  {
+    "id": "15",
     "info": "Сребърен Комплект Amina ",
     "price": "150.90",
     "imageUrl": "/products/ringFour.png",
