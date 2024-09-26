@@ -1,19 +1,41 @@
 import "./arrow.scss";
 
-export const Arrow: React.FC = () => {
+type ArrowProps = {
+  className?: string;
+  disabled?: boolean;
+  onClick?: () => void;
+  width?: string;
+  height?: string;
+};
+
+export const Arrow: React.FC<ArrowProps> = ({
+  className = "",
+  disabled = false,
+  onClick,
+  width = "15px",
+  height = "15px",
+}) => {
   return (
     <svg
-      width="15px"
-      height="15px"
+      width={width}
+      height={height}
       viewBox="0 0 451.846 451.847"
       xmlSpace="preserve"
-      className="arrow-svg"
+      className={`${disabled ? "arrow-svg-disabled" : "arrow-svg"} ${className}`}
+      onClick={onClick}
     >
       <defs>
-        <linearGradient id="svg-color-gradient">
-          <stop offset="0%" stopColor="#fcdc04" />
-          <stop offset="100%" stopColor="#f26023" />
-        </linearGradient>
+        {!disabled ? (
+          <linearGradient id="svg-color-gradient">
+            <stop offset="0%" stopColor="#fcdc04" />
+            <stop offset="100%" stopColor="#f26023" />
+          </linearGradient>
+        ) : (
+          <linearGradient id="svg-color-gradient-disabled">
+            <stop offset="0%" stopColor="silver" />
+            <stop offset="100%" stopColor="rgb(139 137 137)" />
+          </linearGradient>
+        )}
       </defs>
       <g>
         <path

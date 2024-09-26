@@ -4,7 +4,6 @@ import Products from "../../settings/products.json";
 export const getLatestProducts = (returnCount: number): Array<ProductType> => {
   const productsLength = Products.length;
 
-  // In case the products are less then the count we want to initially show
   if (productsLength < returnCount) {
     return Products;
   } else {
