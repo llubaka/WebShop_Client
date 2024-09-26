@@ -25,9 +25,7 @@ export const calcFullPriceWithDiscount = (cart: CartType) =>
   mapCartToProducts(cart).reduce((prev, { product, count }) => {
     const hasDiscount = !!product.discount;
     const price = (+product.price * count).toFixed(2);
-    const mainPrice = hasDiscount
-      ? ((+price * (100 - product.discount)) / 100).toFixed(2)
-      : price;
+    const mainPrice = hasDiscount ? ((+price * (100 - product.discount)) / 100).toFixed(2) : price;
 
     return +mainPrice + prev;
   }, 0);

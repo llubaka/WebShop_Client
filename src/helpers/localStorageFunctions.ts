@@ -18,3 +18,7 @@ export const getLocalStorageItem = (key: LocalStorageKeys) => {
 export const setLocalStorageItem = (key: LocalStorageKeys, value: {} | []) => {
   localStorage.setItem(key, encrypt(JSON.stringify(value), 3));
 };
+
+export const clearLocalStorageItem = (key: LocalStorageKeys) => {
+  localStorage.removeItem(key);
+};

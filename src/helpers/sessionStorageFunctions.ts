@@ -9,9 +9,10 @@ export const getSessionStorageItem = (key: SessionStorageKeys) => {
   return null;
 };
 
-export const setSessionStorageItem = (
-  key: SessionStorageKeys,
-  value: {} | []
-) => {
+export const setSessionStorageItem = (key: SessionStorageKeys, value: {} | []) => {
   sessionStorage.setItem(key, JSON.stringify(value));
+};
+
+export const clearSessionStorageItem = (key: SessionStorageKeys) => {
+  sessionStorage.removeItem(key);
 };

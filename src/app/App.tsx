@@ -12,6 +12,7 @@ import {
 } from "../context/cartContext";
 import {
   LocalStorageKeys,
+  clearLocalStorageItem,
   getLocalStorageItem,
   setLocalStorageItem,
 } from "../helpers/localStorageFunctions";
@@ -31,6 +32,7 @@ import { Snackbar } from "../components/common/Snackbar/Snackbar";
 import { useCounter } from "../helpers/useCounter";
 import { SeenContext } from "../context/seenContext";
 import {
+  clearSessionStorageItem,
   getSessionStorageItem,
   SessionStorageKeys,
   setSessionStorageItem,
@@ -39,6 +41,7 @@ import { useChangeTitle } from "./useChangeTitle";
 import { MakeOrder } from "../components/common/MakeOrder/MakeOrder";
 import { CompliancePage } from "../pages/Compliance/CompliancePage";
 import { PolicyPopUp } from "../components/common/PolicyPopUp/PolicyPopUp";
+import { productExists } from "../data/getData/productExists";
 
 function App() {
   const [cart, setCart] = useState<CartType>([]);
@@ -232,17 +235,35 @@ function App() {
   };
 
   useEffect(() => {
-    const lsCart = getLocalStorageItem(LocalStorageKeys.CART);
-    if (lsCart) setCart(() => lsCart);
+    try {
+      const lsCart: CartType = getLocalStorageItem(LocalStorageKeys.CART);
+      const filterCart = lsCart.filter((el) => productExists(el.productId));
+      if (lsCart) setCart(() => filterCart);
+    } catch (error) {
+      clearLocalStorageItem(LocalStorageKeys.CART);
+    }
 
-    const lsFavorites = getLocalStorageItem(LocalStorageKeys.FAVORITES);
-    if (lsFavorites) setFavorites(() => lsFavorites);
+    try {
+      const lsFavorites: FavoriteType = getLocalStorageItem(LocalStorageKeys.FAVORITES);
+      const filterFavorites = lsFavorites.filter((productId) => productExists(productId));
+      if (lsFavorites) setFavorites(() => filterFavorites);
+    } catch (error) {
+      clearLocalStorageItem(LocalStorageKeys.FAVORITES);
+    }
 
-    const lsAgreedToPolicy = getLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY);
-    if (lsAgreedToPolicy) setHasAgreedToPolicy(() => lsAgreedToPolicy);
+    try {
+      const lsAgreedToPolicy: boolean = getLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY);
+      if (lsAgreedToPolicy) setHasAgreedToPolicy(() => lsAgreedToPolicy);
+    } catch (error) {
+      clearLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY);
+    }
 
-    const ssSeen = getSessionStorageItem(SessionStorageKeys.SEEN_IMAGES);
-    if (lsFavorites) setSeen(() => new Set(ssSeen));
+    try {
+      const ssSeen = getSessionStorageItem(SessionStorageKeys.SEEN_IMAGES);
+      if (ssSeen) setSeen(() => new Set(ssSeen));
+    } catch (error) {
+      clearSessionStorageItem(SessionStorageKeys.SEEN_IMAGES);
+    }
   }, []);
 
   const handleAgree = () => {
