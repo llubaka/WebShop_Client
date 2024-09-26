@@ -11,11 +11,17 @@ import { PaginationNumbers } from "../../components/common/PaginationNumbers/Pag
 export const FromMenu = () => {
   const { param: id, param2: subId } = useParams();
 
-  const tags =
-    subId === QueryParam.NOT_SUBMENU
-      ? MenuContent.filter((row) => row.id === id)[0].tags
-      : MenuContent.filter((row) => row.id === id)[0].subMenu.filter((row) => row.id === subId)[0]
-          .tags;
+  let tags: string[] = [];
+
+  try {
+    tags =
+      subId === QueryParam.NOT_SUBMENU
+        ? MenuContent.filter((row) => row.id === id)[0].tags
+        : MenuContent.filter((row) => row.id === id)[0].subMenu.filter((row) => row.id === subId)[0]
+            .tags;
+  } catch (error) {
+    return <NavBanner contentType={ContentType.INFO} content="Няма намерени продукти" />;
+  }
 
   const filteredProducts = getByTags(tags);
   const lastPage = Math.ceil(filteredProducts.length / AppSettings.pagination);

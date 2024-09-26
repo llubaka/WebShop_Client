@@ -1,6 +1,6 @@
 import { ContentType, NavBanner } from "../../components/navBanner/NavBanner";
 import { useCartContext } from "../../context/cartContext";
-import { getById } from "../../data/getData/getFilteredProducts";
+import { getById_NoError } from "../../data/getData/getFilteredProducts";
 import "./singleProduct.scss";
 import { useParams } from "react-router";
 import AppSettings from "../../settings/appSettings.json";
@@ -21,11 +21,18 @@ export const SingleProduct = () => {
 
   const { addProductInCart, isProductInCart } = useCartContext();
 
-  const product = getById(id as string);
+  const product = getById_NoError(id as string);
+
+  if (!product) {
+    return <NavBanner contentType={ContentType.INFO} content="Продуктът не е намерен" />;
+  }
+
   const hasAdditionalImages = product.additionalImagesUrls.length > 0;
 
   const hasDiscount = !!product.discount;
-  const mainPrice = hasDiscount ? ((+product.price * (100 - product.discount)) / 100).toFixed(2) : product.price;
+  const mainPrice = hasDiscount
+    ? ((+product.price * (100 - product.discount)) / 100).toFixed(2)
+    : product.price;
 
   const handleAddInCartClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
@@ -70,7 +77,9 @@ export const SingleProduct = () => {
             <div className="sp-container__content__product-price">
               {mainPrice}лв.
               {hasDiscount && (
-                <span className="sp-container__content__product-price--discount">{product.price}лв.</span>
+                <span className="sp-container__content__product-price--discount">
+                  {product.price}лв.
+                </span>
               )}
             </div>
             <button
@@ -111,7 +120,9 @@ export const SingleProduct = () => {
                   {contact.email && (
                     <div>
                       <a className="sp-additional-info--href" href={`mailto:${contact.email}`}>
-                        <div className="sp-additional-info--href__container">Може да се свържете с нас и по имейл:</div>
+                        <div className="sp-additional-info--href__container">
+                          Може да се свържете с нас и по имейл:
+                        </div>
                         <div className="sp-additional-info--href--contact">
                           <span className="sp-additional-info--icon">
                             <Envelope color="#e39606" />

@@ -4,7 +4,7 @@ import { useFavoriteContext } from "../../context/favoriteContext";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getSingleProductRouteLink } from "../../globals/Routes";
-import { getById } from "../../data/getData/getFilteredProducts";
+import { getById_NoError } from "../../data/getData/getFilteredProducts";
 import { HeartSvg } from "../../svg/Heart";
 import { ImageWrapper } from "../common/ImageWrapper/ImageWrapper";
 import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
@@ -14,24 +14,17 @@ interface IProduct {
   lazyImageLoading?: boolean;
 }
 
-export const Product: React.FC<IProduct> = ({
-  id,
-  lazyImageLoading = true,
-}) => {
+export const Product: React.FC<IProduct> = ({ id, lazyImageLoading = true }) => {
   const { addProductInCart } = useCartContext();
   const { favorites, addFavorite } = useFavoriteContext();
   const navigate = useNavigate();
 
-  const handleAddInCartClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleAddInCartClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     addProductInCart(id, true);
   };
 
-  const handleAddFavoriteClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleAddFavoriteClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     addFavorite(id);
   };
@@ -44,7 +37,7 @@ export const Product: React.FC<IProduct> = ({
     return favorites.includes(id);
   }, [favorites, id]);
 
-  const product = getById(id);
+  const product = getById_NoError(id);
 
   if (!product) return <></>;
 
@@ -71,23 +64,13 @@ export const Product: React.FC<IProduct> = ({
                 </span>
               </button>
               {!!product.discount && (
-                <div className="product-image__actions--discount">
-                  {discountText}
-                </div>
+                <div className="product-image__actions--discount">{discountText}</div>
               )}
             </div>
             {lazyImageLoading ? (
-              <ImageWrapper
-                src={product.imageUrl}
-                width="100%"
-                height="250px"
-              />
+              <ImageWrapper src={product.imageUrl} width="100%" height="250px" />
             ) : (
-              <ImageWrapperNoLazy
-                src={product.imageUrl}
-                width="100%"
-                height="250px"
-              />
+              <ImageWrapperNoLazy src={product.imageUrl} width="100%" height="250px" />
             )}
           </div>
         </div>
@@ -95,9 +78,7 @@ export const Product: React.FC<IProduct> = ({
         <div className="product-container__price">
           {mainPrice}лв.
           {hasDiscount && (
-            <span className="product-container__price--discount">
-              {product.price}лв.
-            </span>
+            <span className="product-container__price--discount">{product.price}лв.</span>
           )}
         </div>
         <button

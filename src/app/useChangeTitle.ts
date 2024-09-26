@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import AppSettings from "../settings/appSettings.json";
-import { getById } from "../data/getData/getFilteredProducts";
+import { getById_NoError } from "../data/getData/getFilteredProducts";
 import { Routes } from "../globals/Routes";
 import { useLocation } from "react-router-dom";
 
@@ -25,7 +25,7 @@ export const useChangeTitle = () => {
       case getStringBetweenChars(Routes.FROM_BANNER_PRODUCTS):
       case getStringBetweenChars(Routes.FROM_MENU):
       case Routes.NEW_PRODUCTS_PAGE.replace("/", ""):
-        document.title = `${webAppName} - Разглеждане на златни бижута`;
+        document.title = `${webAppName} - Разглеждане на всички нови бижута`;
         break;
       case Routes.HOME.replace("/", ""):
         document.title = `${webAppName} - Онлайн магазин за златни бижута - топ цени - промоции - отстъпки - ОниксГолд`;
@@ -35,9 +35,13 @@ export const useChangeTitle = () => {
         break;
       case getStringBetweenChars(Routes.SINGLE_PRODUCT):
         const lastQueryParam = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-
-        const info = lastQueryParam ? getById(lastQueryParam).info : "";
+        const info =
+          (lastQueryParam ? getById_NoError(lastQueryParam)?.info : "") ||
+          "Продуктът не е намерен.";
         document.title = `${webAppName} - ${info}`;
+        break;
+      case Routes.COMPLIANCE_PAGE.replace("/", ""):
+        document.title = `${webAppName} - Политика за поверителност`;
         break;
       default:
         break;

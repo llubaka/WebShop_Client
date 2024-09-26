@@ -1,14 +1,9 @@
 import { ProductType } from "../../globals/ProductType";
-import {
-  LocalStorageKeys,
-  getLocalStorageItem,
-} from "../../helpers/localStorageFunctions";
+import { LocalStorageKeys, getLocalStorageItem } from "../../helpers/localStorageFunctions";
 import { getAllProducts } from "./getAllProducts";
 
 export const getByTags = (tags: string[]): ProductType[] => {
-  return getAllProducts().filter((product) =>
-    product.tags.some((tag) => tags.includes(tag))
-  );
+  return getAllProducts().filter((product) => product.tags.some((tag) => tags.includes(tag)));
 };
 
 export const getById = (id: string): ProductType => {
@@ -16,6 +11,10 @@ export const getById = (id: string): ProductType => {
   if (!product) throw new Error(`No product with id: ${id}`);
 
   return product;
+};
+
+export const getById_NoError = (id: string): ProductType | undefined => {
+  return getAllProducts().find((product) => product.id === id);
 };
 
 export const getByIds = (ids: string[]): ProductType[] => {
