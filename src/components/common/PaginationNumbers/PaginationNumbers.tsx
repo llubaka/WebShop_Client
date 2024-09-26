@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Arrow } from "../../../svg/Arrow/Arrow";
 import "./paginationNumbers.scss";
 
 type PaginationNumbersProps = {
   initPage: number;
   lastPage: number;
+  onChange: (page: number) => void;
 };
 
-export const PaginationNumbers: React.FC<PaginationNumbersProps> = ({ initPage, lastPage }) => {
+export const PaginationNumbers: React.FC<PaginationNumbersProps> = ({
+  initPage,
+  lastPage,
+  onChange,
+}) => {
   const [currPage, setCurrPage] = useState(initPage);
   const leftArrowDisabled = currPage === 1;
   const rightArrowDisabled = currPage === lastPage;
@@ -35,6 +40,11 @@ export const PaginationNumbers: React.FC<PaginationNumbersProps> = ({ initPage, 
   const handleLastPageClick = () => {
     setCurrPage(() => lastPage);
   };
+
+  useEffect(() => {
+    onChange(currPage);
+  }, [currPage, onChange]);
+
   if (lastPage < 2) return <></>;
 
   return (

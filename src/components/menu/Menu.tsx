@@ -15,7 +15,7 @@ import { useCartContext } from "../../context/cartContext";
 import { React100vhDiv } from "../common/React100vhDiv";
 import { InsetShadow } from "../common/Inset/InsetShadow";
 import { ImageWrapperNoLazy } from "../common/ImageWrapper/ImageWrapperNoLazy";
-import { QueryParam } from "../../helpers/enum";
+import { FromMenuQueryParam } from "../../helpers/enum";
 
 interface IMenu {
   isMenuOpened: boolean;
@@ -26,9 +26,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
   const navClass = isMenuOpened
     ? "menu-container__menu menu-container__menu--opened"
     : "menu-container__menu";
-  const menuClass = isMenuOpened
-    ? "menu-container menu-container--opened"
-    : "menu-container";
+  const menuClass = isMenuOpened ? "menu-container menu-container--opened" : "menu-container";
 
   const handleMenuClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -51,9 +49,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
     });
   };
 
-  const handleCartClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
+  const handleCartClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (getCartCount() === 0) {
       e.preventDefault();
     } else {
@@ -61,9 +57,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
     }
   };
 
-  const handleFavoriteClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
+  const handleFavoriteClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (favorites.length === 0) {
       e.preventDefault();
     } else {
@@ -87,10 +81,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               isExpanded={isMenuRowOpened[el.id]}
               className="menu-content__inner__content"
             >
-              <InsetShadow
-                side="top"
-                style={{ top: 0, left: 0, width: "calc(100% + 20px)" }}
-              />
+              <InsetShadow side="top" style={{ top: 0, left: 0, width: "calc(100% + 20px)" }} />
               {el.subMenu.map((subMenuElement) => {
                 if (subMenuElement.tags.length > 0)
                   return (
@@ -117,7 +108,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
         return (
           <LinkMenuRow
             key={el.id}
-            linkTo={getFromMenuProductsLink(el.id, QueryParam.NOT_SUBMENU)}
+            linkTo={getFromMenuProductsLink(el.id, FromMenuQueryParam.NOT_SUBMENU)}
             title={el.title}
             iconUrl={el.iconUrl}
             onClick={toggleIsMenuOpened}
@@ -140,9 +131,7 @@ export const Menu: React.FC<IMenu> = ({ isMenuOpened, toggleIsMenuOpened }) => {
               width="70px"
               height="70px"
             />
-            <div className="menu-content--header--appname">
-              {Settings.appName}
-            </div>
+            <div className="menu-content--header--appname">{Settings.appName}</div>
           </div>
           <React100vhDiv heightOffset={90} className="menu-content__rows">
             {Settings.images.menuCart && (

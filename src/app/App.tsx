@@ -53,7 +53,7 @@ function App() {
   const [isEmptyFavoriteSnackbarVisible, setIsEmptyFavoriteSnackbarVisible] = useState(false);
   const [isFinishedOrderSnackbarVisible, setIsFinishedOrderSnackbarVisible] = useState(false);
   const [isOrderModalVisible, setIsOrderModalVisible] = useState(false);
-  const [hasAgreedToPolicy, setHasAgreedToPolicy] = useState(false);
+  const [hasAgreedToPolicy, setHasAgreedToPolicy] = useState(true);
 
   const navigate = useNavigate();
   useChangeTitle();
@@ -253,8 +253,9 @@ function App() {
 
     try {
       const lsAgreedToPolicy: boolean = getLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY);
-      if (lsAgreedToPolicy) setHasAgreedToPolicy(() => lsAgreedToPolicy);
+      setHasAgreedToPolicy(() => lsAgreedToPolicy);
     } catch (error) {
+      setHasAgreedToPolicy(false);
       clearLocalStorageItem(LocalStorageKeys.AGREED_TO_POLICY);
     }
 

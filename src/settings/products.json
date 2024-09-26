@@ -1,7 +1,7 @@
 [
   {
     "id": "0",
-    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade 1",
     "price": "200",
     "imageUrl": "/products/ring.jpg",
     "discount": 44,
@@ -14,7 +14,7 @@
   },
   {
     "id": "1",
-    "info": "Сребърен Комплект Amina ",
+    "info": "Сребърен Комплект Amina 2 ",
     "price": "150.90",
     "imageUrl": "/products/ringTT.png",
     "discount": 0,
@@ -34,7 +34,7 @@
   },
   {
     "id": "2",
-    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade 3",
     "price": "50.90",
     "imageUrl": "/products/ring.png",
     "discount": 39,
@@ -47,7 +47,7 @@
   },
   {
     "id": "3",
-    "info": "Сребърен Комплект Amina ",
+    "info": "Сребърен Комплект Amina 4",
     "price": "150.90",
     "imageUrl": "/products/ringTwo.png",
     "discount": 12,
@@ -60,7 +60,7 @@
   },
   {
     "id": "4",
-    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade 5",
     "price": "50.90",
     "imageUrl": "/products/ringThree.png",
     "discount": 39,
@@ -77,7 +77,7 @@
   },
   {
     "id": "535325",
-    "info": "Сребърен Комплект Amina ",
+    "info": "Сребърен Комплект Amina 6",
     "price": "150.90",
     "imageUrl": "/products/ringFour.png",
     "discount": 12,
@@ -90,7 +90,7 @@
   },
   {
     "id": "0352352",
-    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade",
+    "info": "Сребърен Комплект Amina Обеци И Медальон c Кристали От Sw® Rose Shade 7",
     "price": "200",
     "imageUrl": "/products/ring.jpg",
     "discount": 44,
@@ -255,11 +255,11 @@
   },
   {
     "id": "15",
-    "info": "Сребърен Комплект Amina ",
+    "info": "Сребърен Комплект Amina last",
     "price": "150.90",
     "imageUrl": "/products/ringFour.png",
     "discount": 12,
-    "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг"],
+    "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг", "нов"],
     "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
     "description": {
       "characteristic": "characteristic1132",

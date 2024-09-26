@@ -1,3 +1,3 @@
-export enum QueryParam {
+export enum FromMenuQueryParam {
   NOT_SUBMENU = "NS",
 }
