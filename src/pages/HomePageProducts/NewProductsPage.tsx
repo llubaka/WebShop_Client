@@ -8,7 +8,8 @@ import { getLatestProducts } from "../../data/getData/getLatestProducts";
 
 export const NewProductsPage = () => {
   const filteredProducts = useMemo(
-    () => getByIds(getLatestProducts(AppSettings.newPageProductsCount).map((pr) => pr.id)),
+    () =>
+      getByIds(getLatestProducts(AppSettings.newPageProductsCount).map((pr) => pr.id)).reverse(),
     []
   );
 

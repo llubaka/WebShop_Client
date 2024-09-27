@@ -8,9 +8,20 @@ import { getHomePageProductsIds } from "../../data/getData/getHomePageProducts";
 import { ShopInfo } from "../../components/shopInfo/ShopInfo";
 import { HomeSections } from "../../components/homeSections/HomeSections";
 import HomePageProductsSettings from "../../settings/homePageProducts.json";
+import { useMemo } from "react";
 
 export const Home = () => {
-  const homePageProductsIds = getHomePageProductsIds();
+  const homePageProductsIds = useMemo(() => getHomePageProductsIds(), []);
+  const homePageProducts = homePageProductsIds
+    .map((id, index) => {
+      if (index < 2) {
+        return <Product key={id} id={id} lazyImageLoading={false} />;
+      }
+
+      return <Product key={id} id={id} />;
+    })
+    .reverse();
+
   return (
     <div className="home-container">
       {Settings.images.promotionsBanner && <PromotionBanner />}
@@ -19,15 +30,7 @@ export const Home = () => {
           <h1 className="home-container__main--heading">{HomePageProductsSettings.title}</h1>
           <p className="home-container__main--paragraph">{HomePageProductsSettings.subTitle}</p>
         </section>
-        <section className="home-container__main--products">
-          {homePageProductsIds.map((id, index) => {
-            if (index < 2) {
-              return <Product key={id} id={id} lazyImageLoading={false} />;
-            }
-
-            return <Product key={id} id={id} />;
-          })}
-        </section>
+        <section className="home-container__main--products">{homePageProducts}</section>
         <div className="home-container__main--view-all-button-container">
           <Link to={getNewProductsPageRouteLink()} aria-label="See all new suggested products">
             {HomePageProductsSettings.buttonText}

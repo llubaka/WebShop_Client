@@ -23,7 +23,9 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
   return (
     <RAAccordion className="custom-accordion" allowMultipleExpanded allowZeroExpanded>
       {noValues.map((k) => (
-        <div className="custom-accordion__no-value">{k}</div>
+        <div key={k} className="custom-accordion__no-value">
+          {k}
+        </div>
       ))}
       {withValues.map((k) => {
         return (
