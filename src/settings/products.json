@@ -230,7 +230,7 @@
     "discount": 11,
     "id": "74605f2e-4e92-4bf8-9ca6-c1ed8529197e62086fe6-5997-4c38-8657-96176d0c7b89-1e3e9d3e-02e3-4419-877a-c7133889e7214920faba-24da-4a41-ac5d-82d04e633592",
     "imageUrl": "/products/ringFour.png",
-    "price": "110210120",
+    "price": "1250",
     "tags": ["test1"]
   },
   {
@@ -240,7 +240,7 @@
     "discount": 9,
     "id": "c23b02e0-75b0-4dd5-a829-8b811dac3850dc1d91e8-06d5-4af2-9919-1f6b3754f827-97750e04-9fa3-4697-a4b8-91f9bb1ae42217c7e0ca-761c-4953-b172-0459b2870bd7",
     "imageUrl": "/products/ringTT.png",
-    "price": "21891221",
+    "price": "2000",
     "tags": ["нов"]
   },
   {
