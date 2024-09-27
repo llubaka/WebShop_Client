@@ -27,10 +27,7 @@
       "/products/ringThree.png",
       "/products/ring.png"
     ],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "2",
@@ -40,10 +37,7 @@
     "discount": 39,
     "tags": ["нов"],
     "additionalImagesUrls": [],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "3",
@@ -53,10 +47,7 @@
     "discount": 12,
     "tags": ["нов"],
     "additionalImagesUrls": [],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "4",
@@ -70,10 +61,7 @@
       "/products/ring.png",
       "/products/ringTT.png"
     ],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "535325",
@@ -83,10 +71,7 @@
     "discount": 12,
     "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг"],
     "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "0352352",
@@ -116,10 +101,7 @@
       "/products/ringThree.png",
       "/products/ring.png"
     ],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "5322",
@@ -129,10 +111,7 @@
     "discount": 39,
     "tags": ["нов"],
     "additionalImagesUrls": [],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "3325",
@@ -142,10 +121,7 @@
     "discount": 12,
     "tags": ["нов"],
     "additionalImagesUrls": [],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "423",
@@ -159,10 +135,7 @@
       "/products/ring.png",
       "/products/ringTT.png"
     ],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "51",
@@ -172,10 +145,7 @@
     "discount": 12,
     "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг"],
     "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "20",
@@ -207,10 +177,7 @@
       "/products/ringThree.png",
       "/products/ring.png"
     ],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "32",
@@ -220,10 +187,7 @@
     "discount": 39,
     "tags": ["нов"],
     "additionalImagesUrls": [],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "33",
@@ -233,10 +197,7 @@
     "discount": 12,
     "tags": ["нов"],
     "additionalImagesUrls": [],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "44",
@@ -250,10 +211,7 @@
       "/products/ring.png",
       "/products/ringTT.png"
     ],
-    "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
   },
   {
     "id": "15",
@@ -263,9 +221,21 @@
     "discount": 12,
     "tags": ["пръстен", "друго", "друго2", "друго3", "други2", "друг", "нов"],
     "additionalImagesUrls": ["/products/ringThree.png", "/products/ring.png"],
+    "description": { "characteristic": "characteristic1132", "description": "description1123" }
+  },
+  {
+    "info": "Нов тестов продукт",
+    "additionalImagesUrls": [],
     "description": {
-      "characteristic": "characteristic1132",
-      "description": "description1123"
-    }
+      "афсфсафсаасфасф": "асфсфаасффса",
+      "Грамаж: 2гр": "",
+      "Състав: злато ": "",
+      "Карат: 24к": ""
+    },
+    "discount": 7,
+    "id": "3000f682-5fd6-4d44-8c50-aa18641590151960a997-c8bb-4684-b10b-36f779454c0a-da708471-f011-4e0a-ac7c-002325f2ed53588d7f03-205a-49f0-8175-8c64de60f392",
+    "imageUrl": "/products/ringFour.png",
+    "price": "777.77",
+    "tags": ["нов", "нов2"]
   }
 ]

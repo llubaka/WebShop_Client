@@ -17,12 +17,15 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
 
   if (keys.length === 0) return <></>;
 
+  const noValues = keys.filter((k) => !items[k]);
+  const withValues = keys.filter((k) => !!items[k]);
+
   return (
     <RAAccordion className="custom-accordion" allowMultipleExpanded allowZeroExpanded>
-      {keys.map((k) => {
-        if (!items[k]) {
-          return <div className="custom-accordion__no-value">{k}</div>;
-        }
+      {noValues.map((k) => (
+        <div className="custom-accordion__no-value">{k}</div>
+      ))}
+      {withValues.map((k) => {
         return (
           <AccordionItem key={k}>
             <AccordionItemHeading>
