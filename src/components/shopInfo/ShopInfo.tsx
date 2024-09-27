@@ -12,9 +12,6 @@ export const ShopInfo = () => {
     isCollapsed((curr) => !curr);
   };
 
-  console.log(ref.current?.clientHeight);
-  console.log(ref.current?.offsetHeight);
-
   const height = ref.current?.offsetHeight ? ref.current?.offsetHeight + 55 : undefined;
 
   return (
