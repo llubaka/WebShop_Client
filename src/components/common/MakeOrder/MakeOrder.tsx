@@ -154,6 +154,33 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     return timeDifference >= msIn24Hours;
   };
 
+  const isSpamming = () => {
+    const lastOrderDate = new Date(getLocalStorageItem(LocalStorageKeys.LAST_ORDER));
+    const has24HoursDifferenceFromLastOrder = has24HoursDifference(lastOrderDate);
+
+    const sendEmailsCount = getLocalStorageItem(LocalStorageKeys.SEND_EMAILS) || 0;
+
+    if (sendEmailsCount < AppSettings.maxSendEmailCountForDay) {
+      setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, sendEmailsCount + 1);
+      setLocalStorageItem(LocalStorageKeys.LAST_ORDER, new Date());
+
+      return false;
+    }
+
+    if (
+      sendEmailsCount >= AppSettings.maxSendEmailCountForDay &&
+      has24HoursDifferenceFromLastOrder
+    ) {
+      setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, 1);
+      setLocalStorageItem(LocalStorageKeys.LAST_ORDER, new Date());
+
+      return false;
+    }
+
+    setReachedOrderLimit(true);
+    return true;
+  };
+
   const sendEmail = async (e: any) => {
     e.preventDefault();
     setFormActivated(true);
@@ -174,21 +201,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
       return;
     }
 
-    const lastOrderDate = new Date(getLocalStorageItem(LocalStorageKeys.LAST_ORDER));
-    const has24HoursDifferenceFromLastOrder = has24HoursDifference(lastOrderDate);
-
-    const count = getLocalStorageItem(LocalStorageKeys.SEND_EMAILS) || 0;
-
-    if (count + 1 > AppSettings.maxSendEmailCountForDay && has24HoursDifferenceFromLastOrder) {
-      setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, 0);
-    }
-
-    setLocalStorageItem(LocalStorageKeys.LAST_ORDER, new Date());
-    if (count + 1 > AppSettings.maxSendEmailCountForDay) {
-      setReachedOrderLimit(true);
-      return;
-    }
-    setLocalStorageItem(LocalStorageKeys.SEND_EMAILS, count + 1);
+    if (isSpamming()) return;
 
     setIsSending(true);
 
