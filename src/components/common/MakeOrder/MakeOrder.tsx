@@ -18,11 +18,11 @@ import {
   setLocalStorageItem,
 } from "../../../helpers/localStorageFunctions";
 import AppSettings from "../../../settings/appSettings.json";
-import EcontCitiesFirstLetters from "../../../settings/econtCitiesFirstLetters.json";
 import { Telephone } from "../../../svg/Telephone";
 import { DropDown } from "../DropDown/DropDown";
 import Cities from "../../../settings/econtCities.json";
 import Offices from "../../../settings/econtOffices.json";
+import Regions from "../../../settings/econtRegions.json";
 import { Pagination } from "../Pagination/Pagination";
 
 type MakeOrderProps = {
@@ -63,6 +63,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
   const [formValues, setFormValues] = useState(initFormValues);
   const [reachedOrderLimit, setReachedOrderLimit] = useState(false);
   const [econtCity, setEcontCity] = useState({ city: "", id: "" as any });
+  const [econtRegion, setEcontRegion] = useState({ city: "", id: "" as any });
   const [econtOffice, setEcontOffice] = useState("");
   const [orderType, setOrderType] = useState<OrderType | "">("");
   const [page, setPage] = useState(0);
@@ -73,6 +74,12 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
       return;
     }
     setPage(page);
+  };
+
+  const handleOnChangeRegion = (value: string) => {
+    setEcontRegion({ city: value, id: Regions.find((el) => el.city === value)?.id });
+    setEcontOffice("");
+    setEcontCity({ city: "", id: "" });
   };
 
   const handleOnChangeCity = (value: string) => {
@@ -101,9 +108,13 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
 
   const [errors, setErrors] = useState(initErrors);
 
-  const cities = useMemo(() => {
-    return Cities.map((el) => el.city);
+  const regions = useMemo(() => {
+    return Regions.map((el) => el.city);
   }, []);
+
+  const cities = useMemo(() => {
+    return Cities.filter((c) => c.region === econtRegion.city).map((el) => el.city);
+  }, [econtRegion.city]);
 
   const offices = useMemo(() => {
     if (econtCity.id || econtCity.id === 0) {
@@ -219,7 +230,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     navigate(getHomeRouteLink());
   };
 
-  const separators = new Set(EcontCitiesFirstLetters);
+  //const separators = new Set(EcontCitiesFirstLetters);
 
   const handleInnerContainerClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -312,7 +323,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     }
 
     if (orderType === OrderType.ECONT_OFFICE) {
-      return !!econtOffice && !!econtCity.city;
+      return !!econtOffice && !!econtCity.city && !!econtRegion;
     }
   };
 
@@ -339,6 +350,7 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
     setPage(0);
     setFormFirstStepActivated(false);
     setEcontOffice("");
+    setEcontRegion({ city: "", id: "" });
     setEcontCity({ city: "", id: "" });
     setOrderType("");
     setFormActivated(false);
@@ -501,13 +513,22 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
                 <>
                   <div className="x-dropdown-container">
                     <DropDown
+                      value={econtRegion.city}
+                      options={regions}
+                      placeholder="Изберете област"
+                      onChange={handleOnChangeRegion}
+                      errorMessage="Изберете: Област за доставка"
+                      hasError={!econtRegion.city && formActivated}
+                    />
+                  </div>
+                  <div className="x-dropdown-container">
+                    <DropDown
                       value={econtCity.city}
                       options={cities}
-                      placeholder="Изберете град"
+                      placeholder="Изберете населено място"
                       onChange={handleOnChangeCity}
-                      errorMessage="Изберете: Град за доставка"
+                      errorMessage="Изберете: Населено място за доставка"
                       hasError={!econtCity.city && formActivated}
-                      separators={separators}
                     />
                   </div>
                   <div className="x-dropdown-container">
@@ -562,6 +583,14 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
           <input hidden type="text" name="price" value={formValues.price} onChange={() => {}} />
 
           <input hidden type="text" name="orderType" value={orderType} onChange={() => {}} />
+
+          <input
+            hidden
+            type="text"
+            name="econtRegion"
+            value={econtRegion.city}
+            onChange={() => {}}
+          />
 
           <input hidden type="text" name="econtCity" value={econtCity.city} onChange={() => {}} />
 

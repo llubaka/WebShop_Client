@@ -29,6 +29,35 @@
   }
 }
 
+.contact-form {
+  padding-top: 5px;
+  height: calc(100% - 145px);
+  overflow-y: auto;
+  @include phones-tablets-up {
+    ::-webkit-scrollbar {
+      width: 16px; /* Width of the entire scrollbar */
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent; /* Make the scrollbar track transparent */
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgb(229, 151, 0); /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Roundness of the scrollbar thumb */
+      border: 3px solid transparent; /* Padding around the scrollbar thumb */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Color of the scrollbar thumb when hovered */
+    }
+
+    /* For Firefox */
+    scrollbar-width: 10px; /* Width of the scrollbar */
+    scrollbar-color: rgb(234, 160, 12) transparent; /* Color of the scrollbar thumb and transparent track */
+  }
+}
+
 .contact-form .input-out-container {
   margin-bottom: 15px;
 }
