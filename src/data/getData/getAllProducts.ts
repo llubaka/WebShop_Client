@@ -1,5 +1,5 @@
 import { ProductType } from "../../globals/ProductType";
-import Products from "/etc/secrets/products.json";
+import Products from "../../settings/products.json";
 
 export const getAllProducts = (): Array<ProductType> => {
   return Products;
