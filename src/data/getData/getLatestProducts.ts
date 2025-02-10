@@ -1,5 +1,5 @@
 import { ProductType } from "../../globals/ProductType";
-import Products from "../../settings/products.json";
+import Products from "/etc/secrets/products.json";
 
 export const getLatestProducts = (returnCount: number): Array<ProductType> => {
   const productsLength = Products.length;
