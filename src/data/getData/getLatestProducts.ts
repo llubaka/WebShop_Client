@@ -1,6 +1,7 @@
 import { ProductType } from "../../globals/ProductType";
 import Products from "/etc/secrets/products.json";
 
+//
 export const getLatestProducts = (returnCount: number): Array<ProductType> => {
   const productsLength = Products.length;
 
