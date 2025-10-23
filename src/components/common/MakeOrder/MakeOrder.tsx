@@ -216,12 +216,18 @@ export const MakeOrder: React.FC<MakeOrderProps> = ({ isVisible, closeModal, sho
 
     setIsSending(true);
 
-    await emailjs.sendForm(
+    const sentEmailData = await emailjs.sendForm(
       process.env.REACT_APP_EMAIL_SERVICE_ID,
       process.env.REACT_APP_EMAIL_TEMPLATE_ID,
       e.target,
       process.env.REACT_APP_EMAIL_PUBLIC_KEY
     );
+
+    if (sentEmailData.status !== 200) {
+      setIsSending(false);
+      alert("Възникна грешка при изпращане на поръчката. Моля, опитайте отново.");
+      return;
+    }
 
     setIsSending(false);
     closeMakeOrderModal();
